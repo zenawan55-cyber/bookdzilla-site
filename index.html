@@ -206,6 +206,25 @@ footer a{color:var(--on-dark)}
 @media (max-width:1000px){ .ind{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:560px){ .ind{grid-template-columns:minmax(0,1fr)} }
 
+/* live demo */
+.try{padding-block:clamp(80px, 11vw, 170px) 0}
+.try .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px, 5vw, 72px);align-items:start}
+.try-form{margin-top:32px;display:flex;flex-direction:column;gap:8px;max-width:34rem}
+.try-form label{font-weight:600;font-size:0.95rem;margin-top:10px}
+.try-form label span{font-weight:400;color:var(--ink-2)}
+.try-form select,.try-form input,.try-form textarea{font:inherit;color:var(--ink);background:var(--ground);border:2px solid var(--field);border-radius:12px;padding:12px 14px;width:100%}
+.try-form select:focus,.try-form input:focus,.try-form textarea:focus{outline:none;border-color:var(--ink)}
+.try-form textarea{resize:vertical;min-height:96px}
+.try-form .btn{margin-top:16px;align-self:flex-start}
+.try-form .btn[disabled]{opacity:0.6;cursor:wait}
+.try-note{font-size:0.88rem;color:var(--ink-2)}
+.try-phone{background:var(--field);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.try-phone .phone{min-height:380px}
+.try-empty{color:var(--ink-2);font-size:0.95rem;margin:auto 0;text-align:center}
+.try-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.try-cta p{font-weight:600}
+@media (max-width:900px){ .try .wrap{grid-template-columns:minmax(0,1fr)} }
+
 /* entrances */
 @media (prefers-reduced-motion: no-preference){
   .rise{opacity:0;transform:translateY(24px);transition:opacity 600ms ease, transform 700ms cubic-bezier(0.23,1,0.32,1)}
@@ -222,7 +241,7 @@ footer a{color:var(--on-dark)}
     <a class="word" href="#top" data-brand>Bookdzilla</a>
     <nav aria-label="Main">
       <a href="#build">What we set up</a>
-      <a href="#for">Industries</a>
+      <a href="#try">Live demo</a>
       <a href="#price">Price</a>
       <a class="btn" href="https://calendly.com/bookdzilla/30min" data-cal target="_blank" rel="noopener">Get a free review</a>
     </nav>
@@ -263,6 +282,43 @@ footer a{color:var(--on-dark)}
       <ul class="chips">
         <li>GoHighLevel</li><li>HubSpot</li><li>Calendly</li><li>Cal.com</li><li>Claude</li><li>ChatGPT</li><li>Zapier</li><li>Make</li><li>n8n</li><li>Meta Ads</li><li>Google Ads</li><li>Google Business Profile</li><li>Instagram</li><li>WhatsApp</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="try" id="try">
+    <div class="wrap">
+      <div class="try-copy rise">
+        <h2 class="h2">Send it an enquiry. Watch the reply.</h2>
+        <p class="intro">Pick a business, type what one of your customers would ask, and see what they would get back. This live demo uses example prices and times. Yours uses your real ones.</p>
+        <form id="try-form" class="try-form" novalidate>
+          <label for="try-type">Your business</label>
+          <select id="try-type">
+            <option value="venue">Wedding or event venue</option>
+            <option value="clinic">Dental clinic</option>
+            <option value="medspa">Med spa</option>
+            <option value="hvac">HVAC or home services</option>
+            <option value="pool">Pool builder</option>
+            <option value="other">Something else</option>
+          </select>
+          <label for="try-biz">Business name <span>(optional)</span></label>
+          <input id="try-biz" type="text" maxlength="80" placeholder="Willow Creek Barn" autocomplete="organization">
+          <label for="try-msg">The customer's message</label>
+          <textarea id="try-msg" rows="3" maxlength="600">Hi! Is Saturday June 12 open? About 120 guests. What does it cost?</textarea>
+          <button class="btn dark" type="submit" id="try-send">Send enquiry</button>
+          <p class="try-note" id="try-note">No sign-up. Nothing you type is saved.</p>
+        </form>
+      </div>
+      <div class="try-phone rise" aria-live="polite">
+        <div class="demo-top"><span class="timer">Replied in <b id="try-clock">0.0s</b></span></div>
+        <div class="phone" id="try-thread">
+          <div class="phone-head"><span class="av" id="try-av">W</span><div><b id="try-name">Willow Creek Barn</b><span>Text from a new customer</span></div></div>
+          <p class="try-empty">Your enquiry and the reply show up here.</p>
+        </div>
+        <div class="try-cta" id="try-cta" hidden>
+          <p>That reply took seconds. Most businesses take hours.</p>
+          <a class="btn" href="https://calendly.com/bookdzilla/30min" data-cal target="_blank" rel="noopener">Put this on my business</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -484,6 +540,47 @@ footer a{color:var(--on-dark)}
       if (window.Calendly && Calendly.initPopupWidget){ e.preventDefault(); Calendly.initPopupWidget({url: a.href + "?hide_gdpr_banner=1"}); }
     });
   });
+
+  /* live demo: real reply from the site worker */
+  (function(){
+    var form=document.getElementById("try-form"); if(!form) return;
+    var type=document.getElementById("try-type"), biz=document.getElementById("try-biz"), msg=document.getElementById("try-msg"),
+        send=document.getElementById("try-send"), note=document.getElementById("try-note"), thread=document.getElementById("try-thread"),
+        clock=document.getElementById("try-clock"), cta=document.getElementById("try-cta"), av=document.getElementById("try-av"), nm=document.getElementById("try-name");
+    var samples={venue:["Willow Creek Barn","Hi! Is Saturday June 12 open? About 120 guests. What does it cost?"],
+      clinic:["Bright Smile Dental","Hi, do you take new patients? I need a cleaning and maybe whitening. How much?"],
+      medspa:["Glow Aesthetics","How much is Botox for forehead lines? Do you have anything this week?"],
+      hvac:["Summit Air & Heat","Our AC stopped blowing cold. Can someone come out today?"],
+      pool:["Bluewater Custom Pools","How much for a 14x28 pool with a small spa? We're in Plano."],
+      other:["Your business","Hi, I'd like a quote. What are your prices and when can you fit me in?"]};
+    var used=0, edited=false;
+    msg.addEventListener("input",function(){ edited=true; });
+    function head(){ var n=(biz.value.trim()||samples[type.value][0]); nm.textContent=n; av.textContent=n.charAt(0).toUpperCase(); }
+    type.addEventListener("change",function(){ biz.placeholder=samples[type.value][0]; if(!edited) msg.value=samples[type.value][1]; head(); });
+    biz.addEventListener("input",head);
+    function bubble(cls,text,time){ var d=document.createElement("div"); d.className="msg "+cls; d.appendChild(document.createTextNode(text)); var sm=document.createElement("small"); sm.textContent=time; d.appendChild(sm); return d; }
+    function now(){ return new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}); }
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var text=msg.value.trim(); if(!text){ note.textContent="Type what a customer would ask first."; msg.focus(); return; }
+      if(used>=8){ note.textContent="That's the demo limit for this visit. Book a free review to see it on your own business."; return; }
+      used++; send.disabled=true; cta.hidden=true; note.textContent="Sending...";
+      head(); [].slice.call(thread.querySelectorAll(".msg,.typing,.try-empty")).forEach(function(n){ n.remove(); });
+      thread.appendChild(bubble("in",text,now()));
+      var typing=document.createElement("div"); typing.className="typing"; typing.innerHTML="<i></i><i></i><i></i>"; thread.appendChild(typing);
+      var t0=performance.now(), iv=setInterval(function(){ clock.textContent=((performance.now()-t0)/1000).toFixed(1)+"s"; },100);
+      fetch("/api/demo",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({type:type.value,business:biz.value,message:text})})
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          clearInterval(iv); var secs=((performance.now()-t0)/1000).toFixed(1); clock.textContent=secs+"s"; typing.remove();
+          thread.appendChild(bubble("out", d.reply || d.error || "Sorry, try that again.", now()));
+          note.textContent="Real reply, "+secs+" seconds. Example prices and times.";
+          cta.hidden=false;
+        })
+        .catch(function(){ clearInterval(iv); typing.remove(); note.textContent="The demo didn't answer. Check your connection and try again."; })
+        .then(function(){ send.disabled=false; });
+    });
+  })();
 
   /* rotating word: customers, patients, bookings */
   var words=["customers","patients","bookings"], wi=0, rot=document.getElementById("rot");
