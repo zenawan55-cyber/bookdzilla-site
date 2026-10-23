@@ -61,6 +61,13 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname !== "/api/demo") return env.ASSETS.fetch(request);
+    if (request.method === "GET" && url.searchParams.get("check") === "1") {
+      if (!env.AI) return json({ ai: false, detail: "no AI binding" });
+      try {
+        const out = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fast", { messages: [{ role: "user", content: "Say ok" }], max_tokens: 5 });
+        return json({ ai: true, sample: out && out.response });
+      } catch (e) { return json({ ai: true, error: String(e && e.message || e).slice(0, 200) }); }
+    }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
 
     let body;
