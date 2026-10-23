@@ -81,9 +81,9 @@ export default {
       `No emojis, no em dashes, no markdown, no sign-off. Never say you are an AI unless they ask directly. ` +
       `If the message is not something a customer of this business would send, politely steer back to booking.`;
 
-    if (!env.AI) return json({ reply: p.fallback, ms: Date.now() - started, source: "fallback" });
+    if (!env.AI) return json({ reply: p.fallback, ms: Date.now() - started, source: "fallback", detail: "no AI binding" });
     try {
-      const out = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+      const out = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fast", {
         messages: [{ role: "system", content: system }, { role: "user", content: message }],
         max_tokens: 160,
         temperature: 0.6
@@ -92,7 +92,7 @@ export default {
       if (!reply) throw new Error("empty");
       return json({ reply, ms: Date.now() - started, source: "ai" });
     } catch (e) {
-      return json({ reply: p.fallback, ms: Date.now() - started, source: "fallback" });
+      return json({ reply: p.fallback, ms: Date.now() - started, source: "fallback", detail: String(e && e.message || e).slice(0, 160) });
     }
   }
 };
