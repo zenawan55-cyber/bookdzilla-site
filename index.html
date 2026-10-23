@@ -96,11 +96,28 @@ section{padding-block:clamp(80px, 11vw, 170px) 0}
 /* why: photo + statement */
 .why .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px, 5vw, 72px);align-items:center}
 .why figure{margin:0}
-.why img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.why figcaption{margin-top:10px;font-size:0.86rem;color:var(--ink-2)}
+.why figcaption{margin-top:14px;font-size:0.86rem;color:var(--ink-2)}
+.race{background:var(--field);padding:clamp(20px, 3vw, 36px)}
+.race-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.race-top b{font-family:var(--display);font-size:1.35rem;letter-spacing:-0.02em}
+.race-top span{font-size:0.9rem;color:var(--ink-2)}
+.race ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.race li{background:var(--ground);padding:14px 16px;display:grid;grid-template-columns:minmax(0,7rem) minmax(0,1fr) auto;grid-template-areas:"who bar t" "who res res";gap:4px 14px;align-items:center}
+.race .who{grid-area:who;font-weight:600;line-height:1.2}
+.race .who small{display:block;font-weight:500;font-size:0.8rem;color:#0B6B37}
+.race .bar{grid-area:bar;height:8px;background:var(--field);border-radius:999px;position:relative;overflow:hidden}
+.race .bar::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink-2);border-radius:999px}
+.race .t{grid-area:t;font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.race .res{grid-area:res;font-size:0.86rem;color:var(--ink-2)}
+.race li.win{box-shadow:inset 4px 0 0 var(--green)}
+.race li.win .bar::after{background:var(--green)}
+.race li.win .t{color:var(--green)}
+.race li.win .res{color:#0B6B37;font-weight:600}
+.race li.none{opacity:0.55}
+.race li.none .bar::after{background:var(--bubble)}
 .why .copy{display:flex;flex-direction:column;gap:28px;padding-bottom:12px}
 .why .big{font-family:var(--display);font-weight:600;font-size:clamp(1.3rem, 1.9vw, 1.65rem);line-height:1.25;letter-spacing:-0.01em}
-@media (max-width:900px){ .why .wrap{grid-template-columns:minmax(0,1fr)} .why img{aspect-ratio:4/3} }
+@media (max-width:900px){ .why .wrap{grid-template-columns:minmax(0,1fr)} }
 
 /* the minute: timeline on a light-blue field */
 .minute{background:var(--field);margin-top:clamp(80px, 11vw, 170px);padding-block:clamp(72px, 9vw, 130px)}
@@ -115,24 +132,21 @@ section.minute{padding-top:clamp(72px, 9vw, 130px)}
 @media (max-width:520px){ .steps{grid-template-columns:minmax(0,1fr)} }
 
 /* who it's for */
-.for .grid{margin-top:56px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(16px, 2.4vw, 28px);align-items:start}
+.for .grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px, 2.4vw, 28px);align-items:start}
 .niche{display:flex;flex-direction:column;gap:14px;min-width:0}
-.niche img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.niche:first-child img{aspect-ratio:4/5}
+.niche img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .niche h3{font-size:1.6rem;letter-spacing:-0.02em;line-height:1.1}
 .niche p{color:var(--ink-2)}
 .niche .what{color:var(--ink);font-weight:600}
-@media (max-width:900px){ .for .grid{grid-template-columns:minmax(0,1fr)} .niche img,.niche:first-child img{aspect-ratio:16/10} }
+@media (max-width:900px){ .for .grid{grid-template-columns:minmax(0,1fr)} .niche img{aspect-ratio:16/10} }
 
 /* proof */
-.proof .wrap{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(32px, 5vw, 72px);align-items:center}
-.proof figure{margin:0}
-.proof img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.proof .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px, 5vw, 72px);align-items:end}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;background:var(--field);padding:clamp(24px, 3vw, 40px)}
 .figs b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.4rem, 4vw, 3.6rem);letter-spacing:-0.04em;line-height:1}
 .figs span{display:block;margin-top:8px;color:var(--ink-2);font-size:0.98rem}
 .proof .note{margin-top:28px;color:var(--ink-2);max-width:36rem}
-@media (max-width:900px){ .proof .wrap{grid-template-columns:minmax(0,1fr)} .proof img{aspect-ratio:16/10} .proof figure{order:2} }
+@media (max-width:900px){ .proof .wrap{grid-template-columns:minmax(0,1fr)}  }
 @media (max-width:520px){ .figs{grid-template-columns:minmax(0,1fr)} }
 
 /* price */
@@ -324,9 +338,16 @@ footer a{color:var(--on-dark)}
 
   <section class="why" id="why">
     <div class="wrap">
-      <figure class="rise">
-        <img src="https://images.unsplash.com/photo-1777573361248-f05f1efcc431?auto=format&fit=crop&w=1400&q=70" alt="A woman standing behind a reception desk" loading="lazy" width="1400" height="1750">
-        <figcaption>Every unanswered message is a customer who booked somewhere else.</figcaption>
+      <figure class="race rise" aria-label="Example: one enquiry sent to five venues">
+        <div class="race-top"><b>One enquiry, five venues</b><span>Sent Thursday, 9:14pm</span></div>
+        <ol>
+          <li class="win"><span class="who">Venue A<small>with Bookdzilla</small></span><span class="bar" style="--w:4%"></span><span class="t">38 sec</span><span class="res">Tour booked</span></li>
+          <li><span class="who">Venue B</span><span class="bar" style="--w:30%"></span><span class="t">2 hr 41 min</span><span class="res">Already chose A</span></li>
+          <li><span class="who">Venue C</span><span class="bar" style="--w:58%"></span><span class="t">Next morning</span><span class="res">No reply back</span></li>
+          <li><span class="who">Venue D</span><span class="bar" style="--w:84%"></span><span class="t">2 days</span><span class="res">No reply back</span></li>
+          <li class="none"><span class="who">Venue E</span><span class="bar" style="--w:100%"></span><span class="t">Never</span><span class="res">&nbsp;</span></li>
+        </ol>
+        <figcaption>An example of how one enquiry plays out. Every unanswered message is a customer who booked somewhere else.</figcaption>
       </figure>
       <div class="copy rise">
         <h2 class="h2">Whoever replies first usually gets the customer.</h2>
@@ -372,19 +393,19 @@ footer a{color:var(--on-dark)}
       <p class="intro rise">If your phone, inbox and DMs are where the money starts, this works for you.</p>
       <div class="grid">
         <article class="niche rise">
-          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=70" alt="A modern dental surgery with a patient chair" loading="lazy" width="1200" height="1500">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&h=750&q=70" alt="A modern dental surgery with a patient chair" loading="lazy" width="1000" height="750">
           <h3>Health clinics</h3>
           <p>Dental offices, med spas, chiropractors, physical therapy and dermatology. New patients message after hours and book whoever answers. We answer first and book the consult.</p>
           <p class="what">More patients.</p>
         </article>
         <article class="niche rise">
-          <img src="https://images.unsplash.com/photo-1770625467384-304e461ef1be?auto=format&fit=crop&w=900&q=70" alt="A finger adjusting a digital thermostat on a wall" loading="lazy" width="900" height="1200">
+          <img src="https://images.unsplash.com/photo-1660330589693-99889d60181e?auto=format&fit=crop&w=1000&h=750&q=70" alt="A tradesperson in a hi-vis shirt working on an electrical panel" loading="lazy" width="1000" height="750">
           <h3>Home services</h3>
           <p>HVAC, plumbing, roofing, pools, solar and landscaping. Homeowners call three companies. We call back first, give a price range and book the estimate.</p>
           <p class="what">More booked jobs.</p>
         </article>
         <article class="niche rise">
-          <img src="https://images.unsplash.com/photo-1704452606764-23194693652b?auto=format&fit=crop&w=900&q=70" alt="A white barn venue in a field of yellow flowers" loading="lazy" width="900" height="1200">
+          <img src="https://images.unsplash.com/photo-1773407377203-faf8b19a2142?auto=format&fit=crop&w=1000&h=750&q=70" alt="A barn wedding venue with long tables set in front of a stone fireplace" loading="lazy" width="1000" height="750">
           <h3>Venues and events</h3>
           <p>Wedding venues, event spaces and party rentals. Couples shop at night and on weekends. We answer, check the date and book the tour.</p>
           <p class="what">More bookings.</p>
@@ -417,12 +438,11 @@ footer a{color:var(--on-dark)}
 
   <section class="proof" id="proof">
     <div class="wrap">
-      <figure class="rise">
-        <img src="https://images.unsplash.com/photo-1522125670776-3c7abb882bc2?auto=format&fit=crop&w=1200&q=70" alt="A woman reading a message on her phone" loading="lazy" width="1200" height="1200">
-      </figure>
       <div class="rise">
         <h2 class="h2">The first test, in numbers.</h2>
         <p class="intro">A car repair shop. Facebook ads plus fast replies to every message, over two weeks in 2026.</p>
+      </div>
+      <div class="rise">
         <div class="figs">
           <div><b>$25</b><span>total ad spend</span></div>
           <div><b>~50</b><span>enquiries</span></div>
