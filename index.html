@@ -217,6 +217,8 @@ footer a{color:var(--on-dark)}
 .ind{margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 clamp(20px, 3vw, 40px)}
 .ind div{padding-block:14px;border-bottom:1px solid var(--field);display:flex;justify-content:space-between;gap:12px;min-width:0}
 .ind b{font-weight:600}
+.ind b a{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:4px}
+.niche .what a{font-weight:500;margin-left:6px}
 .ind span{color:var(--ink-2);white-space:nowrap}
 @media (max-width:1000px){ .ind{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:560px){ .ind{grid-template-columns:minmax(0,1fr)} }
@@ -397,7 +399,7 @@ footer a{color:var(--on-dark)}
           <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&h=750&q=70" alt="A modern dental surgery with a patient chair" loading="lazy" width="1000" height="750">
           <h3>Health clinics</h3>
           <p>Dental offices, med spas, chiropractors, physical therapy and dermatology. New patients message after hours and book whoever answers. We answer first and book the consult.</p>
-          <p class="what">More patients.</p>
+          <p class="what">More patients. <a href="/dental-clinics/">The dental clinic guide</a></p>
         </article>
         <article class="niche rise">
           <img src="https://images.unsplash.com/photo-1660330589693-99889d60181e?auto=format&fit=crop&w=1000&h=750&q=70" alt="A tradesperson in a hi-vis shirt working on an electrical panel" loading="lazy" width="1000" height="750">
@@ -409,11 +411,11 @@ footer a{color:var(--on-dark)}
           <img src="https://images.unsplash.com/photo-1773407377203-faf8b19a2142?auto=format&fit=crop&w=1000&h=750&q=70" alt="A barn wedding venue with long tables set in front of a stone fireplace" loading="lazy" width="1000" height="750">
           <h3>Venues and events</h3>
           <p>Wedding venues, event spaces and party rentals. Couples shop at night and on weekends. We answer, check the date and book the tour.</p>
-          <p class="what">More bookings.</p>
+          <p class="what">More bookings. <a href="/wedding-venues/">The wedding venue guide</a></p>
         </article>
       </div>
       <div class="ind rise" aria-label="Industries we work with">
-        <div><b>Dental clinics</b><span>more patients</span></div>
+        <div><b><a href="/dental-clinics/">Dental clinics</a></b><span>more patients</span></div>
         <div><b>Med spas and aesthetics</b><span>more patients</span></div>
         <div><b>Chiropractors</b><span>more patients</span></div>
         <div><b>Physical therapy</b><span>more patients</span></div>
@@ -425,7 +427,7 @@ footer a{color:var(--on-dark)}
         <div><b>Pool builders</b><span>more design visits</span></div>
         <div><b>Solar installers</b><span>more consults</span></div>
         <div><b>Landscapers</b><span>more estimates</span></div>
-        <div><b>Wedding venues</b><span>more tours</span></div>
+        <div><b><a href="/wedding-venues/">Wedding venues</a></b><span>more tours</span></div>
         <div><b>Event spaces</b><span>more bookings</span></div>
         <div><b>Gyms and studios</b><span>more members</span></div>
         <div><b>Salons and barbers</b><span>more bookings</span></div>
@@ -531,6 +533,7 @@ footer a{color:var(--on-dark)}
     <p class="big" data-brand>Bookdzilla</p>
     <div class="row">
       <span>More customers, patients and bookings for local businesses.</span>
+      <span><a href="/wedding-venues/">Wedding venues</a> · <a href="/dental-clinics/">Dental clinics</a></span>
       <span>Photos from <a href="https://unsplash.com/" rel="noopener">Unsplash</a>. &copy; <span id="yr">2026</span></span>
     </div>
   </div>
