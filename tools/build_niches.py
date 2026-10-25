@@ -173,6 +173,10 @@ def page(p):
 <meta property="og:title" content="{p['title']}">
 <meta property="og:description" content="{p['desc']}">
 <meta property="og:url" content="{url}">
+<meta property="og:image" content="https://bookdzilla.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
