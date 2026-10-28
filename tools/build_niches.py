@@ -168,7 +168,7 @@ def page(p):
          "publisher": {"@type": "Organization", "name": "Bookdzilla", "url": BASE + "/"}},
         {"@type": "Service", "name": p["service"], "serviceType": p["service_types"], "areaServed": ["Texas", "United States"],
          "provider": {"@type": "ProfessionalService", "name": "Bookdzilla", "url": BASE + "/"},
-         "offers": {"@type": "Offer", "price": "1000", "priceCurrency": "USD", "description": "$1,000 a month, month to month, no setup fee"}},
+         "offers": {"@type": "Offer", "description": "Fixed monthly price set after a free leak check, month to month"}},
         {"@type": "FAQPage", "mainEntity": faq_ld},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Bookdzilla", "item": BASE + "/"},
@@ -263,8 +263,7 @@ def page(p):
         <p class="other">Or email <a href="mailto:bookdzilla@gmail.com?subject={p['mail_subject']}">bookdzilla@gmail.com</a>, or <a href="{CAL}" target="_blank" rel="noopener">book a 30-minute call</a>.</p>
       </div>
       <div>
-        <p class="amt">$1,000<small>a month</small></p>
-        <p class="sub" style="margin-top:10px">Month to month, no setup fee. Your ad budget stays yours and goes straight to Meta or Google.</p>
+        <p class="sub">One fixed monthly price, set after the free leak check and based on what we fix. Month to month. Your ad budget stays yours and goes straight to Meta or Google.</p>
         <ul>{OFFER_LIST}</ul>
         <p class="g">Before we change anything, we write down your last 30 days of leads, {p['unit']} and response time, so we both see what changes.</p>
       </div>
@@ -297,7 +296,7 @@ def page(p):
     <a class="word" href="/">Bookdzilla</a>
     <div class="row" style="margin-top:24px">
       <span>More booked jobs from the ads you already pay for.</span>
-      <span><a href="/pool-builders/">Pool builders</a>&emsp;<a href="/wedding-venues/">Wedding venues</a>&emsp;<a href="/#start">Price</a>&emsp;<a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></span>
+      <span><a href="/pool-builders/">Pool builders</a>&emsp;<a href="/wedding-venues/">Wedding venues</a>&emsp;<a href="/#start">How it starts</a>&emsp;<a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></span>
     </div>
   </div>
 </footer>
