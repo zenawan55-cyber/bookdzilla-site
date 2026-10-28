@@ -277,6 +277,14 @@ footer a{color:var(--on-dark)}
 .fnl-f{margin:14px 0 0;font-size:0.8rem;color:var(--ink-2)}
 @media (max-width:900px){ .leaks-top{grid-template-columns:minmax(0,1fr)} }
 @media (prefers-reduced-motion:reduce){ .fnl .bar span{transition:none} }
+.ind{margin-top:48px;list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,72px);border-top:2px solid var(--ink)}
+.ind li{padding:26px 0;border-bottom:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.ind h3{font-size:1.3rem;font-weight:700;letter-spacing:-0.01em}
+.ind .lk{color:var(--ink-2)}
+.ind .fx{font-weight:600;color:var(--green)}
+.guides{margin-top:28px;color:var(--ink-2)}
+.guides a{color:var(--ink);font-weight:600}
+@media (max-width:760px){ .ind{grid-template-columns:minmax(0,1fr)} }
 </style>
 </head>
 <body>
@@ -446,21 +454,17 @@ footer a{color:var(--on-dark)}
 
   <section class="sec for" id="for" aria-labelledby="for-h">
     <div class="wrap">
-      <h2 id="for-h">Two niches we know well.</h2>
-      <div class="grid">
-        <article class="niche">
-          <h3>Pool builders</h3>
-          <p class="out">More booked design visits.</p>
-          <p>Homeowners ask two or three builders for a quote and lean toward whoever makes it easiest to book. We make that you.</p>
-          <a class="go" href="/pool-builders/">How we do it for pool builders</a>
-        </article>
-        <article class="niche">
-          <h3>Wedding venues</h3>
-          <p class="out">More booked tours.</p>
-          <p>Couples message several venues in one night and tour whoever answers first with a date and a price. We make sure that's you, at 9pm on a Thursday too.</p>
-          <a class="go" href="/wedding-venues/">How we do it for wedding venues</a>
-        </article>
-      </div>
+      <h2 id="for-h">The leak we find most, by industry.</h2>
+      <p class="intro">Every business is different, but each industry has a leak we see again and again. This is where most leak checks start.</p>
+      <ul class="ind">
+        <li><h3>Dental implants</h3><p class="lk">A full-arch consult request comes in at 9pm and waits for the front desk at 8am. By then they've booked with the practice that called back.</p><p class="fx">The consult gets booked that night.</p></li>
+        <li><h3>Med spas</h3><p class="lk">The ad offers a first-visit deal. The page it opens is the full treatment menu, and the deal is nowhere on it.</p><p class="fx">The page leads with the offer they clicked for.</p></li>
+        <li><h3>Pools and outdoor living</h3><p class="lk">Plenty of quote requests, but the form is three screens down and the first reply takes two days.</p><p class="fx">Design visits booked within the hour.</p></li>
+        <li><h3>Roofing and foundation repair</h3><p class="lk">After a storm, homeowners call three companies. Whoever calls back first gets the inspection.</p><p class="fx">Every missed call texted back in seconds.</p></li>
+        <li><h3>HVAC and home services</h3><p class="lk">Calls after 5pm and on weekends go to voicemail, and most of those callers never leave one.</p><p class="fx">After-hours calls answered and booked.</p></li>
+        <li><h3>Wedding and event venues</h3><p class="lk">Couples ask about a date and get a brochure instead of a price.</p><p class="fx">Date, price and two tour times in the first reply.</p></li>
+      </ul>
+      <p class="guides">Guides: <a href="/pool-builders/">pool builders</a> and <a href="/wedding-venues/">wedding venues</a>.</p>
     </div>
   </section>
 
