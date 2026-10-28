@@ -228,6 +228,52 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 footer a{color:var(--on-dark)}
 
 @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
+
+/* Hero: live enquiry feed beside the headline */
+.hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,400px);gap:clamp(32px,5vw,72px);align-items:center}
+@media (min-width:961px){ .hero-top h1{font-size:clamp(2.5rem,5.2vw,4.9rem)} }
+.feed{background:var(--ink);color:var(--on-dark);border-radius:14px;padding:18px 18px 14px;font-size:0.92rem;box-shadow:0 1px 0 rgba(11,21,48,.04)}
+.feed-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:0 2px 12px;border-bottom:1px solid #26345A}
+.feed-h b{font-family:var(--display);font-weight:700;font-size:1.02rem}
+.feed-h span{font-size:0.8rem;color:var(--on-dark-2)}
+.feed ol{list-style:none;margin:0;padding:0}
+.feed li{display:grid;grid-template-columns:4.6rem minmax(0,1fr);gap:4px 12px;padding:12px 2px;border-bottom:1px solid #1C2A50}
+.feed .t{font-variant-numeric:tabular-nums;color:var(--on-dark-2);font-size:0.82rem;padding-top:2px}
+.feed .q{min-width:0}
+.feed .q p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.feed .src{display:block;font-size:0.78rem;color:var(--on-dark-2);margin-top:2px}
+.feed .st{grid-column:2;justify-self:start;margin-top:6px;font-size:0.8rem;font-weight:600;padding:3px 9px;border-radius:999px;background:#3A1F2A;color:#FF9B8F}
+.feed li.done .st{background:#123A2A;color:#7FE0A8}
+.feed-f{display:flex;gap:18px;padding:12px 2px 0;font-size:0.82rem;color:var(--on-dark-2)}
+.feed-f b{color:var(--on-dark);font-variant-numeric:tabular-nums}
+@media (max-width:960px){ .hero-top{grid-template-columns:minmax(0,1fr)} .feed{display:none} }
+@media (prefers-reduced-motion:no-preference){
+  .feed.play li{opacity:0;transform:translateY(6px);transition:opacity .4s ease, transform .4s ease}
+  .feed.play li.in{opacity:1;transform:none}
+  .feed .st{transition:background .3s ease,color .3s ease}
+}
+
+/* Leaks: before/after funnel beside the intro */
+.leaks-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:end}
+.fnl{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--field-2)}
+.fnl-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.fnl-h b{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--ground);padding:3px}
+.seg button{font:600 0.86rem var(--text);border:0;background:none;color:var(--ink-2);padding:6px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--on-dark)}
+.seg button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.fnl ol{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.fnl li{display:grid;grid-template-columns:minmax(0,1fr) 3.6rem;align-items:center;gap:4px 12px}
+.fnl .lb{grid-column:1/-1;font-size:0.86rem;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.fnl .lb i{font-style:normal;color:var(--leak);font-weight:600}
+.fnl.after .lb i{color:var(--ink-2);font-weight:500}
+.fnl .bar{height:12px;border-radius:999px;background:var(--line);overflow:hidden}
+.fnl .bar span{display:block;height:100%;width:var(--w);background:var(--ink);border-radius:999px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.fnl li:last-child .bar span{background:var(--yellow)}
+.fnl .v{font:700 1rem var(--display);text-align:right;font-variant-numeric:tabular-nums}
+.fnl-f{margin:14px 0 0;font-size:0.8rem;color:var(--ink-2)}
+@media (max-width:900px){ .leaks-top{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion:reduce){ .fnl .bar span{transition:none} }
 </style>
 </head>
 <body>
@@ -247,7 +293,19 @@ footer a{color:var(--on-dark)}
 <main id="top">
   <div class="hero">
     <div class="wrap">
+      <div class="hero-top">
       <h1>More booked jobs from the ads you already pay for.</h1>
+      <aside class="feed" aria-label="Example: an evening of enquiries, answered">
+        <div class="feed-h"><b>Tonight's enquiries</b><span>Example account</span></div>
+        <ol>
+          <li data-done="Answered in 38 sec"><span class="t">9:14 pm</span><div class="q"><p>"Is Saturday June 13 open for 120?"</p><span class="src">Facebook ad</span></div><span class="st">New</span></li>
+          <li data-done="Design visit booked, Sat 11:00"><span class="t">9:31 pm</span><div class="q"><p>"Rough price for a pool with a spa?"</p><span class="src">Google ad</span></div><span class="st">New</span></li>
+          <li data-done="Texted back in 12 sec"><span class="t">9:48 pm</span><div class="q"><p>Missed call</p><span class="src">Google Business Profile</span></div><span class="st">Missed</span></li>
+          <li data-done="Follow-up 2 sent, tour booked"><span class="t">10:06 pm</span><div class="q"><p>"Still thinking, what's included?"</p><span class="src">Website form, 3 days ago</span></div><span class="st">Gone quiet</span></li>
+        </ol>
+        <div class="feed-f"><span><b class="fc">0</b> of 4 answered under a minute</span><span><b class="fb">0</b> booked</span></div>
+      </aside>
+      </div>
       <div class="hero-row">
         <div>
           <p class="lead">For owner-run, high-ticket businesses. We find where your paid traffic leaks between the click and the booking, then fix it.</p>
@@ -309,8 +367,25 @@ footer a{color:var(--on-dark)}
 
   <section class="sec" id="leaks" aria-labelledby="leaks-h">
     <div class="wrap">
+      <div class="leaks-top">
+      <div>
       <h2 id="leaks-h">Where paid traffic leaks.</h2>
       <p class="intro">Every business leaks somewhere different. One has a tired ad, another a page that loses people, another a phone nobody answers after 5pm. The leak check finds yours, and the fix is built for that, not copied from a template.</p>
+      </div>
+      <figure class="fnl" id="fnl" aria-labelledby="fnl-h">
+        <div class="fnl-h"><b id="fnl-h">1,000 ad clicks</b>
+          <div class="seg" role="group" aria-label="Show funnel"><button type="button" aria-pressed="true" data-mode="before">Before</button><button type="button" aria-pressed="false" data-mode="after">After the fix</button></div>
+        </div>
+        <ol>
+          <li data-b="1000" data-a="1000"><span class="lb">Landed on the page<i></i></span><span class="bar"><span></span></span><span class="v">1,000</span></li>
+          <li data-b="430" data-a="760"><span class="lb">Stayed past the first screen<i></i></span><span class="bar"><span></span></span><span class="v"></span></li>
+          <li data-b="31" data-a="58"><span class="lb">Sent an enquiry<i></i></span><span class="bar"><span></span></span><span class="v"></span></li>
+          <li data-b="9" data-a="55"><span class="lb">Got a reply within a minute<i></i></span><span class="bar"><span></span></span><span class="v"></span></li>
+          <li data-b="4" data-a="15"><span class="lb">Booked<i></i></span><span class="bar"><span></span></span><span class="v"></span></li>
+        </ol>
+        <figcaption class="fnl-f">Made-up numbers to show the idea. Bars are scaled so small numbers stay visible. Your leak check uses your own.</figcaption>
+      </figure>
+      </div>
       <ol class="path">
         <li>
           <div class="step"><span class="n" aria-hidden="true">1</span><h3>The ad</h3></div>
@@ -508,6 +583,44 @@ footer a{color:var(--on-dark)}
     msg.className = "msg";
     msg.textContent = "Your email app should open with this filled in. If it didn't, email " + EMAIL + " with your website.";
   });
+})();
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Feed: rows arrive, then each gets answered
+  var feed=document.querySelector('.feed');
+  if(feed){
+    var rows=[].slice.call(feed.querySelectorAll('li')),fc=feed.querySelector('.fc'),fb=feed.querySelector('.fb');
+    var finish=function(li){li.classList.add('done');li.querySelector('.st').textContent=li.getAttribute('data-done');
+      var done=[].slice.call(feed.querySelectorAll('li.done'));fc.textContent=done.length;fb.textContent=done.filter(function(x){return /booked/i.test(x.getAttribute('data-done'))}).length;};
+    if(reduce){rows.forEach(finish);}
+    else{feed.classList.add('play');
+      rows.forEach(function(li,i){setTimeout(function(){li.classList.add('in')},300+i*500);setTimeout(function(){finish(li)},1500+i*900);});}
+  }
+  // Funnel: before / after toggle
+  var f=document.getElementById('fnl');
+  if(f){
+    var items=[].slice.call(f.querySelectorAll('li')),btns=[].slice.call(f.querySelectorAll('.seg button'));
+    var fmt=function(n){return n.toLocaleString('en-US')};
+    var set=function(mode){
+      f.classList.toggle('after',mode==='after');
+      btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-mode')===mode))});
+      var prev=null;
+      items.forEach(function(li){
+        var n=+li.getAttribute(mode==='after'?'data-a':'data-b');
+        var w=Math.max(Math.sqrt(n/1000)*100,2);
+        li.querySelector('.bar span').style.setProperty('--w',w+'%');
+        li.querySelector('.v').textContent=fmt(n);
+        var lost=prev!==null?prev-n:0;
+        li.querySelector('.lb i').textContent=prev!==null?fmt(lost)+' lost':'';
+        prev=n;
+      });
+      document.getElementById('fnl-h').textContent='1,000 ad clicks, '+fmt(+items[items.length-1].getAttribute(mode==='after'?'data-a':'data-b'))+' booked';
+    };
+    btns.forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-mode'))})});
+    set('before');
+  }
 })();
 </script>
 </body>
