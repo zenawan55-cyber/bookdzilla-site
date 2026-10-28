@@ -229,29 +229,32 @@ footer a{color:var(--on-dark)}
 
 @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
 
-/* Hero: live enquiry feed beside the headline */
-.hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,400px);gap:clamp(32px,5vw,72px);align-items:center}
+/* Hero: a text conversation beside the headline */
+.hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:clamp(32px,5vw,72px);align-items:end}
 @media (min-width:961px){ .hero-top h1{font-size:clamp(2.5rem,5.2vw,4.9rem)} }
-.feed{background:var(--ink);color:var(--on-dark);border-radius:14px;padding:18px 18px 14px;font-size:0.92rem;box-shadow:0 1px 0 rgba(11,21,48,.04)}
-.feed-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:0 2px 12px;border-bottom:1px solid #26345A}
-.feed-h b{font-family:var(--display);font-weight:700;font-size:1.02rem}
-.feed-h span{font-size:0.8rem;color:var(--on-dark-2)}
-.feed ol{list-style:none;margin:0;padding:0}
-.feed li{display:grid;grid-template-columns:4.6rem minmax(0,1fr);gap:4px 12px;padding:12px 2px;border-bottom:1px solid #1C2A50}
-.feed .t{font-variant-numeric:tabular-nums;color:var(--on-dark-2);font-size:0.82rem;padding-top:2px}
-.feed .q{min-width:0}
-.feed .q p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.feed .src{display:block;font-size:0.78rem;color:var(--on-dark-2);margin-top:2px}
-.feed .st{grid-column:2;justify-self:start;margin-top:6px;font-size:0.8rem;font-weight:600;padding:3px 9px;border-radius:999px;background:#3A1F2A;color:#FF9B8F}
-.feed li.done .st{background:#123A2A;color:#7FE0A8}
-.feed-f{display:flex;gap:18px;padding:12px 2px 0;font-size:0.82rem;color:var(--on-dark-2)}
-.feed-f b{color:var(--on-dark);font-variant-numeric:tabular-nums}
-@media (max-width:960px){ .hero-top{grid-template-columns:minmax(0,1fr)} .feed{display:none} }
+.chat{margin:0;font-size:0.9rem}
+.chat-cap{display:flex;justify-content:space-between;gap:12px;margin:0 0 10px;font-size:0.8rem;color:var(--ink-2)}
+.chat-win{overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.chat-list{display:flex;flex-direction:column;gap:6px}
+.chat .b{margin:0;max-width:82%;padding:9px 13px;border-radius:19px;line-height:1.32}
+.chat .in{align-self:flex-start;background:#E9E9EB;color:#111;border-bottom-left-radius:6px}
+.chat .out{align-self:flex-end;background:#0A7CFF;color:#fff;border-bottom-right-radius:6px}
+.chat .typing{align-self:flex-end;background:#0A7CFF;display:flex;gap:4px;padding:12px 14px}
+.chat .typing i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85)}
+.chat .meta{margin:0 4px 0 0;align-self:flex-end;font-size:0.75rem;color:var(--ink-2)}
+.chat .done{margin:4px 0 0;align-self:center;font-size:0.82rem;font-weight:600;color:var(--green);background:var(--green-soft);padding:4px 12px;border-radius:999px}
+@media (max-width:960px){ .hero-top{grid-template-columns:minmax(0,1fr)} .chat{display:none} }
+.chat .typing{display:none}
 @media (prefers-reduced-motion:no-preference){
-  .feed.play li{opacity:0;transform:translateY(6px);transition:opacity .4s ease, transform .4s ease}
-  .feed.play li.in{opacity:1;transform:none}
-  .feed .st{transition:background .3s ease,color .3s ease}
+  .chat.play .chat-list > *{display:none}
+  .chat.play .chat-list > .on{display:flex;animation:pop .32s cubic-bezier(.2,.8,.2,1) both}
+  .chat.play .chat-list > p.on:not(.typing){display:block}
+  .chat .in.on{transform-origin:left bottom;animation-name:popl} .chat .out.on,.chat .typing.on{transform-origin:right bottom}
+  .chat .typing i{animation:dot 1s infinite} .chat .typing i:nth-child(2){animation-delay:.15s} .chat .typing i:nth-child(3){animation-delay:.3s}
 }
+@keyframes pop{from{opacity:0;transform:translateX(18px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes popl{from{opacity:0;transform:translateX(-18px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes dot{0%,60%,100%{opacity:.35}30%{opacity:1}}
 
 /* Leaks: before/after funnel beside the intro */
 .leaks-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:end}
@@ -295,15 +298,17 @@ footer a{color:var(--on-dark)}
     <div class="wrap">
       <div class="hero-top">
       <h1>More booked jobs from the ads you already pay for.</h1>
-      <aside class="feed" aria-label="Example: an evening of enquiries, answered">
-        <div class="feed-h"><b>Tonight's enquiries</b><span>Example account</span></div>
-        <ol>
-          <li data-done="Answered in 38 sec"><span class="t">9:14 pm</span><div class="q"><p>"Is Saturday June 13 open for 120?"</p><span class="src">Facebook ad</span></div><span class="st">New</span></li>
-          <li data-done="Design visit booked, Sat 11:00"><span class="t">9:31 pm</span><div class="q"><p>"Rough price for a pool with a spa?"</p><span class="src">Google ad</span></div><span class="st">New</span></li>
-          <li data-done="Texted back in 12 sec"><span class="t">9:48 pm</span><div class="q"><p>Missed call</p><span class="src">Google Business Profile</span></div><span class="st">Missed</span></li>
-          <li data-done="Follow-up 2 sent, tour booked"><span class="t">10:06 pm</span><div class="q"><p>"Still thinking, what's included?"</p><span class="src">Website form, 3 days ago</span></div><span class="st">Gone quiet</span></li>
-        </ol>
-        <div class="feed-f"><span><b class="fc">0</b> of 4 answered under a minute</span><span><b class="fb">0</b> booked</span></div>
+      <aside class="chat" aria-label="Example text conversation with a new enquiry">
+        <p class="chat-cap"><span>Facebook ad enquiry, 9:14 pm</span><span>Example</span></p>
+        <div class="chat-win"><div class="chat-list">
+          <p class="b in" data-d="400">Hi! Is Saturday June 13 open for about 120 guests?</p>
+          <p class="b typing" data-d="1400" aria-hidden="true"><i></i><i></i><i></i></p>
+          <p class="b out" data-d="2300">Hi Maya! June 13 is open. Saturdays for 150 start at $6,500. Tour Thu 4pm or Sat 11am?</p>
+          <p class="meta" data-d="2600">Replied in 38 sec</p>
+          <p class="b in" data-d="3800">Sat 11 works!</p>
+          <p class="b out" data-d="4900">Booked for Sat 11am. See you then!</p>
+          <p class="done" data-d="5600">Tour booked</p>
+        </div></div>
       </aside>
       </div>
       <div class="hero-row">
@@ -588,15 +593,16 @@ footer a{color:var(--on-dark)}
 <script>
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Feed: rows arrive, then each gets answered
-  var feed=document.querySelector('.feed');
-  if(feed){
-    var rows=[].slice.call(feed.querySelectorAll('li')),fc=feed.querySelector('.fc'),fb=feed.querySelector('.fb');
-    var finish=function(li){li.classList.add('done');li.querySelector('.st').textContent=li.getAttribute('data-done');
-      var done=[].slice.call(feed.querySelectorAll('li.done'));fc.textContent=done.length;fb.textContent=done.filter(function(x){return /booked/i.test(x.getAttribute('data-done'))}).length;};
-    if(reduce){rows.forEach(finish);}
-    else{feed.classList.add('play');
-      rows.forEach(function(li,i){setTimeout(function(){li.classList.add('in')},300+i*500);setTimeout(function(){finish(li)},1500+i*900);});}
+  // Chat: messages arrive one by one, typing dots give way to the reply
+  var chat=document.querySelector('.chat');
+  if(chat&&!reduce){
+    var win=chat.querySelector('.chat-win');win.style.height=win.offsetHeight+'px';
+    chat.classList.add('play');
+    var els=[].slice.call(chat.querySelectorAll('.chat-list > *'));
+    els.forEach(function(el){setTimeout(function(){
+      if(!el.classList.contains('typing')){var t=chat.querySelector('.typing.on');if(t)t.classList.remove('on');}
+      el.classList.add('on');
+    },+el.getAttribute('data-d'))});
   }
   // Funnel: before / after toggle
   var f=document.getElementById('fnl');
