@@ -150,10 +150,15 @@ footer .word{color:var(--on-dark);font-size:2.2rem}
 .lc{margin-top:28px;display:flex;flex-direction:column;gap:10px;max-width:34rem}
 .lc label{font-weight:600}
 .lc .row{display:flex;gap:10px;flex-wrap:wrap}
-.lc input{flex:1 1 200px;min-width:0;font:inherit;font-size:1rem;color:var(--ink);background:var(--ground);border:2px solid var(--ground);border-radius:999px;padding:13px 20px}
+.lc input{width:100%;min-width:0;font:inherit;font-size:1rem;color:var(--ink);background:var(--ground);border:2px solid var(--ground);border-radius:999px;padding:13px 20px}
 .lc input:focus{outline:3px solid var(--yellow);outline-offset:2px}
 .lc .note{font-size:0.92rem;color:var(--on-dark-2);min-height:1.5em}
 .lc .note.err{color:#FFB4A8;font-weight:600}
+.lc .note.ok{color:var(--on-dark);font-weight:600}
+.lc .fld{flex:1 1 210px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.lc .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.lc button{align-self:flex-start}
+.lc button:disabled{opacity:.7;cursor:default}
 .offer .other{margin-top:18px;font-size:0.95rem;color:var(--on-dark-2)}
 .offer .other a{color:var(--on-dark)}
 .prose ul.leaks{list-style:none;padding-left:0}
@@ -292,12 +297,13 @@ footer .word{color:var(--on-dark);font-size:2.2rem}
         <h2>Get a free leak check for your venue.</h2>
         <p class="sub">Send your website. Within a day you get a 2-minute video of where your ads, pages and replies lose couples, and what to fix first. No call needed.</p>
         <form class="lc" id="lc" novalidate>
-          <label for="site">Your website</label>
           <div class="row">
-            <input id="site" name="site" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" required>
-            <button class="btn" type="submit">Get my free leak check</button>
+            <span class="fld"><label for="site">Your website</label><input id="site" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" required></span>
+            <span class="fld"><label for="em">Your email</label><input id="em" name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required></span>
           </div>
-          <p class="note" id="lc-msg" aria-live="polite">This opens your email app with your website filled in, addressed to Hamza.</p>
+          <input class="hp" type="text" name="_honey" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit">Get my free leak check</button>
+          <p class="note" id="lc-msg" aria-live="polite">Your 2-minute video arrives by email within a day.</p>
         </form>
         <p class="other">Or email <a href="mailto:bookdzilla@gmail.com?subject=Free%20leak%20check%20(wedding%20venue)">bookdzilla@gmail.com</a>, or <a href="https://calendly.com/bookdzilla/30min" target="_blank" rel="noopener">book a 30-minute call</a>.</p>
       </div>
@@ -341,16 +347,24 @@ footer .word{color:var(--on-dark);font-size:2.2rem}
 </footer>
 <script>
 (function(){
-  var EMAIL = "bookdzilla@gmail.com";
-  var form = document.getElementById("lc"), site = document.getElementById("site"), msg = document.getElementById("lc-msg");
-  form.addEventListener("submit", function(e){
+  var form = document.getElementById("lc"), site = document.getElementById("site"), em = document.getElementById("em"), hp = document.getElementById("hp"), msg = document.getElementById("lc-msg");
+  if (form) form.addEventListener("submit", function(e){
     e.preventDefault();
-    var v = site.value.trim();
+    var v = site.value.trim(), m = em.value.trim(), btn = form.querySelector("button");
     if (!v || v.indexOf(".") < 0){ msg.textContent = "Add your website, like yourbusiness.com, so we know where to look."; msg.className = "note err"; site.focus(); return; }
-    var body = "Hi Hamza,\n\nPlease send me the free leak check.\n\nWebsite: " + v + "\nMy name: \nBest number (optional): \n";
-    window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Free leak check for " + v) + "&body=" + encodeURIComponent(body);
-    msg.className = "note";
-    msg.textContent = "Your email app should open with this filled in. If it didn't, email " + EMAIL + " with your website.";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){ msg.textContent = "Add your email so we know where to send the video."; msg.className = "note err"; em.focus(); return; }
+    btn.disabled = true; btn.textContent = "Sending...";
+    fetch("https://formsubmit.co/ajax/bookdzilla@gmail.com", {
+      method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      body: JSON.stringify({website: v, email: m, page: location.pathname, _replyto: m, _subject: "Free leak check: " + v, _template: "table", _honey: hp.value})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if (String(d.success) !== "true") throw new Error(d.message || "failed");
+      form.reset(); btn.textContent = "Sent";
+      msg.className = "note ok"; msg.textContent = "Got it. Your 2-minute video arrives at " + m + " within a day.";
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = "Get my free leak check";
+      msg.className = "note err"; msg.textContent = "That didn't go through. Email bookdzilla@gmail.com with your website and we'll send the video.";
+    });
   });
 })();
 </script>
