@@ -60,6 +60,8 @@ function tidy(text) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Retired page (Oct 2026): the site now covers pool builders and wedding venues only.
+    if (url.pathname.startsWith("/dental-clinics")) return Response.redirect(url.origin + "/", 301);
     if (url.pathname !== "/api/demo") return env.ASSETS.fetch(request);
     if (request.method === "GET" && url.searchParams.get("check") === "1") {
       if (!env.AI) return json({ ai: false, detail: "no AI binding" });

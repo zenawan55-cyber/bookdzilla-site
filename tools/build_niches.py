@@ -1,26 +1,26 @@
-"""Builds the niche guide pages (wedding-venues/, dental-clinics/) from one template.
+"""Builds the niche guide pages (pool-builders/, wedding-venues/) from one template.
 Run: python3 tools/build_niches.py   (from the repo root)"""
 import json, html, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://bookdzilla.pages.dev"
 CAL = "https://calendly.com/bookdzilla/30min"
-UPDATED = "2026-10-24"
-UPDATED_TXT = "24 October 2026"
+UPDATED = "2026-10-28"
+UPDATED_TXT = "28 October 2026"
 
 CSS = """
 :root{
   --ground:#FFFFFF; --ink:#0B1530; --ink-2:#47506A; --field:#EAF1FF; --field-2:#F5F8FF;
-  --yellow:#FFC400; --green:#12A150; --green-soft:#E3F5EA; --bubble:#EEF1F6; --on-dark:#FFFFFF; --on-dark-2:#B9C3DC;
+  --yellow:#FFC400; --leak:#C62D1F; --leak-soft:#FDECEA; --line:#D5DEEE; --green:#12A150; --green-soft:#E3F5EA; --bubble:#EEF1F6; --on-dark:#FFFFFF; --on-dark-2:#B9C3DC;
   --display:"Funnel Display", "Helvetica Neue", Arial, sans-serif;
   --text:"Funnel Sans", "Helvetica Neue", Arial, sans-serif;
   --gutter:clamp(20px, 4vw, 48px);
 }
 *{box-sizing:border-box}
-html{-webkit-font-smoothing:antialiased;scroll-padding-top:88px}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-padding-top:88px}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.6}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-0.03em;text-wrap:balance}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
 p{margin:0}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(var(--gutter), env(safe-area-inset-left, 0px));padding-right:max(var(--gutter), env(safe-area-inset-right, 0px))}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
@@ -134,20 +134,41 @@ footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;c
 footer a{color:var(--on-dark)}
 footer .word{color:var(--on-dark);font-size:2.2rem}
 @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
+
+/* leak check form in the offer band */
+.lc{margin-top:28px;display:flex;flex-direction:column;gap:10px;max-width:34rem}
+.lc label{font-weight:600}
+.lc .row{display:flex;gap:10px;flex-wrap:wrap}
+.lc input{flex:1 1 200px;min-width:0;font:inherit;font-size:1rem;color:var(--ink);background:var(--ground);border:2px solid var(--ground);border-radius:999px;padding:13px 20px}
+.lc input:focus{outline:3px solid var(--yellow);outline-offset:2px}
+.lc .note{font-size:0.92rem;color:var(--on-dark-2);min-height:1.5em}
+.lc .note.err{color:#FFB4A8;font-weight:600}
+.offer .other{margin-top:18px;font-size:0.95rem;color:var(--on-dark-2)}
+.offer .other a{color:var(--on-dark)}
+.prose ul.leaks{list-style:none;padding-left:0}
+.prose .leaks li{position:relative;padding-left:2.2rem}
+.prose .leaks li::before{content:"";position:absolute;left:0.35rem;top:0.55em;width:0.7rem;height:0.7rem;border-radius:999px;background:var(--leak)}
+.prose .lk{color:var(--leak);font-weight:600}
 """
+
+OFFER_LIST = ("<li>Ads with one clear promise: Meta ads we write and run, Google ads tidied</li>"
+              "<li>A free offer for people not ready to buy today</li>"
+              "<li>One page per ad, with your rating on the first screen</li>"
+              "<li>An answer within a minute, then follow-up until they book</li>"
+              "<li>Five numbers every Monday</li>")
 
 def page(p):
     url = f"{BASE}/{p['slug']}/"
     faq_ld = [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": html.unescape(a)}} for q, a in p["faq"]]
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "headline": p["h1_plain"], "description": p["desc"], "url": url,
-         "datePublished": UPDATED, "dateModified": UPDATED,
+         "datePublished": p["published"], "dateModified": UPDATED,
          "author": {"@type": "Person", "name": "Hamza", "jobTitle": "Founder", "worksFor": {"@type": "Organization", "name": "Bookdzilla"},
                     "url": "https://www.linkedin.com/in/hamza-bookdzilla/"},
          "publisher": {"@type": "Organization", "name": "Bookdzilla", "url": BASE + "/"}},
-        {"@type": "Service", "name": p["service"], "serviceType": p["service_types"], "areaServed": "United States",
+        {"@type": "Service", "name": p["service"], "serviceType": p["service_types"], "areaServed": ["Texas", "United States"],
          "provider": {"@type": "ProfessionalService", "name": "Bookdzilla", "url": BASE + "/"},
-         "offers": {"@type": "Offer", "price": "497", "priceCurrency": "USD", "description": "$497 setup plus $497 per month, month to month"}},
+         "offers": {"@type": "Offer", "price": "1000", "priceCurrency": "USD", "description": "$1,000 a month, month to month, no setup fee"}},
         {"@type": "FAQPage", "mainEntity": faq_ld},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Bookdzilla", "item": BASE + "/"},
@@ -159,7 +180,7 @@ def page(p):
     cur = ' aria-current="page"'
     nav_links = "".join(
         f'<a href="/{sl}/"{cur if sl == p["slug"] else ""}>{n}</a>'
-        for sl, n in [("wedding-venues", "Wedding venues"), ("dental-clinics", "Dental clinics")])
+        for sl, n in [("pool-builders", "Pool builders"), ("wedding-venues", "Wedding venues")])
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -181,8 +202,6 @@ def page(p):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;700;800&family=Funnel+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <style>{CSS}</style>
 </head>
 <body>
@@ -191,7 +210,7 @@ def page(p):
     <a class="word" href="/">Bookdzilla</a>
     <nav aria-label="Main">
       {nav_links}
-      <a class="btn" href="{CAL}" data-cal target="_blank" rel="noopener">I need this</a>
+      <a class="btn" href="#check">Free leak check</a>
     </nav>
   </div>
 </header>
@@ -204,10 +223,10 @@ def page(p):
         <h1>{p['h1']}</h1>
         <p class="lead">{p['lead']}</p>
         <div class="acts">
-          <a class="btn" href="{CAL}" data-cal target="_blank" rel="noopener">I need this</a>
-          <a class="btn line" href="/#try">Try the live demo</a>
+          <a class="btn" href="#check">Get my free leak check</a>
+          <a class="btn line" href="#{p['toc'][0][0]}">Read the guide</a>
         </div>
-        <p class="byline">By <b>Hamza</b>, founder of Bookdzilla · Updated <time datetime="{UPDATED}">{UPDATED_TXT}</time> · {p['read']} min read</p>
+        <p class="byline">By <b>Hamza</b>, founder of Bookdzilla. Updated <time datetime="{UPDATED}">{UPDATED_TXT}</time>, {p['read']} min read.</p>
       </div>
       <figure class="thread" style="margin:0" aria-label="Example conversation">
         {p['thread']}
@@ -228,21 +247,26 @@ def page(p):
     </div>
   </div>
 
-  <section class="offer" id="offer">
+  <section class="offer" id="check">
     <div class="wrap">
       <div>
         <h2>{p['offer_h']}</h2>
         <p class="sub">{p['offer_sub']}</p>
-        <div class="acts">
-          <a class="btn" href="{CAL}" data-cal target="_blank" rel="noopener">I need this</a>
-          <a class="btn line" href="mailto:bookdzilla@gmail.com?subject={p['mail_subject']}">Email Hamza</a>
-        </div>
+        <form class="lc" id="lc" novalidate>
+          <label for="site">Your website</label>
+          <div class="row">
+            <input id="site" name="site" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" required>
+            <button class="btn" type="submit">Get my free leak check</button>
+          </div>
+          <p class="note" id="lc-msg" aria-live="polite">This opens your email app with your website filled in, addressed to Hamza.</p>
+        </form>
+        <p class="other">Or email <a href="mailto:bookdzilla@gmail.com?subject={p['mail_subject']}">bookdzilla@gmail.com</a>, or <a href="{CAL}" target="_blank" rel="noopener">book a 30-minute call</a>.</p>
       </div>
       <div>
-        <p class="amt">$497<small>a month</small></p>
-        <p class="sub" style="margin-top:10px">Plus $497 one-time setup. Month to month, cancel with 7 days notice.</p>
-        <ul>{p['offer_list']}</ul>
-        <p class="g">We agree a booking target before launch. Miss it in the first 30 days and month two is free.</p>
+        <p class="amt">$1,000<small>a month</small></p>
+        <p class="sub" style="margin-top:10px">Month to month, no setup fee. Your ad budget stays yours and goes straight to Meta or Google.</p>
+        <ul>{OFFER_LIST}</ul>
+        <p class="g">Before we change anything, we write down your last 30 days of leads, {p['unit']} and response time, so we both see what changes.</p>
       </div>
     </div>
   </section>
@@ -257,11 +281,11 @@ def page(p):
         <div class="author">
           <div class="av" aria-hidden="true">H</div>
           <h3>About the author</h3>
-          <p>Hamza runs Bookdzilla. Before that he spent over two years as a product manager and ran Meta ads for his own food brand. Our first test, for a car repair shop, turned $25 of Facebook ads and fast replies into about 50 enquiries and 4 to 5 new customers in two weeks.</p>
+          <p>Hamza runs Bookdzilla from Bahawalpur, Pakistan, on US business hours. Before that he spent over two years as a product manager and ran Meta ads for his own food brand. Our first test, for a car repair shop, turned $25 of Facebook ads and fast replies into about 50 enquiries and 4 to 5 new customers in two weeks.</p>
           <p>{p['author_extra']}</p>
-          <p><a href="https://www.linkedin.com/in/hamza-bookdzilla/" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></p>
+          <p><a href="https://www.linkedin.com/in/hamza-bookdzilla/" target="_blank" rel="noopener">LinkedIn</a>, <a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></p>
         </div>
-        <div class="sources"><h3>Sources</h3><ol>{srcs}</ol></div>
+        <div class="sources" id="sources"><h3>Sources</h3><ol>{srcs}</ol></div>
         <p class="also">Also read: {p['also']}</p>
       </aside>
     </div>
@@ -272,17 +296,25 @@ def page(p):
   <div class="wrap">
     <a class="word" href="/">Bookdzilla</a>
     <div class="row" style="margin-top:24px">
-      <span>More customers for local businesses.</span>
-      <span><a href="/wedding-venues/">Wedding venues</a> · <a href="/dental-clinics/">Dental clinics</a> · <a href="/#price">Price</a> · <a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></span>
+      <span>More booked jobs from the ads you already pay for.</span>
+      <span><a href="/pool-builders/">Pool builders</a>&emsp;<a href="/wedding-venues/">Wedding venues</a>&emsp;<a href="/#start">Price</a>&emsp;<a href="mailto:bookdzilla@gmail.com">bookdzilla@gmail.com</a></span>
     </div>
   </div>
 </footer>
 <script>
-document.querySelectorAll('[data-cal]').forEach(function(a){{
-  a.addEventListener('click', function(e){{
-    if (window.Calendly && Calendly.initPopupWidget){{ e.preventDefault(); Calendly.initPopupWidget({{url: '{CAL}?hide_gdpr_banner=1'}}); }}
+(function(){{
+  var EMAIL = "bookdzilla@gmail.com";
+  var form = document.getElementById("lc"), site = document.getElementById("site"), msg = document.getElementById("lc-msg");
+  form.addEventListener("submit", function(e){{
+    e.preventDefault();
+    var v = site.value.trim();
+    if (!v || v.indexOf(".") < 0){{ msg.textContent = "Add your website, like yourbusiness.com, so we know where to look."; msg.className = "note err"; site.focus(); return; }}
+    var body = "Hi Hamza,\\n\\nPlease send me the free leak check.\\n\\nWebsite: " + v + "\\nMy name: \\nBest number (optional): \\n";
+    window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Free leak check for " + v) + "&body=" + encodeURIComponent(body);
+    msg.className = "note";
+    msg.textContent = "Your email app should open with this filled in. If it didn't, email " + EMAIL + " with your website.";
   }});
-}});
+}})();
 </script>
 </body>
 </html>
@@ -291,215 +323,231 @@ document.querySelectorAll('[data-cal]').forEach(function(a){{
 KNOT_VENUE = ("The Knot, average cost of a wedding venue (2026 Real Weddings Study, 2025 weddings)", "https://www.theknot.com/content/average-cost-reception-venue")
 KNOT_ENG = ("The Knot, the most popular time to get engaged", "https://www.theknot.com/content/popular-day-to-get-engaged")
 HBR = ("Oldroyd, McElheran and Elkington, The Short Life of Online Sales Leads, Harvard Business Review, March 2011", "https://hbr.org/2011/03/the-short-life-of-online-sales-leads")
+POOLCORP = ("POOLCORP fourth-quarter 2025 earnings call, 19 February 2026 (transcript, The Motley Fool)", "https://www.fool.com/earnings/call-transcripts/2026/02/19/pool-corp-pool-q4-2025-earnings-call-transcript")
+POOLMAG = ("Pool Magazine, Texas pool permits down for the third straight year, 2 April 2026", "https://www.poolmagazine.com/pool-news/texas-pool-permits-down-third-straight-year-in-a-row/")
+HOMEGUIDE = ("HomeGuide, how much does an inground pool cost", "https://homeguide.com/costs/inground-pool-cost")
+AD_LIBRARY = ("Meta Ad Library", "https://www.facebook.com/ads/library/")
+GOOGLE_ADS_TC = ("Google Ads Transparency Center", "https://adstransparency.google.com/")
+
+MONDAY_TABLE = """<table class="tbl">
+    <thead><tr><th>Number</th><th>What it tells you</th></tr></thead>
+    <tbody>
+      <tr><td>Leads</td><td>How many people raised a hand: forms, calls, messages and ad leads.</td></tr>
+      <tr><td>{unit_cap}</td><td>How many of them ended up on your calendar.</td></tr>
+      <tr><td>Cost per {unit_one}</td><td>Ad spend divided by {unit}. The number to judge every ad by.</td></tr>
+      <tr><td>Response time</td><td>How fast the first real reply went out. Aim for under a minute.</td></tr>
+      <tr><td>Revenue from booked jobs</td><td>What the {jobs} that came from those {unit} are worth.</td></tr>
+    </tbody>
+  </table>
+  <p>If leads go up and {unit} stay flat, the problem is the reply and the follow-up, not the ads. Fix that before spending more.</p>"""
+
+POOL = dict(
+    slug="pool-builders", crumb="Pool builders", published="2026-10-28",
+    title="More booked design visits for pool builders | Bookdzilla",
+    desc="Where pool builders lose homeowners between the ad and the design visit, and how to fix each leak: ads with one promise, a page that keeps it, a free offer, a reply within a minute and follow-up. A practical guide, plus a free leak check of your own ads and pages.",
+    h1="More booked design visits for your pool company.", h1_plain="More booked design visits for your pool company",
+    service="Ads, landing pages and lead follow-up for pool builders",
+    service_types=["Meta ads", "Google ads landing pages", "Lead follow-up", "Design visit booking"],
+    lead="Homeowners ask two or three builders for a quote and lean toward whoever makes it easiest to book. This guide shows where pool builders lose them between the ad and the design visit, how to fix each leak, and what we set up if you'd rather not do it yourself.",
+    read=8, unit="booked design visits", unit_one="booked design visit",
+    thread="""<div class="top"><span>Facebook ad lead, Tue 8:47pm</span><span>Replied in <b>41 sec</b></span></div>
+        <p class="msg in">Hi, how much for a pool with a small spa? Backyard is about 40 by 60. We're in Frisco.<small>Dana</small></p>
+        <p class="msg out">Hi Dana, thanks for reaching out. Most of our pools with a spa land between $75,000 and $95,000, depending on size, decking and features. The exact number comes from a free design visit at your home. I have Thursday at 5pm or Saturday at 10am. Which works?<small>Willow Creek Pools</small></p>
+        <p class="msg in">Saturday at 10 is good<small>Dana</small></p>
+        <p class="booked">Design visit booked, Sat 10:00am</p>
+        <figcaption class="cap">An example with a made-up builder and made-up prices. Yours answers with your own ranges, times and tone.</figcaption>""",
+    facts=[("~60,000", 'New pools built in the US in 2025, about 40% fewer than in 2022, and about the same expected for 2026. <a href="#sources">POOLCORP</a>'),
+           ("&minus;9%", 'Texas new pool permits in 2025, the third yearly drop in a row. Fewer buyers means each click you pay for matters more. <a href="#sources">Pool Magazine</a>'),
+           ("$62,500", 'National average for a new inground pool. One extra signed pool is worth more than a year of what we charge. <a href="#sources">HomeGuide</a>')],
+    toc=[("market", "Fewer pools, same ad bill"), ("leaks", "Where design visits leak"), ("page", "A page that keeps the promise"), ("offer", "A free offer"), ("reply", "The first reply"), ("follow", "Follow-up"), ("test", "Test your own path"), ("measure", "What to measure")],
+    body="""
+<section id="market">
+  <h2>Fewer pools, same ad bill.</h2>
+  <p>New pool construction has shrunk. POOLCORP, the biggest pool supply distributor in the US, estimates that just under 60,000 new pools were built in 2025, about half the pandemic peak and 40% below 2022, and expects about the same in 2026. In Texas, new pool permits fell about 9% in 2025, the third yearly drop in a row, with Dallas and Houston holding up better than the rest.</p>
+  <p>With fewer buyers, the builders who have a good year are rarely the ones who spend the most on ads. They're the ones who turn more of the clicks they already pay for into design visits, and more design visits into signed pools.</p>
+</section>
+
+<section id="leaks">
+  <h2>Where design visits leak.</h2>
+  <p>Between the ad and the design visit there are five places to lose a homeowner. Most builders have the ad and a page. Very few have the other three.</p>
+  <ul class="leaks">
+    <li><b>The ad makes no single promise.</b> "Custom pools, financing, 20 years of experience, call today" gives nobody a reason to click now.</li>
+    <li><b>The page forgets the ad.</b> The ad offers a free design visit and the page opens on "Custom pools built to last", with no mention of it.</li>
+    <li><b>The proof is hidden.</b> A 4.9 rating from 200 reviews sits on Google while the page the ad opens shows none of it.</li>
+    <li><b>Nothing for people who aren't ready.</b> Most homeowners clicking in October are planning for next summer. With nothing to take today, they leave.</li>
+    <li><b>The reply is slow, then stops.</b> A form sent Tuesday evening gets a call back Thursday. One voicemail, then nothing.</li>
+  </ul>
+</section>
+
+<section id="page">
+  <h2>A page that keeps the ad's promise.</h2>
+  <p class="muted">Every ad should open a page built for it, not your homepage.</p>
+  <ol class="steps">
+    <li><h3>Repeat the promise in the headline</h3><p>If the ad says "Free backyard design visit", the page's first line says the same. People who clicked for that promise need to see it in the first second, or they assume they're in the wrong place.</p></li>
+    <li><h3>Put your rating on the first screen</h3><p>Your Google rating and review count next to the button, plus one short review that mentions the build going smoothly. Homeowners are about to let a crew dig up their backyard; trust comes before the form.</p></li>
+    <li><h3>Give a realistic price range</h3><p>"Most of our pools land between $70,000 and $95,000" filters out people who can't afford one and reassures those who can. You don't lose anyone worth keeping by saying it.</p></li>
+    <li><h3>Make booking one tap away</h3><p>A short form (name, phone, zip code) or two design visit times, visible without scrolling on a phone. Every extra field and every scroll loses people.</p></li>
+    <li><h3>Show your pools, not stock photos</h3><p>Three or four of your own builds in the same area, with the city named. Homeowners want to see pools that could be in their neighborhood.</p></li>
+  </ol>
+</section>
+
+<section id="offer">
+  <h2>A free offer for homeowners not ready yet.</h2>
+  <p>A homeowner who saw your ad in the fall may not sign until spring. If the only option is "request a quote", most of them leave. Give them something worth asking for now:</p>
+  <ul>
+    <li>A free backyard design visit, with a 3D drawing of their pool.</li>
+    <li>A price guide for their area: what a pool, a spa and decking typically cost, and what changes the number.</li>
+    <li>A spring build slot list: "Get on the list for an April or May build."</li>
+  </ul>
+  <p>Each of these gets you a name and number months before they choose a builder, and the follow-up does the rest.</p>
+</section>
+
+<section id="reply">
+  <h2>What a good first reply looks like.</h2>
+  <p>Speed matters more than it feels like it should. In a study of 1.25 million online leads at 42 US companies, firms that responded within an hour were about seven times as likely to qualify the lead as firms that responded even one hour later. Here is a reply that answers the question and moves straight to a design visit:</p>
+  <blockquote><p>Hi Dana, thanks for reaching out. Most of our pools with a spa land between $75,000 and $95,000, depending on size, decking and features. The exact number comes from a free design visit at your home.</p><p>I have Thursday at 5pm or Saturday at 10am. Which works?</p></blockquote>
+  <p>And here is the reply many builders send the next day:</p>
+  <blockquote><p>Thanks for your interest! Please give us a call to discuss your project.</p></blockquote>
+  <p>The second one answers nothing and asks a busy homeowner to make a phone call during the same hours they couldn't call the first time.</p>
+</section>
+
+<section id="follow">
+  <h2>Follow-up until they decide.</h2>
+  <p>Homeowners go quiet because they're busy, not because they said no. Short, personal follow-ups by text and email keep you in the running: day 1 (photos of a pool you built nearby), day 3 (answers to the question most homeowners ask next, usually financing or timeline), day 7 (open design visit times this week) and day 14 (a friendly last check-in). Stop the moment they reply.</p>
+  <p>After the design visit, send the proposal the same day and check in two days later. Many builders lose signed pools here, not at the first reply.</p>
+</section>
+
+<section id="test">
+  <h2>Test your own path in five minutes.</h2>
+  <ol>
+    <li>Find your live ads in the Meta Ad Library and the Google Ads Transparency Center, and write down what each one promises.</li>
+    <li>Tap through each ad on your phone. Does the page repeat the promise? Is your rating on the first screen? How many scrolls to the form?</li>
+    <li>On a Tuesday evening, send a quote request through your own form from a personal email.</li>
+    <li>Write down when the first real reply arrives, and whether it gave a price range and two times.</li>
+  </ol>
+  <p>Any "no", or a reply that took more than an hour, is where design visits are going. That's exactly what our free leak check covers, on video.</p>
+</section>
+
+<section id="measure">
+  <h2>What to measure every Monday.</h2>
+  """ + MONDAY_TABLE.format(unit="booked design visits", unit_one="booked design visit", unit_cap="Booked design visits", jobs="pools") + """
+</section>
+""",
+    offer_h="Get a free leak check for your pool company.",
+    offer_sub="Send your website. Within a day you get a 2-minute video of where your ads and pages lose homeowners, plus one page rebuilt in your brand. No call needed.",
+    mail_subject="Free%20leak%20check%20(pool%20builder)",
+    faq=[("We get most of our jobs from referrals.", "Most good builders do. Referrals don't need fixing; paid clicks do. If you spend on ads, we make sure those clicks turn into design visits at the same rate your referrals do."),
+         ("Do you run the ads?", "We write, design and run Meta ads with one clear promise each. If someone already runs your Google ads well, we keep them and fix what happens after the click."),
+         ("We don't like publishing prices.", "You don't have to publish your price sheet. A range like \"most of our pools land between $70,000 and $95,000\" is enough to filter and reassure. You choose the range."),
+         ("Do you use AI to reply to leads?", "Yes, for the first reply, written from your real price ranges, service area and calendar, in your tone, and approved by you before anything goes live. Anyone who asks for a person gets you or your team."),
+         ("Who owns the pages and contacts?", "You do. Your ad accounts, the pages and every contact stay yours if you stop."),
+         ("How long does setup take?", "About 14 days from your yes to live, including your sign-off on the pages and the replies.")],
+    author_extra="Before every first email we look at the builder's live ads and tap through the pages they open, so the conversation starts from what we saw, not a guess.",
+    sources=[POOLCORP, POOLMAG, HOMEGUIDE, HBR, AD_LIBRARY, GOOGLE_ADS_TC],
+    also='<a href="/wedding-venues/">More booked tours for wedding venues</a>',
+)
 
 VENUE = dict(
-    slug="wedding-venues", crumb="Wedding venues",
+    slug="wedding-venues", crumb="Wedding venues", published="2026-10-24",
     title="More booked tours for wedding venues | Bookdzilla",
-    desc="How wedding venues book more tours from the enquiries they already get: reply in under a minute, answer price and date first, book the tour on your calendar and follow up until couples decide. A practical guide, plus a done-for-you setup with a booking guarantee.",
+    desc="Where wedding venues lose couples between the ad or listing and the tour, and how to fix each leak: a page that keeps the ad's promise, an open-dates and pricing check, a reply within a minute with a date and a price, and follow-up. A practical guide, plus a free leak check.",
     h1="More booked tours for your wedding venue.", h1_plain="More booked tours for your wedding venue",
-    service="Enquiry response and tour booking for wedding venues",
-    service_types=["Speed to lead", "Tour booking", "Enquiry follow-up", "Missed-call text back", "Review requests"],
-    lead="Couples email five venues on a Thursday night and tour the ones that answer first. This guide shows how to be that venue with tools that exist today, and what we set up for you if you'd rather not build it yourself.",
-    read=9,
-    thread="""<div class="top"><span>Website enquiry · Thu 9:14pm</span><span>Replied in <b>38 sec</b></span></div>
-        <p class="msg in">Hi! Do you have Saturday June 13 open next year? About 120 guests. What's pricing like?<small>Maya</small></p>
-        <p class="msg out">Hi Maya, congrats! June 13 is open right now. Saturdays for up to 150 guests start at $6,500 and include tables, chairs and the bridal suite. Want to see it in person? I have Thursday at 4pm or Saturday at 11am.<small>Willow Creek Barn</small></p>
+    service="Ads, landing pages and enquiry follow-up for wedding venues",
+    service_types=["Meta ads", "Landing pages", "Enquiry follow-up", "Tour booking"],
+    lead="Couples message several venues in one night and tour the ones that answer first with a date and a price. This guide shows where venues lose those couples between the click and the tour, how to fix each leak, and what we set up if you'd rather not do it yourself.",
+    read=9, unit="booked tours", unit_one="booked tour",
+    thread="""<div class="top"><span>Website enquiry, Thu 9:14pm</span><span>Replied in <b>38 sec</b></span></div>
+        <p class="msg in">Hi! Do you have Saturday June 12 open next year? About 120 guests. What's pricing like?<small>Maya</small></p>
+        <p class="msg out">Hi Maya, congrats! June 12 is open right now. Saturdays for up to 150 guests start at $6,500 and include tables, chairs and the bridal suite. Want to see it in person? I have Thursday at 4pm or Saturday at 11am.<small>Willow Creek Barn</small></p>
         <p class="msg in">Saturday at 11 works!<small>Maya</small></p>
-        <p class="booked">Tour booked · Sat 11:00am</p>
+        <p class="booked">Tour booked, Sat 11:00am</p>
         <figcaption class="cap">An example with made-up venue details. Yours answers with your own dates, prices and tone.</figcaption>""",
     facts=[("$12,900", 'Average spent on a wedding venue by couples married in 2025, and $16,000 for weddings over 100 guests. <a href="#sources">The Knot</a>'),
            ("76%", 'Of couples say price is the most important factor when choosing a venue, so the first reply needs a number. <a href="#sources">The Knot</a>'),
            ("~40%", 'Of engagements happen between November and February. December alone is about 19%. Enquiries follow. <a href="#sources">The Knot</a>')],
-    toc=[("lost", "Where bookings get lost"), ("season", "Engagement season"), ("setup", "What to set up"), ("reply", "The first reply"), ("test", "Test your venue"), ("measure", "What to measure")],
+    toc=[("lost", "Where tours leak"), ("season", "Engagement season"), ("page", "A page that keeps the promise"), ("offer", "A free offer"), ("reply", "The first reply"), ("follow", "Follow-up"), ("test", "Test your venue"), ("measure", "What to measure")],
     body="""
 <section id="lost">
-  <h2>Where venue bookings get lost.</h2>
-  <p>Most venues don't have a lead problem. They have a reply problem. Couples plan in the evenings and on weekends, the same hours your team is running events or off the clock. They send the same enquiry to several venues at once, then tour the ones that answer with a date and a price.</p>
-  <p>Speed matters more than it feels like it should. In a study of 1.25 million online leads at 42 US companies, firms that responded within an hour were about seven times as likely to qualify the lead as firms that responded even one hour later, and more than 60 times as likely as firms that waited a day or longer. That research wasn't about weddings, but anyone who has watched a couple book the venue that called back first knows it applies.</p>
-  <p>The losses happen in four places:</p>
-  <ul>
-    <li><b>The first reply comes too late.</b> A Thursday-night enquiry answered on Monday morning is usually already touring somewhere else.</li>
-    <li><b>The reply has no answer in it.</b> "Thanks for reaching out, when can you hop on a call?" makes the couple do more work. They want to know if the date is open and roughly what it costs.</li>
-    <li><b>Nobody follows up.</b> Couples go quiet because they are busy, not because they said no. One reply and silence loses people who were still deciding.</li>
-    <li><b>Phone calls go to voicemail.</b> Most callers don't leave a message. They call the next venue on the list.</li>
+  <h2>Where venue tours leak.</h2>
+  <p>Most venues don't have a lead problem. They pay for ads and listings, the enquiries come in, and then couples drift away before the tour. Couples plan in the evenings and on weekends, send the same enquiry to several venues at once, and tour the ones that answer with a date and a price.</p>
+  <p>Speed matters more than it feels like it should. In a study of 1.25 million online leads at 42 US companies, firms that responded within an hour were about seven times as likely to qualify the lead as firms that responded even one hour later, and more than 60 times as likely as firms that waited a day or longer.</p>
+  <p>The losses happen in five places:</p>
+  <ul class="leaks">
+    <li><b>The ad and the page say different things.</b> The ad shows the ceremony lawn at sunset; the page opens on a generic "Welcome to our venue".</li>
+    <li><b>Price and dates are nowhere.</b> Couples rank price first. A page with no starting price makes them ask, and many won't.</li>
+    <li><b>Nothing for couples not ready to tour.</b> Many are just engaged and still comparing. With nothing to take, they leave.</li>
+    <li><b>The first reply comes too late.</b> A Thursday-night enquiry answered on Monday is usually already touring somewhere else.</li>
+    <li><b>Nobody follows up.</b> Couples go quiet because they're busy, not because they said no.</li>
   </ul>
 </section>
 
 <section id="season">
   <h2>Engagement season is when this costs the most.</h2>
-  <p>About 40% of engagements happen between November and February, and December is the single biggest month. Newly engaged couples start shopping for venues within weeks, so January and February are often the busiest enquiry months of the year for venues.</p>
-  <p>That is also when a slow reply costs the most. With an average venue spend of $12,900, losing even two tours a month to a faster competitor adds up quickly. The best time to fix your reply process is before the rush, not in the middle of it.</p>
+  <p>About 40% of engagements happen between November and February, and December is the single biggest month. Newly engaged couples start shopping for venues within weeks, so January and February are often the busiest enquiry months of the year.</p>
+  <p>That is also when a slow reply costs the most. With an average venue spend of $12,900, losing even two tours a month to a faster venue adds up quickly. The best time to fix the path is before the rush.</p>
 </section>
 
-<section id="setup">
-  <h2>What you can set up with today's tools.</h2>
-  <p class="muted">None of this needs a new website or a new booking platform. It connects to the inbox, phone number and calendar you already use.</p>
+<section id="page">
+  <h2>A page that keeps the ad's promise.</h2>
   <ol class="steps">
-    <li><h3>Answer every enquiry in under a minute</h3><p>Route every source into one place: your website form, The Knot and WeddingWire messages, Instagram and Facebook DMs, Google Business messages and email. Each new enquiry gets a written reply within a minute, any time of day. Assistants built on models like Claude or ChatGPT can write that reply from your real prices, packages and policies, in your tone, and hand the conversation to you the moment someone asks for a person.</p></li>
-    <li><h3>Lead with the date and a price range</h3><p>Check the requested date against your calendar and say whether it's open. Then give the starting price for that day of the week and guest count. You don't have to publish your full price sheet. "Saturdays for up to 150 start at $6,500" is enough to keep the conversation going.</p></li>
-    <li><h3>Offer two tour times, not a link to figure out</h3><p>Ask "Thursday at 4pm or Saturday at 11am?" instead of "let us know when works." Two concrete options get a yes far more often than an open question. When they pick one, it goes straight onto your calendar through Calendly, Cal.com, GoHighLevel or the system you use now. Offer a video tour for out-of-town couples.</p></li>
-    <li><h3>Remind them so they actually show up</h3><p>Send a confirmation right away, a reminder the day before and a short text two hours before with parking and who to ask for. If someone misses a tour, send a rebooking message the same day.</p></li>
-    <li><h3>Follow up until they decide</h3><p>Couples who go quiet get short, personal follow-ups: day 1 (a photo of the space set for a wedding their size), day 3 (answers to the question most couples ask next), day 7 (whether their date is still open) and day 14 (a friendly last check-in). Stop the moment they reply.</p></li>
-    <li><h3>Text back every missed call</h3><p>When a call goes unanswered, the caller gets a text within seconds: sorry we missed you, is this about a date, here are two times to talk. Most people who would have dialed the next venue reply to the text instead.</p></li>
-    <li><h3>Follow up after the tour</h3><p>The tour isn't the booking. Send the proposal the same day, a check-in two days later and a reminder before any hold on their date expires. This is where most venues leave money on the table.</p></li>
-    <li><h3>Bring back old enquiries</h3><p>Your inbox is full of couples who asked about a date last year and never booked. A short message to the ones whose dates are still open, or who never chose a venue, turns some of them into tours without any ad spend.</p></li>
-    <li><h3>Ask for reviews at the right moment</h3><p>Send a review request for Google and The Knot a few days after the wedding, while the couple is still happy and sharing photos. More recent reviews means more couples contacting you in the first place.</p></li>
+    <li><h3>Repeat the promise</h3><p>If the ad sells "Fall Saturdays from $6,500", the page leads with exactly that. Couples who clicked for it should see it in the first second.</p></li>
+    <li><h3>Show the starting price and open dates</h3><p>"Saturdays for up to 150 guests from $6,500" and a short list of open dates this season. You don't have to publish your full price sheet.</p></li>
+    <li><h3>Put your rating on the first screen</h3><p>Your Google or The Knot rating with the review count, plus one review that mentions the day going smoothly.</p></li>
+    <li><h3>Make the tour one tap away</h3><p>Two tour times or a short form visible without scrolling on a phone, and a video tour option for out-of-town couples.</p></li>
   </ol>
+</section>
+
+<section id="offer">
+  <h2>A free offer for couples not ready to tour.</h2>
+  <p>Many couples who click aren't ready to book a tour yet. Offer an open-dates and pricing check: they enter a month and a guest count, and get back the open Saturdays and the starting price for each. It's useful to them, and it gives you a name and an email weeks before they decide.</p>
 </section>
 
 <section id="reply">
   <h2>What a good first reply looks like.</h2>
   <p>Here is a reply that answers the question, gives a reason to keep talking and moves straight to a tour. Copy the shape, not the words.</p>
-  <blockquote><p>Hi Maya, congratulations! June 13 is open right now. Saturdays for up to 150 guests start at $6,500 and include tables, chairs, the bridal suite and the garden ceremony site.</p><p>The easiest way to see if it feels right is a tour. I have Thursday at 4pm or Saturday at 11am. Which works better?</p></blockquote>
+  <blockquote><p>Hi Maya, congratulations! June 12 is open right now. Saturdays for up to 150 guests start at $6,500 and include tables, chairs, the bridal suite and the garden ceremony site.</p><p>The easiest way to see if it feels right is a tour. I have Thursday at 4pm or Saturday at 11am. Which works better?</p></blockquote>
   <p>And here is the reply most venues send:</p>
   <blockquote><p>Thank you for your interest! Please find our brochure attached. Let us know a good time for a call.</p></blockquote>
   <p>The second one isn't rude. It just answers nothing and asks the couple to do the next step, at 9pm, while three other venues are also in their inbox.</p>
 </section>
 
+<section id="follow">
+  <h2>Follow-up until they decide.</h2>
+  <p>Couples who go quiet get short, personal follow-ups: day 1 (a photo of the space set for a wedding their size), day 3 (answers to the question most couples ask next), day 7 (whether their date is still open) and day 14 (a friendly last check-in). Stop the moment they reply.</p>
+  <p>The tour isn't the booking. Send the proposal the same day, check in two days later and remind them before any hold on their date expires. Missed calls get a text back within seconds, and a missed tour gets a rebooking message the same day.</p>
+</section>
+
 <section id="test">
   <h2>Test your own venue in five minutes.</h2>
-  <p>Before you change anything, measure where you are. We run this same test before every call.</p>
   <ol>
+    <li>Find your live ads in the Meta Ad Library and the Google Ads Transparency Center, and tap through each one on your phone. Does the page repeat the promise, show a starting price and your rating?</li>
     <li>On a Thursday or Friday evening, send an enquiry through your own website form from a personal email. Ask about a Saturday next year, 120 guests and pricing.</li>
-    <li>Write down the exact time you sent it.</li>
-    <li>Note when the first reply arrives, and whether it answers the date and the price.</li>
+    <li>Write down when the first reply arrives, and whether it answers the date and the price.</li>
     <li>Repeat it with a call at lunchtime and a DM on Instagram.</li>
   </ol>
-  <p>If the reply took more than an hour, or didn't answer the question, you have found where tours are going.</p>
+  <p>If the reply took more than an hour, or didn't answer the question, you have found where tours are going. We run this same test before every first email.</p>
 </section>
 
 <section id="measure">
-  <h2>What to measure every week.</h2>
-  <table class="tbl">
-    <thead><tr><th>Number</th><th>What it tells you</th></tr></thead>
-    <tbody>
-      <tr><td>Reply time</td><td>Minutes from enquiry to first real answer. Aim for under one.</td></tr>
-      <tr><td>Enquiry to tour</td><td>Share of enquiries that book a tour. This is where speed shows up first.</td></tr>
-      <tr><td>Tour show rate</td><td>Share of booked tours that actually happen. Reminders move this.</td></tr>
-      <tr><td>Tour to booking</td><td>Share of tours that sign. Proposal follow-up moves this.</td></tr>
-      <tr><td>Cost per booking</td><td>What you spend on listings and ads, divided by weddings booked.</td></tr>
-    </tbody>
-  </table>
+  <h2>What to measure every Monday.</h2>
+  """ + MONDAY_TABLE.format(unit="booked tours", unit_one="booked tour", unit_cap="Booked tours", jobs="weddings") + """
 </section>
 """,
-    offer_h="Want it done for your venue?",
-    offer_sub="We set up everything above for you in about a week, on your inbox, phone number and calendar, and you approve every reply before it goes live.",
-    mail_subject="Wedding%20venue%20setup",
-    offer_list="<li>Replies to every enquiry in under a minute, day and night</li><li>Tours booked on your calendar, with reminders</li><li>Follow-up for 14 days, and after every tour</li><li>Missed-call text back</li><li>A weekly report: enquiries, tours, bookings</li>",
-    faq=[("Will couples know it isn't a person?", "Replies are written in your tone from your own prices and policies, and you approve how it talks before anything goes live. If a couple asks whether they are talking to a person, it says so honestly and hands the conversation to you."),
+    offer_h="Get a free leak check for your venue.",
+    offer_sub="Send your website. Within a day you get a 2-minute video of where your ads, pages and replies lose couples, and what to fix first. No call needed.",
+    mail_subject="Free%20leak%20check%20(wedding%20venue)",
+    faq=[("Do you use AI to reply to couples?", "Yes, for the first reply, written in your tone from your own dates, prices and policies, and approved by you before anything goes live. If a couple asks whether they're talking to a person, it says so honestly and hands the conversation to you."),
          ("Does it work with The Knot and WeddingWire enquiries?", "Yes. Those enquiries arrive by email, and we answer them from the same place as your website form and DMs, so every couple gets the same fast reply."),
          ("We don't publish our prices. Is that a problem?", "No. We agree a starting price or a range you're comfortable sharing, such as the starting Saturday rate. Full pricing can still wait for the tour."),
-         ("We already use HoneyBook, Tripleseat or a spreadsheet.", "Keep it. If enquiries come in by email or the tool can send them through Zapier, we connect to it instead of replacing it."),
-         ("What happens when someone wants to talk to a person?", "You get a text or email with the couple's name, date and question, and the assistant tells them you'll be in touch. You can step in on any conversation at any time."),
-         ("How long does setup take?", "About a week from our kickoff call to live, including your sign-off on the replies.")],
-    author_extra="Before every call we send a real enquiry through the venue's own website and time the reply, so the conversation starts from your numbers, not ours.",
-    sources=[KNOT_VENUE, KNOT_ENG, HBR],
-    also='<a href="/dental-clinics/">More new patients for dental clinics</a>',
+         ("We already use HoneyBook, Tripleseat or a spreadsheet.", "Keep it. If enquiries come in by email or the tool can pass them on, we connect to it instead of replacing it."),
+         ("Who owns the pages and contacts?", "You do. Your ad accounts, the pages and every contact stay yours if you stop."),
+         ("How long does setup take?", "About 14 days from your yes to live, including your sign-off on the pages and the replies.")],
+    author_extra="Before every first email we send a real enquiry through the venue's own website and time the reply, so the conversation starts from your numbers, not ours.",
+    sources=[KNOT_VENUE, KNOT_ENG, HBR, AD_LIBRARY, GOOGLE_ADS_TC],
+    also='<a href="/pool-builders/">More booked design visits for pool builders</a>',
 )
 
-DENTAL = dict(
-    slug="dental-clinics", crumb="Dental clinics",
-    title="More new patients for dental clinics | Bookdzilla",
-    desc="How dental clinics book more new patients from the calls, forms and messages they already get: missed-call text back, replies in under a minute, booking into the schedule, reminders and recall. A practical guide, plus a done-for-you setup with a booking guarantee.",
-    h1="More new patients for your dental clinic.", h1_plain="More new patients for your dental clinic",
-    service="New patient enquiry response and booking for dental clinics",
-    service_types=["Speed to lead", "Missed-call text back", "Appointment booking", "Recall and reactivation", "Review requests"],
-    lead="New patients call during lunch, fill in your form at 10pm and message two practices at once. They book whoever answers first. This guide shows how to be that practice, and what we set up for you if you'd rather not build it yourself.",
-    read=9,
-    thread="""<div class="top"><span>Missed call · Tue 12:41pm</span><span>Texted back in <b>9 sec</b></span></div>
-        <p class="msg out">Hi, this is Bright Smile Dental. Sorry we missed your call! Are you looking to book a visit? Reply here and we'll help right away.<small>Bright Smile Dental</small></p>
-        <p class="msg in">Yes, I'm new to the area. Do you take Delta Dental? Need a cleaning.<small>Jordan</small></p>
-        <p class="msg out">Welcome! We're in network with Delta Dental PPO. A new patient exam, X-rays and cleaning is usually covered. I have Thursday at 8am or Friday at 3:30pm. Which works?<small>Bright Smile Dental</small></p>
-        <p class="booked">Request sent to front desk · Fri 3:30pm</p>
-        <figcaption class="cap">An example with made-up practice details. Yours answers with your own insurance list, times and tone.</figcaption>""",
-    facts=[("7x", 'More likely to qualify a lead when you reply within an hour than an hour later, in a study of 1.25 million leads. <a href="#sources">HBR</a>'),
-           ("60x", 'More likely within an hour than after waiting 24 hours or more. A form answered the next morning is often already booked elsewhere. <a href="#sources">HBR</a>'),
-           ("2", 'Times to offer in the first reply. "Thursday at 8 or Friday at 3:30?" gets a yes more often than "when works for you?"')],
-    toc=[("lost", "Where new patients get lost"), ("setup", "What to set up"), ("privacy", "Patient privacy"), ("reply", "The first reply"), ("test", "Test your practice"), ("measure", "What to measure")],
-    body="""
-<section id="lost">
-  <h2>Where new patients get lost.</h2>
-  <p>Most practices spend money to make the phone ring, then lose a share of those patients in the gap between the enquiry and the first real answer. It's rarely the front desk's fault. They are checking patients in, verifying insurance and answering the phone at the same time.</p>
-  <p>Speed matters more than it feels like it should. In a study of 1.25 million online leads at 42 US companies, firms that responded within an hour were about seven times as likely to qualify the lead as firms that responded even one hour later. A new patient who filled in your form at night and hears back mid-morning has often booked with the practice that answered first.</p>
-  <p>The losses happen in four places:</p>
-  <ul>
-    <li><b>Calls during the busy hours.</b> Lunch, the first hour of the day and after 5pm are when patients call and when the desk is busiest. Most callers who reach voicemail don't leave a message.</li>
-    <li><b>Forms and messages answered the next day.</b> Website forms, Google Business messages and Facebook or Instagram DMs often wait until someone has time.</li>
-    <li><b>The insurance question.</b> "Do you take my insurance?" is the most common first question, and a slow or vague answer sends people back to their insurer's directory.</li>
-    <li><b>Patients who drift away.</b> Overdue recalls and unscheduled treatment plans quietly become someone else's patients.</li>
-  </ul>
-</section>
-
-<section id="setup">
-  <h2>What you can set up with today's tools.</h2>
-  <p class="muted">None of this replaces your practice management software. It sits in front of it, on your existing phone number, forms and inbox.</p>
-  <ol class="steps">
-    <li><h3>Text back every missed call</h3><p>When a call goes unanswered, the caller gets a text within seconds from your practice number asking how you can help. Most people who would have called the next practice reply to the text, and the conversation continues there.</p></li>
-    <li><h3>Answer every form and message in under a minute</h3><p>Route your website form, Google Business messages and social DMs into one inbox. Each new patient gets a reply within a minute, written from your real services, insurance list, new patient offer and hours. Assistants built on models like Claude or ChatGPT can write these in your tone and hand off to your team the moment a question needs a person.</p></li>
-    <li><h3>Answer insurance and price first</h3><p>Say whether you're in network with their plan, or what the new patient exam costs without insurance. Then offer two appointment times. Clinical questions always go to your team, never to the assistant.</p></li>
-    <li><h3>Book into your schedule</h3><p>Depending on your setup, the patient picks a time that goes straight onto the calendar, or the request goes to the front desk to confirm in Dentrix, Eaglesoft, Open Dental or whatever you use. Either way the patient gets an answer now and a confirmation later.</p></li>
-    <li><h3>Confirm and remind to cut no-shows</h3><p>Send a confirmation when they book, a reminder two days before with new patient forms and what to bring, and a text the morning of. Anyone who misses a visit gets a rebooking message the same day.</p></li>
-    <li><h3>Run recall and reactivation</h3><p>Patients overdue for a cleaning, and patients with treatment plans they never scheduled, get a short, personal message with two times. These are the cheapest appointments you will ever fill, because those patients already know you.</p></li>
-    <li><h3>Ask for reviews after good visits</h3><p>A review request a few hours after the appointment, while the visit is fresh, keeps your Google Business Profile growing. More recent reviews means more calls from people searching "dentist near me".</p></li>
-  </ol>
-</section>
-
-<section id="privacy">
-  <h2>A note on patient privacy.</h2>
-  <p>Messages from patients can include health information, so the tools matter. We build on platforms that offer HIPAA options and sign a Business Associate Agreement where the platform provides one, keep messages to booking and logistics, and route anything clinical to your team. Your patient records stay in your practice management software.</p>
-</section>
-
-<section id="reply">
-  <h2>What a good first reply looks like.</h2>
-  <p>Here is a reply to a new patient form that answers the question and moves straight to a booking. Copy the shape, not the words.</p>
-  <blockquote><p>Hi Jordan, thanks for reaching out to Bright Smile Dental. Yes, we're in network with Delta Dental PPO, and a new patient exam, X-rays and cleaning is usually covered.</p><p>I have Thursday at 8am or Friday at 3:30pm. Which works better for you?</p></blockquote>
-  <p>And here is the reply many practices send the next morning:</p>
-  <blockquote><p>Thank you for contacting our office. Please call us during business hours to schedule.</p></blockquote>
-  <p>The second one asks the patient to do the work again, during the same hours they couldn't call the first time.</p>
-</section>
-
-<section id="test">
-  <h2>Test your own practice in five minutes.</h2>
-  <p>Before you change anything, measure where you are.</p>
-  <ol>
-    <li>Call your own practice from a personal phone at 12:30pm and again at 5:45pm. Note whether a person answers.</li>
-    <li>On a Sunday evening, fill in your website form as a new patient asking whether you take a common insurance plan.</li>
-    <li>Send a message through your Google Business Profile.</li>
-    <li>Write down when each one gets a real answer, and whether it offered a time.</li>
-  </ol>
-  <p>If any of them took more than an hour, that is where new patients are going.</p>
-</section>
-
-<section id="measure">
-  <h2>What to measure every week.</h2>
-  <table class="tbl">
-    <thead><tr><th>Number</th><th>What it tells you</th></tr></thead>
-    <tbody>
-      <tr><td>Missed calls</td><td>Calls not answered by a person, and how many got a text back.</td></tr>
-      <tr><td>Reply time</td><td>Minutes from form or message to first real answer. Aim for under one.</td></tr>
-      <tr><td>New patients booked</td><td>From calls, forms and messages, counted separately so you see what works.</td></tr>
-      <tr><td>Show rate</td><td>Share of booked new patients who come in. Reminders move this.</td></tr>
-      <tr><td>Recall booked</td><td>Overdue patients brought back each week.</td></tr>
-    </tbody>
-  </table>
-</section>
-""",
-    offer_h="Want it done for your practice?",
-    offer_sub="We set up everything above for you in about a week, on your phone number, forms and calendar, and you approve every reply before it goes live.",
-    mail_subject="Dental%20clinic%20setup",
-    offer_list="<li>Missed-call text back from your number</li><li>Replies to every form and message in under a minute</li><li>Booking requests sent to your schedule or front desk</li><li>Reminders, recall and review requests</li><li>A weekly report: enquiries, bookings, show rate</li>",
-    faq=[("Will patients know it isn't a person?", "Replies are written in your practice's tone and approved by you before anything goes live. If a patient asks whether they are talking to a person, it says so honestly and passes them to your team."),
-         ("Does it give medical advice?", "No. It answers booking questions: hours, insurance, prices and appointment times. Anything clinical, including pain or emergencies, goes straight to your team with the patient's details."),
-         ("Does it work with Dentrix, Eaglesoft or Open Dental?", "It works alongside them. Booking requests either land on a connected calendar or go to your front desk to confirm in your software. Your patient records stay where they are."),
-         ("What about HIPAA?", "We build on platforms that offer HIPAA options and a Business Associate Agreement where available, and keep messages to scheduling and logistics."),
-         ("Will it use my practice phone number?", "Yes. Missed-call texts go out from your existing number, so patients see the name they called."),
-         ("How long does setup take?", "About a week from our kickoff call to live, including your sign-off on the replies.")],
-    author_extra="Before every call we test the practice ourselves: a call at lunchtime and a form on a weekend night, timed, so the conversation starts from your numbers, not ours.",
-    sources=[HBR],
-    also='<a href="/wedding-venues/">More booked tours for wedding venues</a>',
-)
-
-for p in (VENUE, DENTAL):
+for p in (POOL, VENUE):
     d = ROOT / p["slug"]
     d.mkdir(exist_ok=True)
     (d / "index.html").write_text(page(p))
@@ -508,8 +556,8 @@ for p in (VENUE, DENTAL):
 (ROOT / "sitemap.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>{BASE}/</loc><lastmod>{UPDATED}</lastmod></url>
+  <url><loc>{BASE}/pool-builders/</loc><lastmod>{UPDATED}</lastmod></url>
   <url><loc>{BASE}/wedding-venues/</loc><lastmod>{UPDATED}</lastmod></url>
-  <url><loc>{BASE}/dental-clinics/</loc><lastmod>{UPDATED}</lastmod></url>
 </urlset>
 """)
 (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n")
