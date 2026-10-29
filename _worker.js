@@ -84,8 +84,11 @@ function videoPage(slug, v, url) {
 (function(){var go=function(){location.replace(${JSON.stringify(v.to)})};
 var me=/(^|; )bdz_me=1/.test(document.cookie);
 if(me){go();return}
-try{fetch(${JSON.stringify("/v/" + slug + "/open")},{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({tz:Intl.DateTimeFormat().resolvedOptions().timeZone,w:screen.width})}).finally(function(){setTimeout(go,150)})}catch(e){go()}
-setTimeout(go,1500)})();
+try{fetch(${JSON.stringify("/v/" + slug + "/open")},{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({tz:Intl.DateTimeFormat().resolvedOptions().timeZone,w:screen.width})})
+.then(function(r){return r.json()}).then(function(d){if(!d.send)return;
+return fetch(${JSON.stringify(ALERT_TO)},{method:"POST",keepalive:true,headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify(d.payload)})})
+.catch(function(){}).finally(function(){setTimeout(go,150)})}catch(e){go()}
+setTimeout(go,3000)})();
 </script></body></html>`;
 }
 
@@ -122,18 +125,9 @@ async function handleVideo(request, url, ctx) {
         device: device,
         browser: ua.slice(0, 160)
       };
-      const send = fetch(ALERT_TO, {
-        method: "POST",
-        headers: { "content-type": "application/json", accept: "application/json", origin: url.origin, referer: url.origin + "/" },
-        body: JSON.stringify(payload)
-      });
-      if (url.searchParams.get("debug") === "1") {
-        try { const r = await send; return new Response(r.status + " " + (await r.text()).slice(0, 400), { status: 200 }); }
-        catch (e) { return new Response("ERR " + String(e && e.message || e), { status: 200 }); }
-      }
-      ctx.waitUntil(send.catch(() => {}));
+      return new Response(JSON.stringify({ send: true, payload }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
     }
-    return new Response(null, { status: 204, headers: { "cache-control": "no-store" } });
+    return new Response(JSON.stringify({ send: false }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
   }
 
   if (request.method !== "GET" && request.method !== "HEAD") return new Response(null, { status: 405 });
