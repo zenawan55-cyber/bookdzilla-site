@@ -122,11 +122,16 @@ async function handleVideo(request, url, ctx) {
         device: device,
         browser: ua.slice(0, 160)
       };
-      ctx.waitUntil(fetch(ALERT_TO, {
+      const send = fetch(ALERT_TO, {
         method: "POST",
         headers: { "content-type": "application/json", accept: "application/json", origin: url.origin, referer: url.origin + "/" },
         body: JSON.stringify(payload)
-      }).catch(() => {}));
+      });
+      if (url.searchParams.get("debug") === "1") {
+        try { const r = await send; return new Response(r.status + " " + (await r.text()).slice(0, 400), { status: 200 }); }
+        catch (e) { return new Response("ERR " + String(e && e.message || e), { status: 200 }); }
+      }
+      ctx.waitUntil(send.catch(() => {}));
     }
     return new Response(null, { status: 204, headers: { "cache-control": "no-store" } });
   }
