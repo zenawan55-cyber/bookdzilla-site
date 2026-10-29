@@ -57,11 +57,90 @@ function tidy(text) {
     .slice(0, 600);
 }
 
+
+// ---- Tracked video links ------------------------------------------------
+// GET /v/<slug>        a small page that forwards to the video. The alert fires only
+//                      when a real browser runs the page's script, so link previews,
+//                      spam scanners and bots never trigger it.
+// POST /v/<slug>/open  called by that script; emails bookdzilla@gmail.com.
+// GET /v/me            marks this browser as ours, so our own clicks never alert.
+// Add a prospect: one line in VIDEOS.
+const VIDEOS = {
+  cannabiz: { to: "https://www.loom.com/share/47a84837d9e042baa412817ee5e6beb7", who: "Austin Feely, CannaBiz Loans", title: "2-minute video for CannaBiz Loans" }
+};
+const ALERT_TO = "https://formsubmit.co/ajax/bookdzilla@gmail.com";
+const BOTS = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|whatsapp|telegram|discord|skype|googleimageproxy|google-safety|feedfetcher|bingpreview|headless|python|curl|wget|java\/|go-http|okhttp|axios|node-fetch|proofpoint|mimecast|barracuda|scanner|monitor/i;
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function videoPage(slug, v, url) {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(v.title)}</title><meta name="robots" content="noindex">
+<meta property="og:title" content="${esc(v.title)}"><meta property="og:description" content="Where your ads and pages lose people, and what to fix first. From Bookdzilla.">
+<meta property="og:image" content="${url.origin}/og.png"><meta property="og:type" content="video.other"><meta name="twitter:card" content="summary_large_image">
+<noscript><meta http-equiv="refresh" content="0;url=${esc(v.to)}"></noscript>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0B1530;color:#fff;font:500 17px/1.4 "Helvetica Neue",Arial,sans-serif}a{color:#FFC400}</style>
+</head><body><p>Opening your video&hellip; <a href="${esc(v.to)}">Tap here</a> if it doesn't open.</p>
+<script>
+(function(){var go=function(){location.replace(${JSON.stringify(v.to)})};
+var me=/(^|; )bdz_me=1/.test(document.cookie);
+if(me){go();return}
+try{fetch(${JSON.stringify("/v/" + slug + "/open")},{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({tz:Intl.DateTimeFormat().resolvedOptions().timeZone,w:screen.width})}).finally(function(){setTimeout(go,150)})}catch(e){go()}
+setTimeout(go,1500)})();
+</script></body></html>`;
+}
+
+async function handleVideo(request, url, ctx) {
+  const parts = url.pathname.split("/").filter(Boolean); // ["v", slug, "open"?]
+  if (parts[1] === "me") {
+    return new Response("<!doctype html><meta name=viewport content='width=device-width'><p style='font:17px Arial;padding:24px'>This browser is marked as Bookdzilla. Your own clicks on video links won't send alerts.</p>", {
+      headers: { "content-type": "text/html; charset=utf-8", "set-cookie": "bdz_me=1; Path=/; Max-Age=31536000; Secure; SameSite=Lax" }
+    });
+  }
+  const slug = (parts[1] || "").toLowerCase();
+  const v = VIDEOS[slug];
+  if (!v) return Response.redirect(url.origin + "/", 302);
+  const ua = request.headers.get("user-agent") || "";
+
+  if (parts[2] === "open" && request.method === "POST") {
+    const me = /(^|;\s*)bdz_me=1/.test(request.headers.get("cookie") || "");
+    if (!me && !BOTS.test(ua)) {
+      let extra = {};
+      try { extra = await request.json(); } catch {}
+      const cf = request.cf || {};
+      const now = new Date();
+      const fmt = (tz) => now.toLocaleString("en-US", { timeZone: tz, weekday: "short", hour: "numeric", minute: "2-digit", month: "short", day: "numeric" });
+      const device = /iphone|ipad|android|mobile/i.test(ua) ? "Phone" : "Computer";
+      const place = [cf.city, cf.region, cf.country].filter(Boolean).join(", ") || "unknown";
+      const payload = {
+        _subject: `Video opened: ${slug} (${v.who})`,
+        _template: "table",
+        prospect: v.who,
+        link: `${url.origin}/v/${slug}`,
+        "their time": extra.tz ? fmt(extra.tz) + " (" + extra.tz + ")" : "unknown",
+        "pakistan time": fmt("Asia/Karachi"),
+        where: place,
+        device: device,
+        browser: ua.slice(0, 160)
+      };
+      ctx.waitUntil(fetch(ALERT_TO, {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json", origin: url.origin, referer: url.origin + "/" },
+        body: JSON.stringify(payload)
+      }).catch(() => {}));
+    }
+    return new Response(null, { status: 204, headers: { "cache-control": "no-store" } });
+  }
+
+  if (request.method !== "GET" && request.method !== "HEAD") return new Response(null, { status: 405 });
+  return new Response(videoPage(slug, v, url), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     // Retired page (Oct 2026): the site now covers pool builders and wedding venues only.
     if (url.pathname.startsWith("/dental-clinics")) return Response.redirect(url.origin + "/", 301);
+    if (url.pathname.startsWith("/v/")) return handleVideo(request, url, ctx);
     if (url.pathname !== "/api/demo") return env.ASSETS.fetch(request);
     if (request.method === "GET" && url.searchParams.get("check") === "1") {
       if (!env.AI) return json({ ai: false, detail: "no AI binding" });
