@@ -324,7 +324,7 @@ def page(p):
       msg.className = "note ok"; msg.textContent = "Got it. Your 2-minute video arrives at " + m + " within a day.";
     }}).catch(function(){{
       btn.disabled = false; btn.textContent = "Get my free leak check";
-      msg.className = "note err"; msg.textContent = "That didn't go through. Email bookdzilla@gmail.com with your website and we'll send the video.";
+      msg.className = "note err"; msg.textContent = "That didn't go through. Email bookdzilla@gmail.com with your website and we'll send the video."; window.location.href = "mailto:bookdzilla@gmail.com?subject=" + encodeURIComponent("Free leak check: " + v) + "&body=" + encodeURIComponent("Website: " + v + "\\nEmail: " + m);
     }});
   }});
 }})();
