@@ -584,11 +584,11 @@ footer a{color:var(--on-dark)}
     if (!v || v.indexOf(".") < 0){ msg.textContent = "Add your website, like yourbusiness.com, so we know where to look."; msg.className = "msg err"; site.focus(); return; }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){ msg.textContent = "Add your email so we know where to send the video."; msg.className = "msg err"; em.focus(); return; }
     btn.disabled = true; btn.textContent = "Sending...";
-    fetch("https://formsubmit.co/ajax/bookdzilla@gmail.com", {
-      method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"},
-      body: JSON.stringify({website: v, email: m, page: location.pathname, _replyto: m, _subject: "Free leak check: " + v, _template: "table", _honey: hp.value})
-    }).then(function(r){ return r.json(); }).then(function(d){
-      if (String(d.success) !== "true") throw new Error(d.message || "failed");
+    fetch("https://script.google.com/macros/s/AKfycbxgRU7A6FFlK5hpU8ZWPDFjpdBvRaGwFZEVVUK79ax2-U8PHLCDt2acywV8KnCJJk9Hww/exec", {
+      method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"},
+      body: JSON.stringify({type: "lead", website: v, email: m, page: location.pathname, tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || ""), _honey: hp.value})
+    }).then(function(r){ if (!r.ok) throw new Error("http " + r.status); return r.json().catch(function(){ return {ok: true}; }); }).then(function(d){
+      if (d && d.ok === false) throw new Error(d.error || "failed");
       form.reset(); btn.textContent = "Sent";
       msg.className = "msg ok"; msg.textContent = "Got it. Your 2-minute video arrives at " + m + " within a day.";
     }).catch(function(){

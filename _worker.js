@@ -68,7 +68,7 @@ function tidy(text) {
 const VIDEOS = {
   cannabiz: { to: "https://www.loom.com/share/47a84837d9e042baa412817ee5e6beb7", who: "Austin Feely, CannaBiz Loans", title: "2-minute video for CannaBiz Loans" }
 };
-const ALERT_TO = "https://formsubmit.co/ajax/bookdzilla@gmail.com";
+const ALERT_TO = "https://script.google.com/macros/s/AKfycbxgRU7A6FFlK5hpU8ZWPDFjpdBvRaGwFZEVVUK79ax2-U8PHLCDt2acywV8KnCJJk9Hww/exec";
 const BOTS = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|whatsapp|telegram|discord|skype|googleimageproxy|google-safety|feedfetcher|bingpreview|headless|python|curl|wget|java\/|go-http|okhttp|axios|node-fetch|proofpoint|mimecast|barracuda|scanner|monitor/i;
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -84,10 +84,7 @@ function videoPage(slug, v, url) {
 (function(){var go=function(){location.replace(${JSON.stringify(v.to)})};
 var me=/(^|; )bdz_me=1/.test(document.cookie);
 if(me){go();return}
-try{fetch(${JSON.stringify("/v/" + slug + "/open")},{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({tz:Intl.DateTimeFormat().resolvedOptions().timeZone,w:screen.width})})
-.then(function(r){return r.json()}).then(function(d){if(!d.send)return;
-return fetch(${JSON.stringify(ALERT_TO)},{method:"POST",keepalive:true,headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify(d.payload)})})
-.catch(function(){}).finally(function(){setTimeout(go,150)})}catch(e){go()}
+try{fetch(${JSON.stringify("/v/" + slug + "/open")},{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({tz:Intl.DateTimeFormat().resolvedOptions().timeZone,w:screen.width})}).catch(function(){}).finally(function(){setTimeout(go,150)})}catch(e){go()}
 setTimeout(go,3000)})();
 </script></body></html>`;
 }
@@ -115,19 +112,18 @@ async function handleVideo(request, url, ctx) {
       const device = /iphone|ipad|android|mobile/i.test(ua) ? "Phone" : "Computer";
       const place = [cf.city, cf.region, cf.country].filter(Boolean).join(", ") || "unknown";
       const payload = {
-        _subject: `Video opened: ${slug} (${v.who})`,
-        _template: "table",
-        prospect: v.who,
+        type: "video",
+        slug: slug,
+        who: v.who,
         link: `${url.origin}/v/${slug}`,
-        "their time": extra.tz ? fmt(extra.tz) + " (" + extra.tz + ")" : "unknown",
-        "pakistan time": fmt("Asia/Karachi"),
+        theirTime: extra.tz ? fmt(extra.tz) + " (" + extra.tz + ")" : "unknown",
         where: place,
         device: device,
         browser: ua.slice(0, 160)
       };
-      return new Response(JSON.stringify({ send: true, payload }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
+      ctx.waitUntil(fetch(ALERT_TO, { method: "POST", headers: { "content-type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).catch(() => {}));
     }
-    return new Response(JSON.stringify({ send: false }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
+    return new Response(null, { status: 204, headers: { "cache-control": "no-store" } });
   }
 
   if (request.method !== "GET" && request.method !== "HEAD") return new Response(null, { status: 405 });
