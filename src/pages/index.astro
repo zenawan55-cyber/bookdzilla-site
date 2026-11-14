@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import LeakForm from '../components/LeakForm.astro';
+import Thread from '../components/Thread.astro';
+import Funnel from '../components/Funnel.astro';
+import Report from '../components/Report.astro';
+import Faq from '../components/Faq.astro';
+import Close from '../components/Close.astro';
+import { SITE, TOOLS } from '../data/site';
+import { SERVICES } from '../data/services';
+import { INDUSTRIES, industry } from '../data/industries';
+import { HOME_FAQS } from '../data/faqs';
+import { webpage, faqPage } from '../data/schema';
+
+const title = 'Bookdzilla | More bookings from the same ad spend';
+const description = 'Bookdzilla helps high-ticket local businesses turn more ad clicks and inquiries into booked appointments. Free 2-minute leak check of your ads and pages.';
+const schema = [webpage('/', title, description), faqPage(HOME_FAQS)];
+const hero = industry('wedding-venues').thread;
+---
+<Base title={title} description={description} schema={schema} fullTitle>
+  <div class="hero">
+    <div class="container hero__grid">
+      <div>
+        <h1>More bookings from the same ad spend.</h1>
+        <p class="lead">We find where your ads, pages and follow-up lose buyers between the click and the booking, then fix it.</p>
+        <LeakForm id="hero" note="Free. A 2-minute video of your own ads and pages, within a day." />
+      </div>
+      <Thread t={{ ...hero, top: 'Facebook ad inquiry, 9:14 pm', cap: 'An example of a first reply. Yours uses your own dates, prices and tone.' }} />
+    </div>
+  </div>
+
+  <section class="sec band statement" aria-label="What Bookdzilla does">
+    <div class="container">
+      <p>Bookdzilla is a marketing agency for high-ticket local businesses in the United States.</p>
+      <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies pay for clicks and lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="leaks" aria-labelledby="leaks-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="leaks-h">Six places bookings leak.</h2>
+        <p class="lead">Every business leaks somewhere different. The leak check finds yours, and the fix is built for that.</p>
+      </div>
+      <ul class="rows">
+        {SERVICES.map((s) => (
+          <li>
+            <h3><a href={`/services/${s.slug}/`}>{s.where}</a></h3>
+            <p class="lk"><b>Where it leaks</b>{s.rowLeak}</p>
+            <p class="fx"><b>What the fix can look like</b>{s.rowFix}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec well" aria-labelledby="fnl-sec-h">
+    <div class="container split">
+      <div>
+        <h2 id="fnl-sec-h">Same clicks, more bookings.</h2>
+        <p class="lead">Most of the loss happens after the click. Fix the page and the reply, and the ads you already run book more.</p>
+        <div class="acts"><a class="tlink" href="/guides/ads-get-clicks-but-no-bookings/">Why ads get clicks but no bookings</a></div>
+      </div>
+      <Funnel />
+    </div>
+  </section>
+
+  <section class="sec" id="industries" aria-labelledby="ind-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="ind-h">Built for businesses that book.</h2>
+        <p class="lead">Where one tour, consult or site visit is worth thousands, every missed inquiry is expensive.</p>
+      </div>
+      <ul class="idx">
+        {INDUSTRIES.map((i) => (
+          <li><a href={`/industries/${i.slug}/`}><b>{i.name}</b><span>More {i.unit}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" id="monday" aria-labelledby="monday-h">
+    <div class="container split split--flip">
+      <Report />
+      <div>
+        <h2 id="monday-h">Every Monday, five numbers.</h2>
+        <p class="lead">You see whether it is working without logging in anywhere: leads, bookings, cost per booking, response time and revenue.</p>
+        <div class="acts"><a class="tlink" href="/services/tracking-and-reporting/">How lead tracking works</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band" id="start" aria-labelledby="start-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="start-h">How it starts.</h2>
+        <p class="lead">A free video first. A fixed monthly price only if you want the fixes built.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>A free leak check</h3><p class="muted">Send your website. Within a day you get a 2-minute video of where your ads and pages lose people. No call needed.</p></li>
+        <li><h3>We fix the path</h3><p class="muted">We record your last 30 days of leads, bookings and response time. Then the fixes go live, usually within 14 days. You approve everything first.</p></li>
+        <li><h3>Month to month</h3><p class="muted">One fixed monthly price, based on what we fix and what a booking is worth to you. No contract. Your ad budget goes straight to Meta or Google.</p></li>
+      </ol>
+      <p class="acts mt-2xl"><a class="tlink" href="/how-it-works/">See the whole process</a></p>
+    </div>
+  </section>
+
+  <section class="sec" id="stack" aria-labelledby="stack-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="stack-h">What we build with.</h2>
+        <p class="lead">We connect proven tools into one system that answers, follows up and books for you. You do not have to learn any of them.</p>
+      </div>
+      <ul class="tools">
+        {TOOLS.map((t) => (<li><h3>{t.name}</h3><p>{t.does}</p></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" id="faq" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions owners ask.</h2></div>
+      <Faq items={HOME_FAQS} />
+      <p class="acts mt-xl"><a class="tlink" href="/faq/">All questions and answers</a></p>
+    </div>
+  </section>
+
+  <Close />
+</Base>

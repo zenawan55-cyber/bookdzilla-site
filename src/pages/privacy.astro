@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Close from '../components/Close.astro';
+import { SITE } from '../data/site';
+import { webpage, breadcrumbs } from '../data/schema';
+const title = 'Privacy Policy';
+const description = 'What information Bookdzilla collects through this website, how it is used and how to ask for it to be deleted.';
+const crumbs: [string, string][] = [['Home', '/'], ['Privacy', '/privacy/']];
+const schema = [webpage('/privacy/', title, description), breadcrumbs(crumbs)];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="Privacy policy." lead={`What this website collects, why, and how to have it removed. Last updated ${SITE.updatedText}.`} primary="Get my free leak check" />
+  <section class="sec sec--flush">
+    <div class="container doc doc--solo">
+      <article class="prose">
+        <h2>What we collect.</h2>
+        <p>When you request a leak check, we collect the website address and email address you type into the form, the page you sent it from and your time zone. We use them to prepare your video and to reply to you.</p>
+        <p>If you email us or book a call, we receive whatever you choose to send, such as your name, your business and your message.</p>
+        <h2>Analytics.</h2>
+        <p>This site uses Cloudflare Web Analytics to count visits and measure page speed. It does not use cookies and does not track you across other websites.</p>
+        <h2>How we use it.</h2>
+        <p>We use your details to deliver what you asked for and to follow up about it. We do not sell your information, and we do not add you to a mailing list because you requested a leak check.</p>
+        <h2>Who processes it.</h2>
+        <p>Form submissions are stored with Google. The site is hosted by Cloudflare. Calls are booked through Calendly. Each of them handles data under its own privacy terms.</p>
+        <h2>Keeping and deleting.</h2>
+        <p>We keep inquiry details for as long as we are in touch with you about our services. To see, correct or delete what we hold, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will do it promptly.</p>
+        <h2>Text messages and client campaigns.</h2>
+        <p>When we run follow-up or reactivation campaigns for a client, the client is responsible for the contacts and their consent, and every message includes a way to opt out.</p>
+        <h2>Changes.</h2>
+        <p>If this policy changes, the date at the top of the page changes with it.</p>
+      </article>
+    </div>
+  </section>
+  <Close />
+</Base>

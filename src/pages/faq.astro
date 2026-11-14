@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import Close from '../components/Close.astro';
+import { FAQ_GROUPS } from '../data/faqs';
+import { webpage, breadcrumbs, faqPage } from '../data/schema';
+const title = 'Bookdzilla FAQ: Price, Contract, Setup and Reporting';
+const description = 'Straight answers about Bookdzilla: what it does, what it costs, contract terms, how long setup takes, who owns the accounts and how results are reported.';
+const crumbs: [string, string][] = [['Home', '/'], ['Questions', '/faq/']];
+const all = FAQ_GROUPS.flatMap((g) => g.items).filter((qa, i, arr) => arr.findIndex((x) => x[0] === qa[0]) === i);
+const schema = [webpage('/faq/', title, description), breadcrumbs(crumbs), faqPage(all)];
+---
+<Base title={title} description={description} schema={schema} fullTitle>
+  <PageHero solo crumbs={crumbs} h1="Questions owners ask before they start." lead="What Bookdzilla does, what it costs and what happens after you say yes. If yours is not here, email us and we will answer it." secondary={['Email a question', 'mailto:bookdzilla@gmail.com']} />
+  {FAQ_GROUPS.map((g) => (
+    <section class="sec sec--flush" aria-labelledby={`${g.id}-h`}>
+      <div class="container">
+        <div class="head"><h2 id={`${g.id}-h`}>{g.head}.</h2></div>
+        <Faq items={g.items} />
+      </div>
+    </section>
+  ))}
+  <section class="sec sec--flush" aria-label="More">
+    <div class="container"><p class="lead">More detail: <a class="tlink" href="/how-it-works/">how it works</a>, <a class="tlink" href="/services/">services</a>, <a class="tlink" href="/guides/">guides</a> and the <a class="tlink" href="/glossary/">glossary</a>.</p></div>
+  </section>
+  <Close />
+</Base>

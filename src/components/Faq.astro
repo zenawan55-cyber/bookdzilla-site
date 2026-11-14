@@ -1,0 +1,7 @@
+---
+interface Props { items: [string, string][] }
+const { items } = Astro.props;
+---
+<ul class="rows rows--2">
+  {items.map(([q, a]) => (<li><h3>{q}</h3><p>{a}</p></li>))}
+</ul>

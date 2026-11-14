@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Close from '../components/Close.astro';
+import { TERMS } from '../data/glossary';
+import { webpage, breadcrumbs } from '../data/schema';
+const title = 'Glossary of Lead Generation and Booking Terms';
+const description = 'Plain definitions of local lead generation terms: speed to lead, lead response time, message match, cost per booked appointment and more.';
+const crumbs: [string, string][] = [['Home', '/'], ['Guides', '/guides/'], ['Glossary', '/glossary/']];
+const url = (p: string) => new URL(p, Astro.site).href;
+const schema = [webpage('/glossary/', title, description), breadcrumbs(crumbs), {
+  '@type': 'DefinedTermSet', '@id': url('/glossary/#terms'), name: 'Bookdzilla glossary of lead generation and booking terms', url: url('/glossary/'),
+  hasDefinedTerm: TERMS.map((t) => ({ '@type': 'DefinedTerm', name: t.term, description: t.def, url: url(`/glossary/#${t.id}`), inDefinedTermSet: url('/glossary/#terms') })),
+}];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="Lead and booking terms, in plain words." lead="Seventeen terms that come up when a local business tries to turn ad spend into booked appointments, each defined in a sentence." secondary={['Read the guides', '/guides/']} />
+  <section class="sec sec--flush" aria-label="Glossary">
+    <div class="container">
+      <dl class="gloss">
+        {TERMS.map((t) => (
+          <div id={t.id}>
+            <dt>{t.term}</dt>
+            <dd><p>{t.def}</p>{t.more && <p class="muted">{t.more}</p>}{t.link && <p><a class="tlink" href={t.link[0]}>{t.link[1]}</a></p>}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+  <Close />
+</Base>

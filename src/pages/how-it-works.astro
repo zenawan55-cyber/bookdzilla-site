@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Report from '../components/Report.astro';
+import Faq from '../components/Faq.astro';
+import Close from '../components/Close.astro';
+import { HOME_FAQS } from '../data/faqs';
+import { webpage, breadcrumbs, faqPage } from '../data/schema';
+const title = 'How It Works: Leak Check to Monday Report';
+const description = 'A free leak check video within a day, a 30-day baseline, fixes live in about 14 days, five numbers every Monday and a month-to-month price.';
+const crumbs: [string, string][] = [['Home', '/'], ['How it works', '/how-it-works/']];
+const steps: [string, string][] = [
+  ['You send your website', 'That is all we need to start. No call, no login and no questionnaire.'],
+  ['We run the leak check', 'We look at your live ads in the Meta Ad Library and the Google Ads Transparency Center, open the pages they lead to on a phone, send a test inquiry through your form and time the first real reply.'],
+  ['You get a 2-minute video', 'Within a day, by email. It shows where your path loses people and what we would fix first. If it is not useful, you owe us nothing.'],
+  ['We agree a fixed monthly price', 'Based on what needs fixing and what a booking is worth to you. Month to month, with no contract. Your ad budget is separate and goes straight to Meta or Google.'],
+  ['We record your baseline', 'Before anything changes, we write down your last 30 days of leads, bookings and response time, so we both see what moves.'],
+  ['The fixes go live', 'Usually within 14 days. Pages, replies, follow-up and tracking are built and connected to the phone, calendar and tools you already use. You approve everything first.'],
+  ['You get five numbers every Monday', 'Leads, booked appointments, cost per booked appointment, response time and revenue. Plus one change we made and the next thing we will test.'],
+];
+const schema = [webpage('/how-it-works/', title, description), breadcrumbs(crumbs), faqPage(HOME_FAQS), {
+  '@type': 'HowTo', name: 'How to start working with Bookdzilla', description,
+  step: steps.map(([name, text], i) => ({ '@type': 'HowToStep', position: i + 1, name, text })),
+}];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="A free video first. Fixes only if you want them." lead="Working with Bookdzilla starts with a free leak check: a 2-minute video of where your ads, pages and replies lose buyers. If you want the fixes built, they are live in about 14 days, for one fixed monthly price with no contract." secondary={['See the services', '/services/']} />
+
+  <section class="sec sec--flush" aria-labelledby="steps-h">
+    <div class="container">
+      <div class="head"><h2 id="steps-h">Seven steps, start to Monday.</h2></div>
+      <ol class="rows rows--2 rows--num">
+        {steps.map(([t, d]) => (<li><h3>{t}</h3><p>{d}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec well" aria-labelledby="mon-h">
+    <div class="container split">
+      <div>
+        <h2 id="mon-h">What Monday looks like.</h2>
+        <p class="lead">A short email, not a dashboard you have to remember to open. If leads go up and bookings stay flat, you will see it, and so will we.</p>
+        <div class="acts"><a class="tlink" href="/services/tracking-and-reporting/">Lead tracking and the Monday report</a></div>
+      </div>
+      <Report />
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="terms-h">
+    <div class="container">
+      <div class="head"><h2 id="terms-h">The terms, plainly.</h2></div>
+      <dl class="kv">
+        <div><dt>Price</dt><dd>One fixed monthly price, set after the leak check. No setup surprises.</dd></div>
+        <div><dt>Contract</dt><dd>None. Month to month. Stop any month.</dd></div>
+        <div><dt>Ad budget</dt><dd>Yours, paid directly to Meta or Google. It never passes through us.</dd></div>
+        <div><dt>Ownership</dt><dd>You own the ad accounts, the pages, the tracking and every contact, even if you stop.</dd></div>
+        <div><dt>Approval</dt><dd>Nothing goes live until you have approved it.</dd></div>
+        <div><dt>Your tools</dt><dd>Kept. We connect to the phone, calendar and CRM you already use.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions owners ask.</h2></div>
+      <Faq items={HOME_FAQS} />
+      <p class="acts mt-xl"><a class="tlink" href="/faq/">All questions and answers</a></p>
+    </div>
+  </section>
+  <Close />
+</Base>

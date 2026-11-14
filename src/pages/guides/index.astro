@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Close from '../../components/Close.astro';
+import { GUIDES } from '../../data/guides';
+import { webpage, breadcrumbs } from '../../data/schema';
+const title = 'Guides: Turning Leads Into Booked Appointments';
+const description = 'Plain guides for local business owners: how fast to respond to a lead, why ads get clicks but no bookings, cost per booked appointment and more.';
+const crumbs: [string, string][] = [['Home', '/'], ['Guides', '/guides/']];
+const schema = [webpage('/guides/', title, description, 'CollectionPage'), breadcrumbs(crumbs), {
+  '@type': 'ItemList', name: 'Bookdzilla guides',
+  itemListElement: GUIDES.map((g, i) => ({ '@type': 'ListItem', position: i + 1, name: g.title, url: new URL(`/guides/${g.slug}/`, Astro.site).href })),
+}];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="Guides for owners who pay for leads." lead="Short, practical answers to the questions that decide whether a lead becomes a booking. Each one starts with the answer and shows its sources." secondary={['Glossary of terms', '/glossary/']} />
+  <section class="sec sec--flush" aria-label="Guides">
+    <div class="container">
+      <ul class="rows rows--2">
+        {GUIDES.map((g) => (
+          <li><h2 class="rows__h"><a href={`/guides/${g.slug}/`}>{g.title}</a></h2><p>{g.card} <span class="muted small">{g.read} min read</span></p></li>
+        ))}
+        <li><h2 class="rows__h"><a href="/glossary/">Glossary of lead and booking terms.</a></h2><p>Plain definitions of speed to lead, message match, cost per booked appointment and the other terms used on this site.</p></li>
+      </ul>
+    </div>
+  </section>
+  <Close />
+</Base>

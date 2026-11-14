@@ -1,0 +1,39 @@
+---
+interface Props { crumbs: [string, string][]; h1: string; lead: string; solo?: boolean; primary?: string; secondary?: [string, string]; byline?: string }
+const { crumbs, h1, lead, solo = false, primary = 'Get my free leak check', secondary, byline } = Astro.props;
+---
+<div class={`phero ${solo ? 'phero--solo' : ''}`}>
+  <div class="container">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      {crumbs.map(([name, path], i) => (<li>{i < crumbs.length - 1 ? <a href={path}>{name}</a> : <span aria-current="page">{name}</span>}</li>))}
+    </ol>
+  </nav>
+  </div>
+  {solo ? (
+    <div class="container phero__grid">
+      <h1>{h1}</h1>
+      <div>
+        <p class="lead">{lead}</p>
+        <div class="acts">
+          <a class="btn" href="#check">{primary}</a>
+          {secondary && <a class="tlink" href={secondary[1]}>{secondary[0]}</a>}
+        </div>
+        {byline && <p class="byline">{byline}</p>}
+      </div>
+    </div>
+  ) : (
+    <div class="container phero__grid">
+      <div>
+        <h1>{h1}</h1>
+        <p class="lead">{lead}</p>
+        <div class="acts">
+          <a class="btn" href="#check">{primary}</a>
+          {secondary && <a class="tlink" href={secondary[1]}>{secondary[0]}</a>}
+        </div>
+        {byline && <p class="byline">{byline}</p>}
+      </div>
+      <slot />
+    </div>
+  )}
+</div>

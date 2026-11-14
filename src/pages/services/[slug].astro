@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Thread from '../../components/Thread.astro';
+import Funnel from '../../components/Funnel.astro';
+import Report from '../../components/Report.astro';
+import Faq from '../../components/Faq.astro';
+import Related from '../../components/Related.astro';
+import Close from '../../components/Close.astro';
+import { SERVICES } from '../../data/services';
+import { industry } from '../../data/industries';
+import { guide } from '../../data/guides';
+import { webpage, breadcrumbs, faqPage, serviceNode } from '../../data/schema';
+
+export function getStaticPaths() { return SERVICES.map((s) => ({ params: { slug: s.slug }, props: { s } })); }
+const { s } = Astro.props;
+const path = `/services/${s.slug}/`;
+const crumbs: [string, string][] = [['Home', '/'], ['Services', '/services/'], [s.name, path]];
+const schema = [webpage(path, s.title, s.desc), breadcrumbs(crumbs), serviceNode(path, s.name, s.desc, s.name, 'High-ticket local businesses'), faqPage(s.faqs)];
+const visual = { 'lead-follow-up': 'thread', 'landing-pages': 'funnel', 'tracking-and-reporting': 'report' }[s.slug];
+const others = SERVICES.filter((o) => o.slug !== s.slug);
+const next = SERVICES[(SERVICES.findIndex((o) => o.slug === s.slug) + 1) % SERVICES.length];
+const related = [
+  ...s.guides.slice(0, 2).map((g) => ({ href: `/guides/${g}/`, title: guide(g).title, line: guide(g).card, kind: 'Guide' })),
+  { href: `/services/${next.slug}/`, title: next.name, line: next.short, kind: 'Service' },
+];
+---
+<Base title={s.title} description={s.desc} schema={schema}>
+  <PageHero crumbs={crumbs} h1={s.h1} lead={s.lead} secondary={['How it works', '/how-it-works/']}>
+    {visual === 'thread' && <Thread t={industry('wedding-venues').thread} />}
+    {visual === 'funnel' && <Funnel />}
+    {visual === 'report' && <Report />}
+    {!visual && (<div class="phero__kv"><dl class="kv">{s.kv.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}</dl><ul class="chips" aria-label="Built with">{s.tools.map((t) => (<li>{t}</li>))}</ul></div>)}
+  </PageHero>
+
+  {visual && (
+  <section class="sec sec--tight well" aria-labelledby="glance-h">
+    <div class="container split split--even">
+      <div>
+        <h2 id="glance-h">At a glance.</h2>
+        <ul class="chips mt-xl" aria-label="Built with">{s.tools.map((t) => (<li>{t}</li>))}</ul>
+      </div>
+      <dl class="kv">{s.kv.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}</dl>
+    </div>
+  </section>
+  )}
+
+  <section class="sec" aria-labelledby="leak-h">
+    <div class="container split split--even">
+      <h2 id="leak-h">{s.leakHead}</h2>
+      <ul class="ticks ticks--leak">{s.leaks.map((l) => (<li>{l}</li>))}</ul>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="does-h">
+    <div class="container">
+      <div class="head"><h2 id="does-h">{s.doesHead}</h2></div>
+      <ul class="tools">{s.does.map(([t, d]) => (<li><h3>{t}</h3><p>{d}</p></li>))}</ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="ind-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="ind-h">Where it pays off most.</h2>
+        <p class="lead">The same fix, shaped for how each kind of buyer decides. <a class="tlink" href="/industries/">All industries</a></p>
+      </div>
+      <ul class="idx">
+        {s.industries.map((slug) => { const i = industry(slug); return (<li><a href={`/industries/${i.slug}/`}><b>{i.name}</b><span>More {i.unit}</span></a></li>); })}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions about {s.name.toLowerCase().replace('meta', 'Meta').replace('google', 'Google').replace('seo', 'SEO').replace('monday', 'Monday').replace('business profile', 'Business Profile')}.</h2></div>
+      <Faq items={s.faqs} />
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="rel-h">
+    <div class="container">
+      <div class="head"><h2 id="rel-h">Keep reading.</h2></div>
+      <Related items={related} />
+      <p class="mt-2xl">Other services: {others.map((o, i) => (<><a class="tlink" href={`/services/${o.slug}/`}>{o.name}</a>{i < others.length - 1 ? ', ' : '.'}</>))}</p>
+    </div>
+  </section>
+
+  <Close />
+</Base>

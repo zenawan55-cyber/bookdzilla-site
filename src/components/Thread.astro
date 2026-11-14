@@ -1,0 +1,17 @@
+---
+interface Props { t: { top: string; time: string; msgs: ['in' | 'out', string][]; done: string; cap: string } }
+const { t } = Astro.props;
+// The reply time is shown after the first outgoing message.
+const firstOut = t.msgs.findIndex(([d]) => d === 'out');
+---
+<figure class="thread" aria-label="Example conversation with a new inquiry">
+  <p class="thread__top"><span>{t.top}</span><span>Example</span></p>
+  {t.msgs.map(([dir, text], i) => (
+    <>
+      <p class={`thread__msg thread__msg--${dir}`}>{text}</p>
+      {i === firstOut && <p class="thread__meta">{t.time}</p>}
+    </>
+  ))}
+  <p class="thread__done">{t.done}</p>
+  <figcaption>{t.cap}</figcaption>
+</figure>

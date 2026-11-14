@@ -1,0 +1,30 @@
+---
+const rows = [
+  ['Landed on the page', 1000, 1000],
+  ['Stayed past the first screen', 430, 760],
+  ['Sent an inquiry', 31, 58],
+  ['Got a reply within a minute', 9, 55],
+  ['Booked', 4, 15],
+] as const;
+const fmt = (n: number) => n.toLocaleString('en-US');
+const scale = (n: number) => Math.max(Math.sqrt(n / 1000), 0.02).toFixed(3);
+---
+<figure class="fnl" data-fnl aria-labelledby="fnl-h">
+  <div class="fnl__h">
+    <b id="fnl-h" data-fnl-h>1,000 ad clicks, 4 booked</b>
+    <div class="seg" role="group" aria-label="Show funnel">
+      <button type="button" aria-pressed="true" data-mode="b">Before</button>
+      <button type="button" aria-pressed="false" data-mode="a">After the fix</button>
+    </div>
+  </div>
+  <ol>
+    {rows.map(([label, b, a], i) => (
+      <li data-b={b} data-a={a}>
+        <span class="lb">{label}<i>{i > 0 ? `${fmt(rows[i - 1][1] - b)} lost` : ''}</i></span>
+        <span class="v">{fmt(b)}</span>
+        <span class="bar"><span style={`--s:${scale(b)}`}></span></span>
+      </li>
+    ))}
+  </ol>
+  <figcaption>Made-up numbers to show the idea. Bars are scaled so small numbers stay visible. Your leak check uses your own.</figcaption>
+</figure>

@@ -1,0 +1,123 @@
+---
+import '@fontsource-variable/funnel-display';
+import '@fontsource-variable/funnel-sans';
+import '../styles/site.css';
+import displayFont from '@fontsource-variable/funnel-display/files/funnel-display-latin-wght-normal.woff2?url';
+import bodyFont from '@fontsource-variable/funnel-sans/files/funnel-sans-latin-wght-normal.woff2?url';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, abs } from '../data/site';
+import { org, website } from '../data/schema';
+
+interface Props { title: string; description: string; schema?: object[]; ogType?: string; noindex?: boolean; fullTitle?: boolean; dock?: boolean; cta?: string }
+const { title, description, schema = [], ogType = 'website', noindex = false, fullTitle = false, dock = true, cta = '#check' } = Astro.props;
+const pageTitle = fullTitle ? title : `${title} | ${SITE.name}`;
+const canonical = abs(Astro.url.pathname);
+const graph = { '@context': 'https://schema.org', '@graph': [org(), website(), ...schema] };
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex" />}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+<meta name="theme-color" content="#0B1530" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={abs('/og.png')} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="627" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Bookdzilla, a summary for AI assistants" />
+<script type="application/ld+json" set:html={JSON.stringify(graph)} />
+<script is:inline>document.documentElement.classList.add('js');</script>
+</head>
+<body class={dock ? 'has-dock' : undefined}>
+<a class="skip" href="#main">Skip to content</a>
+<Header cta={cta} />
+<main id="main">
+  <slot />
+</main>
+<Footer />
+{dock && <div class="dock" data-dock><a class="btn" href="#check">Get my free leak check</a></div>}
+<script is:inline>
+(function () {
+  // Leak check forms: same endpoint and payload as before the redesign.
+  document.querySelectorAll('form[data-leak]').forEach(function (form) {
+    var site = form.querySelector('[name=website]'), em = form.querySelector('[name=email]'), hp = form.querySelector('[name=_honey]');
+    var msg = form.querySelector('.lc__msg'), btn = form.querySelector('button'), mail = form.dataset.mail;
+    var say = function (text, cls) { msg.textContent = text; msg.className = 'lc__msg' + (cls ? ' ' + cls : ''); };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = site.value.trim(), m = em.value.trim();
+      site.removeAttribute('aria-invalid'); em.removeAttribute('aria-invalid');
+      if (!v || v.indexOf('.') < 0) { site.setAttribute('aria-invalid', 'true'); say('Add your website, like yourbusiness.com, so we know where to look.', 'is-err'); site.focus(); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)) { em.setAttribute('aria-invalid', 'true'); say('Add your email so we know where to send the video.', 'is-err'); em.focus(); return; }
+      btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Sending…';
+      fetch(form.dataset.endpoint, {
+        method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'lead', website: v, email: m, page: location.pathname, tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''), _honey: hp.value })
+      }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json().catch(function () { return { ok: true }; }); }).then(function (d) {
+        if (d && d.ok === false) throw new Error(d.error || 'failed');
+        form.reset(); btn.removeAttribute('aria-busy'); btn.textContent = 'Sent';
+        say('Got it. Your 2-minute video arrives at ' + m + ' within a day.', 'is-ok');
+      }).catch(function () {
+        btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = btn.dataset.label;
+        say('That did not go through. Email ' + mail + ' with your website and we will send the video.', 'is-err');
+        window.location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Free leak check: ' + v) + '&body=' + encodeURIComponent('Website: ' + v + '\nEmail: ' + m);
+      });
+    });
+  });
+
+  // Funnel: before and after.
+  document.querySelectorAll('[data-fnl]').forEach(function (f) {
+    var items = [].slice.call(f.querySelectorAll('li')), btns = [].slice.call(f.querySelectorAll('.seg button')), head = f.querySelector('[data-fnl-h]');
+    var fmt = function (n) { return n.toLocaleString('en-US'); };
+    var set = function (mode) {
+      f.classList.toggle('is-after', mode === 'a');
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); });
+      var prev = null, last = 0;
+      items.forEach(function (li) {
+        var n = +li.dataset[mode];
+        li.querySelector('.bar span').style.setProperty('--s', Math.max(Math.sqrt(n / 1000), 0.02).toFixed(3));
+        li.querySelector('.v').textContent = fmt(n);
+        li.querySelector('.lb i').textContent = prev !== null ? fmt(prev - n) + ' lost' : '';
+        prev = n; last = n;
+      });
+      head.textContent = '1,000 ad clicks, ' + fmt(last) + ' booked';
+    };
+    btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.mode); }); });
+  });
+
+  // Menu: close on Escape and on outside click.
+  var menu = document.querySelector('.menu');
+  if (menu) {
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); } });
+    document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  }
+
+  // Phone dock: shows after the first screen, hides while a form is in view.
+  var dock = document.querySelector('[data-dock]');
+  if (dock && 'IntersectionObserver' in window) {
+    var vis = new Set(), past = false;
+    var sync = function () { dock.classList.toggle('is-on', past && vis.size === 0); };
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) vis.add(e.target); else vis.delete(e.target); }); sync(); });
+    var forms = document.querySelectorAll('form[data-leak]');
+    forms.forEach(function (f) { io.observe(f); });
+    window.addEventListener('scroll', function () { var p = window.scrollY > 500; if (p !== past) { past = p; sync(); } }, { passive: true });
+  }
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2ee30b321f544ee5b8adcd0ac62406e9"}'></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import LeakForm from '../components/LeakForm.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../data/site';
+import { webpage, breadcrumbs, faqPage } from '../data/schema';
+const title = 'Free Leak Check: See Where Your Ads Lose Bookings';
+const description = 'Send your website and get a free 2-minute video within a day showing where your ads, pages and replies lose buyers, and what to fix first. No call and no obligation.';
+const crumbs: [string, string][] = [['Home', '/'], ['Free leak check', '/free-leak-check/']];
+const faqs: [string, string][] = [
+  ['Is the leak check really free?', 'Yes. There is nothing to pay and no obligation. If the video is useful and you want the fixes built, we talk about price then.'],
+  ['Do I have to get on a call?', 'No. The video arrives by email and you can watch it when you like. A call is there if you want one.'],
+  ['What do you need from me?', 'Only your website and an email address. We find your ads and pages ourselves.'],
+  ['What exactly do you check?', 'Your live ads on Meta and Google, the page each one opens on a phone, how long a new inquiry waits for a real reply and how your business appears in local search.'],
+  ['What happens after the video?', 'Nothing, unless you reply. If you want the leaks fixed, you get one fixed monthly price and the fixes are live in about 14 days.'],
+  ['What if I do not run ads?', 'The check still covers your pages, your reply time and your Google presence. Most of the leaks are after the click.'],
+];
+const schema = [webpage('/free-leak-check/', title, description), breadcrumbs(crumbs), faqPage(faqs)];
+const finds = [
+  'The ad promises a free design visit. The page it opens never mentions it.',
+  '4.9 stars from 213 Google reviews, and not one of them on the page.',
+  'The quote form is three screens down on a phone.',
+  'A quote request sent Tuesday evening got its first reply Thursday morning.',
+];
+---
+<Base title={title} description={description} schema={schema} dock={false}>
+  <div class="hero hero--crumbed" id="check">
+    <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Free leak check</span></li></ol></nav>
+    </div>
+    <div class="container hero__grid">
+      <div>
+        <h1>See where your ads lose bookings.</h1>
+        <p class="lead">Send your website. Within a day you get a 2-minute video of where your ads, pages and replies lose buyers, and what to fix first.</p>
+        <LeakForm id="check" note="Free. No call and no obligation." />
+      </div>
+      <figure class="thread" aria-label="Example findings from a leak check">
+        <p class="thread__top"><span>What a leak check finds</span><span>Example</span></p>
+        <ol class="olist">{finds.map((f) => (<li>{f}</li>))}</ol>
+        <figcaption>Findings for a made-up pool builder. Yours come from your own ads, pages and reply times.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section class="sec band" aria-labelledby="what-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="what-h">What we look at.</h2>
+        <p class="lead">The same path a buyer takes, from the first ad to the first reply.</p>
+      </div>
+      <ol class="steps steps--4">
+        <li><h3>Your ads</h3><p class="muted">Every live ad on Meta and Google, and the one promise each of them makes.</p></li>
+        <li><h3>Your pages</h3><p class="muted">What each ad opens on a phone: the promise, the proof, the price and the form.</p></li>
+        <li><h3>Your reply</h3><p class="muted">A test inquiry through your own form, timed to the first real answer.</p></li>
+        <li><h3>Your search presence</h3><p class="muted">How you appear on the map and in local results for your main service.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="get-h">
+    <div class="container split split--even">
+      <div>
+        <h2 id="get-h">What you get back.</h2>
+        <p class="lead">A short screen recording made for your business, sent to your inbox.</p>
+      </div>
+      <ul class="ticks">
+        <li><b>Where it leaks.</b> The exact step where your path loses the most buyers, shown on your own pages.</li>
+        <li><b>What to fix first.</b> The one change that would book the most from the leads you already get.</li>
+        <li><b>What it would take.</b> Whether it is a page, a reply, follow-up, ads or tracking.</li>
+        <li><b>No strings.</b> Use the findings yourself, hand them to your team or ask us to build the fix.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions about the leak check.</h2></div>
+      <Faq items={faqs} />
+      <p class="lead mt-2xl">Want to run it yourself? <a class="tlink" href="/guides/five-minute-leak-check/">Audit your own lead funnel in five minutes</a>. Rather talk? <a class="tlink" href={SITE.calendly} target="_blank" rel="noopener">Book a 30-minute call</a>.</p>
+    </div>
+  </section>
+  <div class="sec--tight"></div>
+</Base>

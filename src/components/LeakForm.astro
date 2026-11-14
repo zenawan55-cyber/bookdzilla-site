@@ -1,0 +1,16 @@
+---
+import { SITE } from '../data/site';
+interface Props { id?: string; cta?: string; note?: string }
+const { id = 'lc', cta = 'Get my free leak check', note = 'Free. Your 2-minute video arrives by email within a day.' } = Astro.props;
+---
+<form class="lc" data-leak data-endpoint={SITE.endpoint} data-mail={SITE.email} data-note={note} novalidate aria-label="Free leak check">
+  <div class="lc__row">
+    <span class="lc__fld"><label for={`${id}-site`}>Your website</label><input id={`${id}-site`} name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" required /></span>
+    <span class="lc__fld"><label for={`${id}-em`}>Your email</label><input id={`${id}-em`} name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required /></span>
+  </div>
+  <input class="lc__hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <div class="lc__foot">
+    <button class="btn" type="submit" data-label={cta}>{cta}</button>
+    <p class="lc__msg" aria-live="polite">{note}</p>
+  </div>
+</form>

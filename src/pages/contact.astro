@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Close from '../components/Close.astro';
+import { SITE } from '../data/site';
+import { webpage, breadcrumbs } from '../data/schema';
+const title = 'Contact Bookdzilla';
+const description = 'Email Bookdzilla, book a 30-minute call or request a free leak check of your ads, pages and reply times.';
+const crumbs: [string, string][] = [['Home', '/'], ['Contact', '/contact/']];
+const schema = [webpage('/contact/', title, description, 'ContactPage'), breadcrumbs(crumbs)];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="Three ways to reach us." lead="Ask a question, book a call or send your website for a free leak check. Emails are answered within one business day." primary="Get my free leak check" />
+  <section class="sec sec--flush" aria-label="Contact options">
+    <div class="container">
+      <ul class="grid3">
+        <li><a class="tile" href={`mailto:${SITE.email}`}><h2>Email</h2><p>For questions about services, price or fit.</p><span class="tile__more">{SITE.email}</span></a></li>
+        <li><a class="tile" href={SITE.calendly} target="_blank" rel="noopener"><h2>A 30-minute call</h2><p>Pick a time that suits you. We will look at your path together.</p><span class="tile__more">Book a call on Calendly</span></a></li>
+        <li><a class="tile" href="#check"><h2>A free leak check</h2><p>Send your website and get a 2-minute video within a day. No call needed.</p><span class="tile__more">Request the leak check</span></a></li>
+      </ul>
+      <p class="lead mt-2xl">Looking for answers first? Read the <a class="tlink" href="/faq/">questions owners ask</a> or see <a class="tlink" href="/how-it-works/">how it works</a>.</p>
+    </div>
+  </section>
+  <Close />
+</Base>

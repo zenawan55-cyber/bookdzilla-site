@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Close from '../../components/Close.astro';
+import { INDUSTRIES } from '../../data/industries';
+import { SERVICES } from '../../data/services';
+import { webpage, breadcrumbs } from '../../data/schema';
+const title = 'Industries We Serve: High-Ticket Local Business';
+const description = 'Bookdzilla works with local businesses where one booking is worth thousands: venues, senior living, private schools, clinics, pool builders and more.';
+const crumbs: [string, string][] = [['Home', '/'], ['Industries', '/industries/']];
+const schema = [webpage('/industries/', title, description, 'CollectionPage'), breadcrumbs(crumbs), {
+  '@type': 'ItemList', name: 'Industries Bookdzilla works with',
+  itemListElement: INDUSTRIES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: new URL(`/industries/${s.slug}/`, Astro.site).href })),
+}];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="For businesses where one booking is worth thousands." lead="Bookdzilla works with high-ticket local businesses in the United States. The buyers differ, and the leak is the same: people ask two or three businesses and book with the one that answers first and best." secondary={['See our services', '/services/']} />
+  <section class="sec sec--flush" aria-label="Industries">
+    <div class="container">
+      <ul class="grid2">
+        {INDUSTRIES.map((i) => (
+          <li><a class="tile" href={`/industries/${i.slug}/`}><h2>{i.name}</h2><p>{i.leakIntro}</p><span class="tile__more">More {i.unit}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="sec band" aria-labelledby="same-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="same-h">Not on the list?</h2>
+        <p class="lead">If your customers inquire before they buy and one sale is worth thousands, the same six fixes apply. Send your website and we will show you where it leaks.</p>
+      </div>
+      <ul class="idx">
+        {SERVICES.map((s) => (<li><a href={`/services/${s.slug}/`}><b>{s.name}</b><span>{s.where}</span></a></li>))}
+      </ul>
+    </div>
+  </section>
+  <Close />
+</Base>

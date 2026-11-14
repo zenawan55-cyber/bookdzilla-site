@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Related from '../../components/Related.astro';
+import Close from '../../components/Close.astro';
+import { SITE } from '../../data/site';
+import { GUIDES, guide } from '../../data/guides';
+import { service } from '../../data/services';
+import { industry } from '../../data/industries';
+import { webpage, breadcrumbs, faqPage, article } from '../../data/schema';
+
+export function getStaticPaths() { return GUIDES.map((g) => ({ params: { slug: g.slug }, props: { g } })); }
+const { g } = Astro.props;
+const path = `/guides/${g.slug}/`;
+const crumbs: [string, string][] = [['Home', '/'], ['Guides', '/guides/'], [g.title.replace(/[.?]$/, ''), path]];
+const schema = [webpage(path, g.seoTitle, g.desc), breadcrumbs(crumbs), article(path, g.title, g.desc), faqPage(g.faqs)];
+const related = g.related.map((r) => ({ href: `/guides/${r}/`, title: guide(r).title, line: guide(r).card, kind: 'Guide' }));
+const toc: [string, string][] = [...g.toc, ['questions', 'Common questions']];
+---
+<Base title={g.seoTitle} description={g.desc} schema={schema} ogType="article" fullTitle>
+  <PageHero solo crumbs={crumbs} h1={g.title} lead={g.card} primary="Get my free leak check" byline={`By Bookdzilla. Updated ${SITE.updatedText}. ${g.read} min read.`} />
+  <section class="sec sec--flush" aria-label="Guide">
+    <div class="container doc">
+      <nav class="toc" aria-label="On this page"><p>On this page</p><ol>{toc.map(([id, t]) => (<li><a href={`#${id}`}>{t}</a></li>))}</ol></nav>
+      <article class="prose">
+        <p class="answer"><strong>Short answer:</strong> {g.answer}</p>
+        <Fragment set:html={g.body} />
+        <section id="questions">
+          <h2>Common questions.</h2>
+          {g.faqs.map(([q, a]) => (<><h3>{q}</h3><p>{a}</p></>))}
+        </section>
+        <section>
+          <h2>Where this applies.</h2>
+          <p>Services: {g.services.map((s, n) => (<><a href={`/services/${s}/`}>{service(s).name}</a>{n < g.services.length - 1 ? ', ' : '.'}</>))} Industries: {g.industries.map((s, n) => (<><a href={`/industries/${s}/`}>{industry(s).name.toLowerCase()}</a>{n < g.industries.length - 1 ? ', ' : '.'}</>))} Terms are defined in the <a href="/glossary/">glossary</a>.</p>
+        </section>
+        {g.sources.length > 0 && (
+          <div class="sources" id="sources">
+            <p><b>Sources</b></p>
+            <ol>{g.sources.map(([t, u]) => (<li><a href={u} rel="noopener" target="_blank">{t}</a></li>))}</ol>
+          </div>
+        )}
+      </article>
+    </div>
+  </section>
+  <section class="sec sec--flush" aria-labelledby="rel-h">
+    <div class="container">
+      <div class="head"><h2 id="rel-h">Keep reading.</h2></div>
+      <Related items={related} />
+    </div>
+  </section>
+  <Close />
+</Base>

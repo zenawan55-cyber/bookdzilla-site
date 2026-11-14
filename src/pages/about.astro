@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Close from '../components/Close.astro';
+import { SITE, TOOLS } from '../data/site';
+import { INDUSTRIES } from '../data/industries';
+import { webpage, breadcrumbs } from '../data/schema';
+const title = 'About Bookdzilla';
+const description = 'Bookdzilla is a marketing agency for high-ticket local businesses in the United States. What we do, how we work and the principles behind every engagement.';
+const crumbs: [string, string][] = [['Home', '/'], ['About', '/about/']];
+const schema = [webpage('/about/', title, description, 'AboutPage'), breadcrumbs(crumbs)];
+const rules: [string, string][] = [
+  ['Bookings, not clicks', 'We judge our work by booked appointments and the revenue they produce. Clicks and impressions are only steps on the way.'],
+  ['Fix the leak before buying more traffic', 'Spending more on ads before the path works only pays for more lost buyers. We start closest to the booking.'],
+  ['You own everything', 'Ad accounts, pages, tracking and contacts are yours from day one and stay yours if you stop.'],
+  ['Show the numbers every week', 'Five numbers every Monday, including the ones that did not move.'],
+  ['No contracts', 'Month to month. We keep the work by earning it.'],
+  ['Examples are labeled as examples', 'Every sample conversation and report on this site is marked as made up. Figures we cite carry their source.'],
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="We turn paid attention into booked appointments." lead={SITE.about} secondary={['How it works', '/how-it-works/']} />
+
+  <section class="sec sec--flush" aria-labelledby="rules-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="rules-h">How we work.</h2>
+        <p class="lead">Six rules that hold on every engagement.</p>
+      </div>
+      <ul class="rows rows--2">{rules.map(([t, d]) => (<li><h3>{t}</h3><p>{d}</p></li>))}</ul>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="who-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="who-h">Who we work with.</h2>
+        <p class="lead">Owner-run local businesses in the United States where one booking is worth thousands of dollars.</p>
+      </div>
+      <ul class="idx">{INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}><b>{i.name}</b><span>More {i.unit}</span></a></li>))}</ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="stack-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="stack-h">What we build with.</h2>
+        <p class="lead">Proven tools, connected into one system that answers, follows up and books. See <a class="tlink" href="/services/">what we do with them</a>.</p>
+      </div>
+      <ul class="tools">{TOOLS.map((t) => (<li><h3>{t.name}</h3><p>{t.does}</p></li>))}</ul>
+    </div>
+  </section>
+  <Close />
+</Base>

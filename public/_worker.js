@@ -1,4 +1,4 @@
-// Bookdzilla site worker: serves the static site and one demo endpoint.
+// Bookdzilla site worker: serves the built site, old-address redirects, tracked video links and one demo endpoint.
 // POST /api/demo  {type, business, message}  ->  {reply, ms, source}
 // Needs a Workers AI binding named AI (Pages > Settings > Bindings). Without it the demo
 // still answers from a written fallback, so the page never breaks.
@@ -130,13 +130,38 @@ async function handleVideo(request, url, ctx) {
   return new Response(videoPage(slug, v, url), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
 }
 
+// ---- Site routing -------------------------------------------------------
+// When the custom domain is connected, put it here (for example "bookdzilla.com") and change
+// SITE in astro.config.mjs to match. Visits to the pages.dev address then move to it for good.
+const CUSTOM_DOMAIN = "";
+// Pages that moved in the November 2026 rebuild.
+const MOVED = {
+  "/wedding-venues": "/industries/wedding-venues/",
+  "/pool-builders": "/industries/pool-builders/",
+  "/dental-clinics": "/industries/dental-practices/"
+};
+
+async function asset(request, env, url) {
+  const res = await env.ASSETS.fetch(request);
+  // Fingerprinted build files never change, so browsers may keep them for a year.
+  if (url.pathname.startsWith("/_astro/") && res.status === 200) {
+    const out = new Response(res.body, res);
+    out.headers.set("cache-control", "public, max-age=31536000, immutable");
+    return out;
+  }
+  return res;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    // Retired page (Oct 2026): the site now covers pool builders and wedding venues only.
-    if (url.pathname.startsWith("/dental-clinics")) return Response.redirect(url.origin + "/", 301);
+    if (CUSTOM_DOMAIN && url.hostname.endsWith(".pages.dev") && !url.pathname.startsWith("/v/")) {
+      return Response.redirect("https://" + CUSTOM_DOMAIN + url.pathname + url.search, 301);
+    }
+    const bare = url.pathname.replace(/\/+$/, "");
+    if (MOVED[bare]) return Response.redirect(url.origin + MOVED[bare], 301);
     if (url.pathname.startsWith("/v/")) return handleVideo(request, url, ctx);
-    if (url.pathname !== "/api/demo") return env.ASSETS.fetch(request);
+    if (url.pathname !== "/api/demo") return asset(request, env, url);
     if (request.method === "GET" && url.searchParams.get("check") === "1") {
       if (!env.AI) return json({ ai: false, detail: "no AI binding" });
       try {

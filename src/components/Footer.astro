@@ -1,0 +1,50 @@
+---
+import { SITE } from '../data/site';
+import { SERVICES } from '../data/services';
+import { INDUSTRIES } from '../data/industries';
+import { GUIDES } from '../data/guides';
+const S: Record<string, string> = { 'paid-ads': 'Meta and Google ads', 'landing-pages': 'Landing pages', 'lead-follow-up': 'Speed to lead', 'database-reactivation': 'Reactivation', 'local-seo': 'Local SEO', 'tracking-and-reporting': 'Lead tracking' };
+const I: Record<string, string> = { 'wedding-venues': 'Wedding venues', 'senior-living': 'Senior living', 'private-schools': 'Private schools', 'dental-practices': 'Dental practices', 'med-spas': 'Med spas', 'pool-builders': 'Pool builders', roofing: 'Roofing', hvac: 'HVAC' };
+const G: Record<string, string> = { 'speed-to-lead': 'Lead response time', 'ads-get-clicks-but-no-bookings': 'Clicks, no bookings', 'cost-per-booked-appointment': 'Cost per booking', 'wedding-venue-inquiry-response': 'Venue inquiry replies', 'missed-call-text-back': 'Missed-call text back', 'five-minute-leak-check': 'Five-minute audit' };
+---
+<footer class="foot">
+  <div class="container">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a class="word" href="/" aria-label="Bookdzilla, home">Bookdzilla</a>
+        <p class="foot__line">{SITE.line}</p>
+        <p class="foot__line"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      </div>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul>{SERVICES.map((s) => (<li><a href={`/services/${s.slug}/`}>{S[s.slug]}</a></li>))}</ul>
+      </nav>
+      <nav aria-label="Industries">
+        <h2>Industries</h2>
+        <ul>{INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}>{I[i.slug]}</a></li>))}</ul>
+      </nav>
+      <nav aria-label="Guides">
+        <h2>Guides</h2>
+        <ul>
+          {GUIDES.map((g) => (<li><a href={`/guides/${g.slug}/`}>{G[g.slug]}</a></li>))}
+          <li><a href="/glossary/">Glossary</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Bookdzilla</h2>
+        <ul>
+          <li><a href="/how-it-works/">How it works</a></li>
+          <li><a href="/free-leak-check/">Free leak check</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/faq/">Questions</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href={SITE.calendly} target="_blank" rel="noopener">Book a call</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot__base">
+      <span>&copy; {new Date().getFullYear()} Bookdzilla. Marketing for high-ticket local businesses in the United States.</span>
+      <span><a href="/privacy/">Privacy</a></span>
+    </div>
+  </div>
+</footer>

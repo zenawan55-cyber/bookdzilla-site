@@ -1,0 +1,23 @@
+---
+import { NAV } from '../data/site';
+const { cta = '#check' } = Astro.props;
+const path = Astro.url.pathname;
+const cur = (href: string) => (path.startsWith(href) ? 'page' : undefined);
+---
+<header class="nav">
+  <div class="container nav__in">
+    <a class="word" href="/" aria-label="Bookdzilla, home">Bookdzilla</a>
+    <nav class="nav__links" aria-label="Main">
+      {NAV.map((n) => (<a href={n.href} aria-current={cur(n.href)}>{n.label}</a>))}
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <nav class="menu__panel" aria-label="Menu">
+        {NAV.map((n) => (<a href={n.href} aria-current={cur(n.href)}>{n.label}</a>))}
+        <a href="/faq/">Questions</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </details>
+    <a class="btn btn--s" href={cta}>Free leak check</a>
+  </div>
+</header>

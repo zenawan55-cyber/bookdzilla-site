@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Thread from '../../components/Thread.astro';
+import Faq from '../../components/Faq.astro';
+import Related from '../../components/Related.astro';
+import Close from '../../components/Close.astro';
+import { INDUSTRIES, industry } from '../../data/industries';
+import { service } from '../../data/services';
+import { guide } from '../../data/guides';
+import { webpage, breadcrumbs, faqPage, serviceNode } from '../../data/schema';
+
+export function getStaticPaths() { return INDUSTRIES.map((i) => ({ params: { slug: i.slug }, props: { i } })); }
+const { i } = Astro.props;
+const path = `/industries/${i.slug}/`;
+const crumbs: [string, string][] = [['Home', '/'], ['Industries', '/industries/'], [i.name, path]];
+const schema = [
+  webpage(path, i.title, i.desc), breadcrumbs(crumbs),
+  serviceNode(path, `Marketing for ${i.name.toLowerCase()}`, i.desc, ['Meta ads', 'Landing pages', 'Lead follow-up', 'Appointment booking'], i.name),
+  faqPage(i.faqs),
+];
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const related = [
+  ...i.guides.slice(0, 2).map((g) => ({ href: `/guides/${g}/`, title: guide(g).title, line: guide(g).card, kind: 'Guide' })),
+  ...i.related.slice(0, 1).map((r) => ({ href: `/industries/${r}/`, title: industry(r).name, line: industry(r).leakIntro, kind: 'Industry' })),
+];
+---
+<Base title={i.title} description={i.desc} schema={schema}>
+  <PageHero crumbs={crumbs} h1={i.h1} lead={i.lead} secondary={['How it works', '/how-it-works/']}>
+    <Thread t={i.thread} />
+  </PageHero>
+
+  {i.facts && (
+    <section class="sec sec--tight well" aria-label="Key numbers">
+      <div class={`container facts ${i.facts.length === 2 ? 'facts--2' : ''}`}>
+        {i.facts.map(([b, t]) => (<div><b>{b}</b><p>{t}</p></div>))}
+      </div>
+    </section>
+  )}
+
+  <section class="sec" aria-labelledby="leak-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="leak-h">{i.leakHead}</h2>
+        <p class="lead">{i.leakIntro}</p>
+      </div>
+      <ul class="rows rows--2">
+        {i.leaks.map(([b, t]) => (<li><h3>{b}</h3><p>{t}</p></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="fix-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="fix-h">What we build to close it.</h2>
+        <p class="lead">Each fix is built around how {i.buyer} decide, connected to the phone, calendar and tools you already use.</p>
+      </div>
+      <ul class="grid3">
+        {i.fixes.map(([t, d, sv]) => (
+          <li><a class="tile" href={`/services/${sv}/`}><h3>{t}</h3><p>{d}</p><span class="tile__more">{service(sv).name}</span></a></li>
+        ))}
+        <li><a class="tile" href="/services/tracking-and-reporting/"><h3>Five numbers every Monday</h3><p>Leads, {i.unit}, cost per {i.unitOne}, response time and revenue.</p><span class="tile__more">Lead tracking and the Monday report</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="test-h">
+    <div class="container split split--even">
+      <div>
+        <h2 id="test-h">Test your own path in five minutes.</h2>
+        <p class="lead">Any "no", or a reply that took more than an hour, is where {i.unit} are going.</p>
+        <div class="acts"><a class="tlink" href="/guides/five-minute-leak-check/">The full five-minute audit</a></div>
+      </div>
+      <ol class="olist">{i.test.map((t) => (<li>{t}</li>))}</ol>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions from {i.name.toLowerCase()}.</h2></div>
+      <Faq items={i.faqs} />
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="rel-h">
+    <div class="container">
+      <div class="head"><h2 id="rel-h">Keep reading.</h2></div>
+      <Related items={related} />
+      <p class="mt-2xl">Also for: {i.related.map((r, n) => (<><a class="tlink" href={`/industries/${r}/`}>{industry(r).name.toLowerCase()}</a>{n < i.related.length - 1 ? ', ' : '.'}</>))}</p>
+      <div class="sources mt-2xl" id="sources">
+        <p><b>Sources</b></p>
+        <ol>{i.sources.map(([t, u]) => (<li><a href={u} rel="noopener" target="_blank">{t}</a></li>))}</ol>
+      </div>
+    </div>
+  </section>
+
+  <Close head={`Get a free leak check for your ${i.slug === 'wedding-venues' ? 'venue' : i.slug === 'senior-living' ? 'community' : i.slug === 'private-schools' ? 'school' : i.slug === 'dental-practices' ? 'practice' : i.slug === 'med-spas' ? 'med spa' : 'company'}.`} sub={`Send your website. Within a day you get a 2-minute video of where your ads, pages and replies lose ${i.buyer}, and what to fix first.`} />
+</Base>
