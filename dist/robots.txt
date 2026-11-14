@@ -1,0 +1,81 @@
+User-agent: *
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+User-agent: MistralAI-User
+Allow: /
+Disallow: /v/
+Disallow: /api/
+
+Sitemap: https://bookdzilla.pages.dev/sitemap-index.xml

@@ -1,0 +1,5 @@
+# Tells Cloudflare Pages which folder to serve. The site is built before each commit
+# (npm run build) and the built dist/ folder is committed, so Pages needs no build step.
+name = "bookdzilla"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-01"

@@ -2,10 +2,11 @@
 
 Astro site for Bookdzilla. Cloudflare Pages builds and deploys every commit to `main`.
 
-## Build settings (Cloudflare Pages)
+## How it deploys
 
-- Build command: `npm run build`
-- Build output directory: `dist`
+The built site in `dist/` is committed, and `wrangler.toml` tells Cloudflare Pages to serve that folder. So after any change: run `npm run build`, then commit both the source and `dist/`.
+
+To let Cloudflare build it instead, set the build command to `npm run build` in the Pages project settings, then delete `dist/` from the repository and add it back to `.gitignore`.
 
 ## Working on it
 
