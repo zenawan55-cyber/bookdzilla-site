@@ -39,6 +39,7 @@ const menus: { label: string; href: string; tone: string; cols: Col[]; side: { h
 const tones = ['blue', 'orange', 'green', 'pink', 'sun'];
 ---
 <header class="nav">
+  <div class="nav__bar">
   <div class="container nav__in">
     <a class="word" href="/" aria-label="Bookdzilla, home"><Mark />Bookdzilla</a>
     <nav class="nav__links" aria-label="Main">
@@ -86,5 +87,6 @@ const tones = ['blue', 'orange', 'green', 'pink', 'sun'];
       <a class="btn btn--s btn--soft" href={SITE.calendly} target="_blank" rel="noopener">Book a call</a>
       <a class="btn btn--s" href={cta}>Free leak check</a>
     </div>
+  </div>
   </div>
 </header>

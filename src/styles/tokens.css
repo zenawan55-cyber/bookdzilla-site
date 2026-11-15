@@ -33,6 +33,6 @@
   --color-chat-out: #0c0b09; --color-chat-out-ink: #ffffff;
   --font-display: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif; --font-body: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body);
   --radius-card: 24px; --radius-inner: 12px; --radius-pill: 999px; --radius-panel: clamp(24px, 3.2vw, 48px); --radius-chip: 8px; --radius-bubble: 18px; --rule-hair: 1px;
-  --shadow-menu: 0 24px 60px -24px rgba(12, 11, 9, 0.28);
+  --shadow-bar: 0 10px 30px -18px rgba(14, 14, 12, 0.35); --shadow-menu: 0 24px 60px -24px rgba(12, 11, 9, 0.28);
   --tracking-display: -0.035em; --display-weight: 560; --nav-h: 68px;
 }

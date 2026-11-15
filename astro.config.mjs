@@ -9,5 +9,7 @@ export default defineConfig({
   site: SITE,
   trailingSlash: 'always',
   build: { format: 'directory', inlineStylesheets: 'always' },
+  // Keep the built CSS readable by older iPhones (no newer shorthand than Safari 13 knows).
+  vite: { build: { cssTarget: ['safari13', 'chrome80', 'firefox78'] } },
   integrations: [sitemap({ filter: (page) => !page.includes('/404') })],
 });
