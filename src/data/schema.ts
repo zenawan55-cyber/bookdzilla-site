@@ -15,7 +15,7 @@ export const org = () => ({
   email: SITE.email,
   areaServed: { '@type': 'Country', name: 'United States' },
   contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: SITE.email, areaServed: 'US', availableLanguage: 'English' },
-  knowsAbout: ['Lead generation', 'Meta ads', 'Google Ads', 'Landing pages', 'Speed to lead', 'Lead follow-up', 'Database reactivation', 'Local SEO', 'Google Business Profile', 'Lead tracking'],
+  knowsAbout: ['Lead generation', 'Meta ads', 'Google Ads', 'Landing pages', 'Speed to lead', 'Lead follow-up', 'AI receptionist', 'AI appointment setting', 'Missed-call text back', 'Marketing automation', 'Database reactivation', 'Local SEO', 'Google Business Profile', 'Lead tracking'],
 });
 
 export const website = () => ({ '@type': 'WebSite', '@id': abs('/#website'), url: abs('/'), name: SITE.name, description: SITE.about, publisher: { '@id': ORG() }, inLanguage: 'en-US' });

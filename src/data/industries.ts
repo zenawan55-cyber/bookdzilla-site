@@ -4,6 +4,7 @@ export interface Industry {
   unit: string; // "booked tours"
   unitOne: string; // "booked tour"
   buyer: string; // "couples"
+  kw: string; // the search phrase this page targets, e.g. "wedding venue marketing agency"
   title: string;
   desc: string;
   h1: string;
@@ -32,10 +33,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked tours',
     unitOne: 'booked tour',
     buyer: 'couples',
-    title: 'Marketing for Wedding Venues: More Booked Tours',
+    kw: 'wedding venue marketing agency',
+    title: 'Wedding Venue Marketing Agency: More Booked Tours',
     desc: 'Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.',
     h1: 'More booked tours for your wedding venue.',
-    lead: 'Couples message several venues in one evening and tour the ones that answer first with a date and a price. Bookdzilla fixes the path between the click and the tour: the ad, the page, the first reply and the follow-up.',
+    lead: 'Couples message several venues in one evening and tour the ones that answer first with a date and a price. Bookdzilla, a wedding venue marketing agency, fixes the path between the click and the tour: the ad, the page, the first reply and the follow-up.',
     thread: {
       top: 'Website inquiry, Thu 9:14 pm',
       time: 'Replied in 38 sec',
@@ -93,8 +95,9 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked tours',
     unitOne: 'booked tour',
     buyer: 'families',
-    title: 'Senior Living Marketing: More Booked Tours',
-    desc: 'Families contact several senior living communities at once. Bookdzilla makes sure yours answers first with a real answer, a tour time and patient follow-up.',
+    kw: 'senior living marketing agency',
+    title: 'Senior Living Marketing Agency: More Booked Tours',
+    desc: 'Families contact several senior living communities at once. Bookdzilla, a senior living marketing agency, makes sure yours answers first with a real answer, a tour time and patient follow-up.',
     h1: 'More booked tours for your senior living community.',
     lead: 'Families usually start looking after a fall, a hospital stay or a hard week, and they contact several communities at once. Bookdzilla makes sure yours answers first with a real answer and a tour time, then stays in touch through a decision that can take months.',
     thread: {
@@ -153,10 +156,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked campus tours',
     unitOne: 'booked campus tour',
     buyer: 'parents',
-    title: 'Private School Enrollment Marketing',
+    kw: 'private school enrollment marketing agency',
+    title: 'Private School Enrollment Marketing Agency',
     desc: 'Parents compare several private schools. Bookdzilla turns more inquiries into booked campus tours with clear pages, fast replies and season-long follow-up.',
     h1: 'More booked campus tours for your school.',
-    lead: 'Parents compare three or four schools and visit the ones that answer their questions clearly: openings, tuition and when they can see the campus. Bookdzilla turns more of your inquiries into booked tours, and keeps families engaged until the application is in.',
+    lead: 'Parents compare three or four schools and visit the ones that answer their questions clearly: openings, tuition and when they can see the campus. Bookdzilla, a private school enrollment marketing agency, turns more of your inquiries into booked tours, and keeps families engaged until the application is in.',
     thread: {
       top: 'Website inquiry, Tue 9:40 pm',
       time: 'Replied in 41 sec',
@@ -213,10 +217,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked consults',
     unitOne: 'booked consult',
     buyer: 'patients',
-    title: 'Marketing for Implant and Cosmetic Dentists',
+    kw: 'dental marketing agency',
+    title: 'Dental Marketing Agency: More Booked Consults',
     desc: 'Implant and cosmetic patients book with the practice that answers first. Bookdzilla replies within a minute, cuts no-shows and revives open treatment plans.',
     h1: 'More booked consults for your practice.',
-    lead: 'Implant and cosmetic patients request a consult in the evening, worry about the cost and book with the practice that answers first. Bookdzilla makes sure every request gets a reply within a minute, fewer consults are missed and unscheduled treatment plans are followed up.',
+    lead: 'Implant and cosmetic patients request a consult in the evening, worry about the cost and book with the practice that answers first. Bookdzilla, a dental marketing agency for implant and cosmetic practices, makes sure every request gets a reply within a minute, fewer consults are missed and unscheduled treatment plans are followed up.',
     thread: {
       top: 'Facebook ad lead, Mon 9:05 pm',
       time: 'Replied in 36 sec',
@@ -266,8 +271,9 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked appointments',
     unitOne: 'booked appointment',
     buyer: 'clients',
-    title: 'Marketing for Med Spas: More Booked Appointments',
-    desc: 'Med spa clients book with whoever answers. Bookdzilla matches each ad to its own page, replies within a minute and brings past clients back on schedule.',
+    kw: 'med spa marketing agency',
+    title: 'Med Spa Marketing Agency: More Booked Appointments',
+    desc: 'Med spa clients book with whoever answers. Bookdzilla, a med spa marketing agency, matches each ad to its own page, replies within a minute and brings past clients back on schedule.',
     h1: 'More booked appointments for your med spa.',
     lead: 'Med spa clients ask about price by text and direct message, compare two or three providers and book with whoever answers. Bookdzilla matches each ad to its own page, answers every inquiry within a minute and brings past clients back when a treatment is due.',
     thread: {
@@ -319,10 +325,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked design visits',
     unitOne: 'booked design visit',
     buyer: 'homeowners',
-    title: 'Pool Builder Marketing: More Design Visits',
+    kw: 'pool builder marketing agency',
+    title: 'Pool Builder Marketing Agency: More Design Visits',
     desc: 'Where pool builders lose homeowners between the ad and the design visit, and how Bookdzilla fixes it: one promise, a matching page and a fast reply.',
     h1: 'More booked design visits for your pool company.',
-    lead: 'Homeowners ask two or three builders for a quote and lean toward whoever makes it easiest to book. Bookdzilla fixes the path between the ad and the design visit, so more of the clicks you already pay for become signed pools.',
+    lead: 'Homeowners ask two or three builders for a quote and lean toward whoever makes it easiest to book. Bookdzilla, a pool builder marketing agency, fixes the path between the ad and the design visit, so more of the clicks you already pay for become signed pools.',
     thread: {
       top: 'Facebook ad lead, Tue 8:47 pm',
       time: 'Replied in 41 sec',
@@ -382,10 +389,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked inspections',
     unitOne: 'booked inspection',
     buyer: 'homeowners',
-    title: 'Roofing Marketing: More Booked Inspections',
+    kw: 'roofing marketing agency',
+    title: 'Roofing Marketing Agency: More Booked Inspections',
     desc: 'After a storm, homeowners book the first roofer who answers. Bookdzilla texts back missed calls in seconds, books inspections and follows up estimates.',
     h1: 'More booked inspections for your roofing company.',
-    lead: 'After a storm, homeowners call three roofers and book the first one who answers. Bookdzilla texts back every missed call in seconds, books inspections straight onto your calendar and follows up every estimate until there is a decision.',
+    lead: 'After a storm, homeowners call three roofers and book the first one who answers. Bookdzilla, a roofing marketing agency, makes sure every call is answered, books inspections straight onto your calendar and follows up every estimate until there is a decision.',
     thread: {
       top: 'Missed call, Sat 7:12 am',
       time: 'Texted back in 8 sec',
@@ -409,7 +417,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     fixes: [
       ['Missed-call text back', 'Every missed call gets a text within seconds that keeps the conversation with you.', 'lead-follow-up'],
-      ['Inspections booked on the spot', 'Two open times offered in the first reply and placed on the estimator\'s calendar.', 'lead-follow-up'],
+      ['Every call picked up', 'An AI receptionist answers storm-day calls you cannot get to, handles insurance questions and books the inspection.', 'ai-receptionist'],
       ['Estimate follow-up', 'A check-in two days after the bid, and again before the homeowner decides.', 'lead-follow-up'],
       ['Found on the map', 'A complete Google Business Profile and a review request after every job.', 'local-seo'],
       ['Storm-ready ads', 'Google and Meta ads for your service area, ready to switch on when weather hits.', 'paid-ads'],
@@ -436,10 +444,11 @@ export const INDUSTRIES: Industry[] = [
     unit: 'booked jobs',
     unitOne: 'booked job',
     buyer: 'homeowners',
-    title: 'Marketing for HVAC and Home Service Companies',
+    kw: 'HVAC marketing agency',
+    title: 'HVAC Marketing Agency for Home Service Companies',
     desc: 'A homeowner with no cooling calls until someone answers. Bookdzilla texts back missed calls, books visits day and night and revives past customers.',
     h1: 'More booked jobs for your HVAC company.',
-    lead: 'A homeowner with no cooling calls until someone answers. Bookdzilla texts back every missed call, books service visits day and night, follows up replacement quotes and brings past customers back for tune-ups.',
+    lead: 'A homeowner with no cooling calls until someone answers. Bookdzilla, an HVAC marketing agency, answers every call day and night, books service visits, follows up replacement quotes and brings past customers back for tune-ups.',
     thread: {
       top: 'Website inquiry, Fri 6:31 pm',
       time: 'Replied in 33 sec',
@@ -462,7 +471,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     fixes: [
       ['Missed-call text back', 'Every missed call answered by text in seconds, with a time offered.', 'lead-follow-up'],
-      ['Booking day and night', 'Service visits booked onto the dispatch calendar after hours and on weekends.', 'lead-follow-up'],
+      ['Calls answered day and night', 'An AI receptionist picks up after hours and on weekends, answers questions and books visits onto the dispatch calendar.', 'ai-receptionist'],
       ['Quote follow-up', 'Replacement quotes followed up with financing answers until there is a decision.', 'lead-follow-up'],
       ['Tune-up campaigns', 'Your customer list cleaned, segmented by last service and sent a seasonal offer.', 'database-reactivation'],
       ['Jobs traced to ads', 'Every call and form tied to its campaign and followed to the invoice.', 'tracking-and-reporting'],

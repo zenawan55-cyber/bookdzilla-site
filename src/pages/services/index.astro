@@ -6,7 +6,7 @@ import { SERVICES } from '../../data/services';
 import { INDUSTRIES } from '../../data/industries';
 import { webpage, breadcrumbs } from '../../data/schema';
 const title = 'Marketing Services for Local Businesses';
-const description = 'Six services that fix the path from ad to booking: ads, landing pages, speed to lead, database reactivation, local SEO and lead tracking.';
+const description = 'Seven services that fix the path from ad to booking: ads, landing pages, speed to lead, an AI receptionist, database reactivation, local SEO and lead tracking.';
 const crumbs: [string, string][] = [['Home', '/'], ['Services', '/services/']];
 const schema = [webpage('/services/', title, description, 'CollectionPage'), breadcrumbs(crumbs), {
   '@type': 'ItemList', name: 'Bookdzilla services',
@@ -14,13 +14,14 @@ const schema = [webpage('/services/', title, description, 'CollectionPage'), bre
 }];
 ---
 <Base title={title} description={description} schema={schema}>
-  <PageHero solo crumbs={crumbs} h1="Six fixes, one path to the booking." lead="Bookdzilla offers six services, one for each place a high-ticket local business loses buyers between the ad and the booked appointment. Most clients start with the one or two the free leak check points to." secondary={['How it works', '/how-it-works/']} />
+  <PageHero solo crumbs={crumbs} h1="Seven fixes, one path to the booking." lead="Bookdzilla offers seven services, one for each place a high-ticket local business loses buyers between the ad and the booked appointment. Most clients start with the one or two the free leak check points to." secondary={['How it works', '/how-it-works/']} />
   <section class="sec sec--flush" aria-label="Services">
     <div class="container">
       <ul class="grid3">
         {SERVICES.map((s) => (
           <li><a class="tile" href={`/services/${s.slug}/`}><h2>{s.name}</h2><p>{s.short}</p><span class="tile__more">{s.where}: how we fix it</span></a></li>
         ))}
+        <li><a class="tile" href="/free-leak-check/"><h2>Not sure where to start?</h2><p>Send your website and get a 2-minute video of where your ads, pages and replies lose people, and what to fix first.</p><span class="tile__more">Free leak check</span></a></li>
       </ul>
     </div>
   </section>
@@ -31,7 +32,7 @@ const schema = [webpage('/services/', title, description, 'CollectionPage'), bre
         <p class="lead">We fix from the booking backward, so the first change pays off on the leads you already get.</p>
       </div>
       <ol class="steps steps--4">
-        <li><h3>The reply</h3><p class="muted">A real answer within a minute and follow-up until they book. <a href="/services/lead-follow-up/">Speed to lead</a>.</p></li>
+        <li><h3>The reply</h3><p class="muted">Every call picked up, a real answer within a minute and follow-up until they book. <a href="/services/ai-receptionist/">AI receptionist</a> and <a href="/services/lead-follow-up/">speed to lead</a>.</p></li>
         <li><h3>The page</h3><p class="muted">A page for each ad, so more clicks become inquiries. <a href="/services/landing-pages/">Landing pages</a>.</p></li>
         <li><h3>The traffic</h3><p class="muted">Better ads and local search, once the path can hold them. <a href="/services/paid-ads/">Ads</a> and <a href="/services/local-seo/">local SEO</a>.</p></li>
         <li><h3>The numbers</h3><p class="muted">Tracked from day one and sent every Monday. <a href="/services/tracking-and-reporting/">Reporting</a>.</p></li>

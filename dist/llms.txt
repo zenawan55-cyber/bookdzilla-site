@@ -1,9 +1,10 @@
 # Bookdzilla
 
-> Bookdzilla is a marketing agency for high-ticket local businesses in the United States. It finds where ads, pages and follow-up lose buyers between the click and the booking, then fixes it, so the same ad spend books more appointments.
+> Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States. It finds where ads, pages, phone calls and follow-up lose buyers between the click and the booking, then fixes it, so the same ad spend books more appointments.
 
 Key facts:
-- What it does: finds and fixes the places a local business loses buyers between an ad click and a booked appointment (the ad, the landing page, the first reply, the follow-up, local search and tracking).
+- What it is: an AI marketing agency for high-ticket local businesses.
+- What it does: finds and fixes the places a local business loses buyers between an ad click and a booked appointment (the ad, the landing page, the phone, the first reply, the follow-up, local search and tracking). This includes an AI receptionist that answers calls day and night and books appointments, and an AI appointment setter that replies to new inquiries within a minute.
 - Who it serves: high-ticket local businesses in the United States, such as wedding venues, senior living communities, private schools, dental implant and cosmetic practices, med spas, pool builders, roofers and HVAC companies.
 - How it starts: a free leak check. The business sends its website and receives a 2-minute video within a day showing where its ads, pages and replies lose buyers.
 - Terms: one fixed monthly price set after the leak check, month to month with no contract. Ad budget is paid by the client directly to Meta or Google. The client owns the ad accounts, pages and contacts.
@@ -15,19 +16,20 @@ Key facts:
 - [Meta and Google ads](https://bookdzilla.com/services/paid-ads/): Meta ads written, designed and run for you, and Google Ads cleaned up. Judged by cost per booking.
 - [Landing pages](https://bookdzilla.com/services/landing-pages/): One page per ad: the same promise, your reviews up top and booking one tap away.
 - [Speed to lead and follow-up](https://bookdzilla.com/services/lead-follow-up/): A real first reply within a minute, missed calls texted back and follow-up until they book.
+- [AI receptionist](https://bookdzilla.com/services/ai-receptionist/): Every call picked up day or night, questions answered and the appointment booked during the call.
 - [Database reactivation](https://bookdzilla.com/services/database-reactivation/): Past inquiries and customers contacted with a relevant offer and booked onto your calendar.
 - [Local SEO and Google Business Profile](https://bookdzilla.com/services/local-seo/): Your Google Business Profile tuned, reviews kept flowing and pages built for local searches.
 - [Lead tracking and the Monday report](https://bookdzilla.com/services/tracking-and-reporting/): Every lead traced from ad to booking, and five numbers in your inbox every Monday.
 
 ## Industries
-- [Wedding venues](https://bookdzilla.com/industries/wedding-venues/): Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.
-- [Senior living communities](https://bookdzilla.com/industries/senior-living/): Families contact several senior living communities at once. Bookdzilla makes sure yours answers first with a real answer, a tour time and patient follow-up.
-- [Private schools](https://bookdzilla.com/industries/private-schools/): Parents compare several private schools. Bookdzilla turns more inquiries into booked campus tours with clear pages, fast replies and season-long follow-up.
-- [Dental implant and cosmetic practices](https://bookdzilla.com/industries/dental-practices/): Implant and cosmetic patients book with the practice that answers first. Bookdzilla replies within a minute, cuts no-shows and revives open treatment plans.
-- [Med spas](https://bookdzilla.com/industries/med-spas/): Med spa clients book with whoever answers. Bookdzilla matches each ad to its own page, replies within a minute and brings past clients back on schedule.
-- [Pool builders](https://bookdzilla.com/industries/pool-builders/): Where pool builders lose homeowners between the ad and the design visit, and how Bookdzilla fixes it: one promise, a matching page and a fast reply.
-- [Roofing contractors](https://bookdzilla.com/industries/roofing/): After a storm, homeowners book the first roofer who answers. Bookdzilla texts back missed calls in seconds, books inspections and follows up estimates.
-- [HVAC and home services](https://bookdzilla.com/industries/hvac/): A homeowner with no cooling calls until someone answers. Bookdzilla texts back missed calls, books visits day and night and revives past customers.
+- [Wedding venue marketing agency](https://bookdzilla.com/industries/wedding-venues/): Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.
+- [Senior living marketing agency](https://bookdzilla.com/industries/senior-living/): Families contact several senior living communities at once. Bookdzilla, a senior living marketing agency, makes sure yours answers first with a real answer, a tour time and patient follow-up.
+- [Private school enrollment marketing agency](https://bookdzilla.com/industries/private-schools/): Parents compare several private schools. Bookdzilla turns more inquiries into booked campus tours with clear pages, fast replies and season-long follow-up.
+- [Dental marketing agency](https://bookdzilla.com/industries/dental-practices/): Implant and cosmetic patients book with the practice that answers first. Bookdzilla replies within a minute, cuts no-shows and revives open treatment plans.
+- [Med spa marketing agency](https://bookdzilla.com/industries/med-spas/): Med spa clients book with whoever answers. Bookdzilla, a med spa marketing agency, matches each ad to its own page, replies within a minute and brings past clients back on schedule.
+- [Pool builder marketing agency](https://bookdzilla.com/industries/pool-builders/): Where pool builders lose homeowners between the ad and the design visit, and how Bookdzilla fixes it: one promise, a matching page and a fast reply.
+- [Roofing marketing agency](https://bookdzilla.com/industries/roofing/): After a storm, homeowners book the first roofer who answers. Bookdzilla texts back missed calls in seconds, books inspections and follows up estimates.
+- [HVAC marketing agency](https://bookdzilla.com/industries/hvac/): A homeowner with no cooling calls until someone answers. Bookdzilla texts back missed calls, books visits day and night and revives past customers.
 
 ## Guides
 - [How fast should you respond to a new lead?](https://bookdzilla.com/guides/speed-to-lead/): Respond to a new lead within five minutes, and within one minute if you can. In a Harvard Business Review study of 1.25 million sales leads, firms that tried to reach a lead within an hour were nearly seven times as likely to qualify it as firms that waited even one hour longer.
@@ -35,6 +37,7 @@ Key facts:
 - [Cost per booked appointment, explained.](https://bookdzilla.com/guides/cost-per-booked-appointment/): Cost per booked appointment is your ad spend divided by the number of appointments booked from that spend. If $640 of ads produced 9 booked tours, each booked tour cost about $71. It is a better measure than cost per lead because it only improves when real appointments do.
 - [How to reply to a wedding venue inquiry.](https://bookdzilla.com/guides/wedding-venue-inquiry-response/): Reply to a wedding venue inquiry within minutes, not days. Confirm whether the date is open, give a starting price, and offer two tour times. Couples contact several venues at once, and 76% say price is the most important factor in choosing one, so a reply without a number loses to one with it.
 - [What is missed-call text back?](https://bookdzilla.com/guides/missed-call-text-back/): Missed-call text back is an automatic text message sent within seconds to anyone whose call your business did not answer. It keeps the caller talking to you by text, so they book with you and do not call the next business on the list.
+- [AI receptionist or answering service: which books more?](https://bookdzilla.com/guides/ai-receptionist-vs-answering-service/): An answering service has a person take a message and pass it on. An AI receptionist answers the call itself, answers questions from your own prices and policies, and books the appointment onto your calendar during the call, at any hour and on several calls at once. For calls that should turn into bookings, the AI receptionist books more. For calls that need judgement or comfort, a person is still better, so the best setups send those calls to one.
 - [Audit your own lead funnel in five minutes.](https://bookdzilla.com/guides/five-minute-leak-check/): To audit your own lead funnel, find your live ads in the Meta Ad Library and the Google Ads Transparency Center, tap through each one on a phone, then send an inquiry through your own form in the evening and time the first real reply. Any broken promise, hidden proof or reply slower than an hour is a leak.
 - [Glossary](https://bookdzilla.com/glossary/): plain definitions of speed to lead, message match, cost per booked appointment and related terms.
 

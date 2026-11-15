@@ -332,9 +332,68 @@ export const GUIDES: Guide[] = [
       ['What if the caller does not reply to the text?', 'Your team still sees the missed call and can ring back. The text simply gives the caller an easier way to continue.'],
     ],
     sources: [],
-    services: ['lead-follow-up'],
+    services: ['lead-follow-up', 'ai-receptionist'],
     industries: ['roofing', 'hvac', 'dental-practices'],
-    related: ['speed-to-lead', 'five-minute-leak-check', 'ads-get-clicks-but-no-bookings'],
+    related: ['ai-receptionist-vs-answering-service', 'speed-to-lead', 'five-minute-leak-check'],
+  },
+  {
+    slug: 'ai-receptionist-vs-answering-service',
+    title: 'AI receptionist or answering service: which books more?',
+    seoTitle: 'AI Receptionist vs Answering Service for Small Business',
+    desc: 'An answering service takes a message. An AI receptionist answers the question and books the appointment during the call. How they differ and which to choose.',
+    card: 'One takes a message, the other books the appointment during the call. How to choose.',
+    answer: 'An answering service has a person take a message and pass it on. An AI receptionist answers the call itself, answers questions from your own prices and policies, and books the appointment onto your calendar during the call, at any hour and on several calls at once. For calls that should turn into bookings, the AI receptionist books more. For calls that need judgement or comfort, a person is still better, so the best setups send those calls to one.',
+    read: 4,
+    toc: [['what', 'What each one does'], ['ai', 'Where an AI receptionist wins'], ['person', 'Where a person wins'], ['check', 'What to check before you choose'], ['setup', 'What it takes to set up']],
+    body: `
+<section id="what">
+<h2>What each one does.</h2>
+<p><b>An answering service</b> forwards your calls to a call center. An operator answers in your business name, writes down who called and why, and sends you the message. You call back later.</p>
+<p><b>An AI receptionist</b> is a voice assistant connected to your phone line, calendar and CRM. It answers the call, talks with the caller in plain conversation, answers their questions from information you approve, and books the appointment while they are still on the line. You get a summary and the recording.</p>
+<p>The difference that matters is what the caller leaves with. After an answering service, they have a promise of a call back. After an AI receptionist, they have a time on your calendar.</p>
+</section>
+<section id="ai">
+<h2>Where an AI receptionist wins.</h2>
+<ul>
+<li><b>It books.</b> Most answering services cannot see your calendar, so every call ends in a message. A booked caller has no reason to ring the next business.</li>
+<li><b>Every hour and every call.</b> It answers at night, at weekends and when five people call at once after a storm.</li>
+<li><b>Your real answers.</b> It quotes the prices, service area and policies you set, the same way every time.</li>
+<li><b>Everything is recorded.</b> Each call is summarized and saved against the caller in your CRM, so nothing lives on a sticky note.</li>
+</ul>
+</section>
+<section id="person">
+<h2>Where a person wins.</h2>
+<ul>
+<li>A caller who is upset, grieving or confused, which is common in <a href="/industries/senior-living/">senior living</a> inquiries.</li>
+<li>A question nobody planned for, where the right answer depends on judgement.</li>
+<li>A complaint, or a caller who simply wants to talk to someone.</li>
+</ul>
+<p>That is why a good AI receptionist knows when to stop. It puts these calls through to your team, or books a callback, and sends the summary so nobody has to ask the caller to repeat themselves.</p>
+</section>
+<section id="check">
+<h2>What to check before you choose.</h2>
+<ol>
+<li><b>Can it book?</b> Ask whether it reads and writes to your real calendar, or only takes messages.</li>
+<li><b>Can it hand over?</b> Emergencies and requests for a person should reach your on-call phone in seconds.</li>
+<li><b>Does it know your business?</b> It should answer from your own services, prices and policies, and you should approve the script.</li>
+<li><b>Where do the calls go?</b> Every summary and recording should land in your CRM, not in a separate inbox.</li>
+<li><b>Does it say what it is?</b> Callers should hear that they are speaking with an assistant for your business, and that the call may be recorded.</li>
+</ol>
+</section>
+<section id="setup">
+<h2>What it takes to set up.</h2>
+<p>An AI receptionist runs on a phone system connected to your calendar and CRM, such as GoHighLevel. Setup means writing the script from your real services and prices, deciding which calls go to a person, testing it with real questions and choosing whether it answers every call or only the ones your team misses.</p>
+<p>It works best alongside <a href="/guides/missed-call-text-back/">missed-call text back</a> and a <a href="/guides/speed-to-lead/">first reply within a minute</a> on forms, so every way a buyer reaches you gets the same fast answer. Bookdzilla sets this up as its <a href="/services/ai-receptionist/">AI receptionist service</a>.</p>
+</section>`,
+    faqs: [
+      ['Will callers know they are talking to an AI?', 'They should. A good setup introduces itself as an assistant for your business, and anyone who asks for a person is put through or offered a callback.'],
+      ['Does an AI receptionist replace my front desk?', 'No. It takes the calls your team cannot get to and the ones that come in after hours, so your staff can focus on the customers in front of them.'],
+      ['Can I keep my current phone number?', 'Yes. Calls are forwarded from your existing number, so nothing changes for your customers.'],
+    ],
+    sources: [],
+    services: ['ai-receptionist', 'lead-follow-up'],
+    industries: ['hvac', 'roofing', 'dental-practices', 'senior-living'],
+    related: ['missed-call-text-back', 'speed-to-lead', 'five-minute-leak-check'],
   },
   {
     slug: 'five-minute-leak-check',

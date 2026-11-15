@@ -12,8 +12,8 @@ import { INDUSTRIES, industry } from '../data/industries';
 import { HOME_FAQS } from '../data/faqs';
 import { webpage, faqPage } from '../data/schema';
 
-const title = 'Bookdzilla | More bookings from the same ad spend';
-const description = 'Bookdzilla helps high-ticket local businesses turn more ad clicks and inquiries into booked appointments. Free 2-minute leak check of your ads and pages.';
+const title = 'AI Marketing Agency for Local Businesses | Bookdzilla';
+const description = 'Bookdzilla is an AI marketing agency for high-ticket local businesses. More of your clicks, calls and inquiries turned into booked appointments.';
 const schema = [webpage('/', title, description), faqPage(HOME_FAQS)];
 const trip: { tone?: string; when: string; what: string; say: string }[] = [
   { tone: 'blue', when: '9:14 pm', what: 'Taps your ad', say: 'One clear promise: tour the venue this weekend.' },
@@ -25,6 +25,7 @@ const trip: { tone?: string; when: string; what: string; say: string }[] = [
 const big = [
   { s: service('landing-pages'), tag: 'The page', art: 'funnel', a: 'Turn more clicks', b: 'into inquiries.' },
   { s: service('lead-follow-up'), tag: 'The reply', art: 'thread', a: 'Answer every inquiry', b: 'within a minute.' },
+  { s: service('ai-receptionist'), tag: 'The phone', art: 'call', a: 'Every call answered,', b: 'day or night.' },
   { s: service('tracking-and-reporting'), tag: 'The numbers', art: 'report', a: 'Know which ads', b: 'became booked jobs.' },
 ];
 const small = [
@@ -60,8 +61,8 @@ const small = [
   <section class="sec statement" id="industries" aria-labelledby="who-h">
     <div class="container">
       <div class="head">
-        <h2 class="statement__big" id="who-h">Bookdzilla is a marketing agency for high-ticket local businesses.</h2>
-        <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies in the United States pay for clicks and lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
+        <h2 class="statement__big" id="who-h">Bookdzilla is an AI marketing agency for high-ticket local businesses.</h2>
+        <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies in the United States pay for clicks and calls, then lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
       </div>
       <div class="tabs" data-tabs>
         <div class="tabs__list" role="tablist" aria-label="Industries">
@@ -89,7 +90,7 @@ const small = [
   <section class="sec sec--flush" id="leaks" aria-labelledby="leaks-h">
     <div class="container">
       <div class="head head--center">
-        <h2 id="leaks-h">Six places bookings leak.</h2>
+        <h2 id="leaks-h">Seven places bookings leak.</h2>
         <p class="lead">Every business leaks somewhere different. The leak check finds yours, and the fix is built for that.</p>
       </div>
       <div class="feats feats--stack">
@@ -105,6 +106,7 @@ const small = [
             <div class="feat__art">
               {art === 'funnel' && <Funnel />}
               {art === 'thread' && <Thread t={industry('wedding-venues').thread} />}
+              {art === 'call' && s.thread && <Thread t={s.thread} />}
               {art === 'report' && <Report />}
             </div>
           </article>
@@ -142,7 +144,7 @@ const small = [
     <div class="container">
       <div class="head head--center">
         <h2 id="stack-h">What we build with.</h2>
-        <p class="lead">Proven tools, connected into one system that answers, follows up and books for you. You do not have to learn any of them.</p>
+        <p class="lead">Proven tools, connected into one system that answers calls, follows up and books for you. You do not have to learn any of them.</p>
       </div>
       <ul class="tools">
         {TOOLS.map((t) => (<li><h3>{t.name}</h3><p>{t.does}</p></li>))}

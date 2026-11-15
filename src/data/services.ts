@@ -21,6 +21,7 @@ export interface Service {
   faqs: [string, string][];
   industries: string[];
   guides: string[];
+  thread?: { top: string; time: string; msgs: ['in' | 'out', string][]; done: string; cap: string };
 }
 
 export const SERVICES: Service[] = [
@@ -124,10 +125,10 @@ export const SERVICES: Service[] = [
     where: 'The inquiry',
     rowLeak: 'The reply is slow or never comes. Buyers ask two or three businesses and book whoever answers first.',
     rowFix: 'A real answer within a minute, then follow-up that fits how your buyers decide.',
-    title: 'Speed to Lead and Follow-Up for Local Businesses',
+    title: 'Speed to Lead and AI Appointment Setting',
     desc: 'Every form, call and ad lead answered within a minute with a real answer and two times to book, then followed up until they book. Set up and run by Bookdzilla.',
     h1: 'Every inquiry answered within a minute.',
-    lead: 'Speed to lead is how fast a business replies to a new inquiry. Bookdzilla sets up a first reply that goes out within a minute, by text or email, with a real answer and two times to book. Then it follows up until the person books or says no.',
+    lead: 'Speed to lead is how fast a business replies to a new inquiry. Bookdzilla sets up an AI appointment setter that replies within a minute, by text or email, with a real answer and two times to book. Then it follows up until the person books or says no.',
     short: 'A real first reply within a minute, missed calls texted back and follow-up until they book.',
     leakHead: 'Signs the reply is the leak.',
     leaks: [
@@ -153,13 +154,72 @@ export const SERVICES: Service[] = [
     ],
     tools: ['GoHighLevel', 'Claude', 'Calendly'],
     faqs: [
+      ['What is an AI appointment setter?', 'It is an assistant that replies to new inquiries by text, answers their questions from your prices and policies and books a time on your calendar, at any hour. It is the core of our speed to lead setup, and it hands the conversation to a person whenever the lead asks for one.'],
       ['How fast should a business respond to a new lead?', 'Within five minutes, and within one minute if you can. A Harvard Business Review study found that firms which tried to reach a lead within an hour were nearly seven times as likely to qualify it as firms that waited even an hour longer.'],
       ['What happens to inquiries that arrive at night?', 'They get the same reply, within a minute, with two times to book. That is when most competitors are closed, so it is when a fast answer wins the most.'],
-      ['Will the replies sound like us?', 'Yes. They are written from your own prices, policies and past messages, and you approve the wording before launch.'],
       ['Do we need to change our CRM or phone system?', 'No. We set everything up and connect it to what you already use.'],
     ],
     industries: ['wedding-venues', 'senior-living', 'private-schools', 'dental-practices', 'roofing', 'hvac'],
     guides: ['speed-to-lead', 'missed-call-text-back', 'wedding-venue-inquiry-response'],
+  },
+  {
+    slug: 'ai-receptionist',
+    tone: 'pink',
+    hA: 'Every call answered,',
+    hB: 'day or night.',
+    name: 'AI receptionist',
+    where: 'The phone',
+    rowLeak: 'Calls after hours or during a busy shift go to voicemail, and the caller rings the next business.',
+    rowFix: 'An AI receptionist picks up, answers the question and books the appointment while the caller is still on the line.',
+    title: 'AI Receptionist for Small Business',
+    desc: 'Bookdzilla sets up an AI receptionist that answers your business calls day and night, answers questions from your own prices and policies and books appointments.',
+    h1: 'Every call answered, day or night.',
+    lead: 'An AI receptionist is a voice assistant that answers your business phone. Bookdzilla sets one up to pick up every call your team cannot, day or night, answer questions from your own prices and policies, and book the appointment onto your calendar before the caller hangs up.',
+    short: 'Every call picked up day or night, questions answered and the appointment booked during the call.',
+    leakHead: 'Signs the phone is the leak.',
+    leaks: [
+      'Calls after 5pm and at weekends go to voicemail.',
+      'The front desk lets the phone ring while they help the customer in front of them.',
+      'Callers who reach voicemail hang up and try the next business.',
+      'Messages are taken, but nobody calls back until the next day.',
+      'You pay an answering service that takes messages and cannot book anything.',
+    ],
+    doesHead: 'What it does on every call.',
+    does: [
+      ['Answers on the first ring', 'Day, night, weekends and holidays, and on several calls at once.'],
+      ['Answers real questions', 'Services, service area, the prices you are happy to share, financing and policies, in your words.'],
+      ['Books the appointment', 'Offers open times from your real calendar, books the one the caller picks and texts a confirmation.'],
+      ['Sends urgent calls to a person', 'Emergencies, and anyone who asks for a person, go straight to your on-call phone.'],
+      ['Texts you a summary', 'Who called, what they wanted and what was booked, saved in your CRM with the recording.'],
+    ],
+    kv: [
+      ['Who it is for', 'Businesses that miss calls after hours, at weekends or while the team is with a customer.'],
+      ['Your number', 'Stays the same. The receptionist picks up the calls nobody can answer, or every call if you prefer.'],
+      ['What it knows', 'Your services, service area, hours, policies, calendar and the prices you share. You approve the script first.'],
+      ['You get', 'A summary of every call by text and email, with the recording and transcript in your CRM.'],
+    ],
+    tools: ['GoHighLevel', 'Claude', 'Calendly'],
+    faqs: [
+      ['What is an AI receptionist?', 'An AI receptionist is a voice assistant that answers your business calls, talks with the caller in plain conversation, answers questions from your own prices and policies, and books the appointment onto your calendar. It works at any hour and can take several calls at once.'],
+      ['How is it different from an answering service?', 'An answering service takes a message for you to return later. An AI receptionist answers the question and books the appointment during the call, so the caller has no reason to try the next business.'],
+      ['What happens when a caller wants a real person?', 'The call is put through to you or your team, or a callback is booked if nobody is free, and you get a text with a summary of the conversation.'],
+      ['Can it handle emergency calls?', 'Yes. You set the rules. A burst pipe, no heat in winter or a leaking roof can ring your on-call phone straight away, while routine calls are booked onto the calendar.'],
+    ],
+    industries: ['hvac', 'roofing', 'dental-practices', 'med-spas', 'senior-living'],
+    guides: ['ai-receptionist-vs-answering-service', 'missed-call-text-back'],
+    thread: {
+      top: 'Incoming call, Tue 8:47 pm',
+      time: 'Answered on the first ring',
+      msgs: [
+        ['out', 'Thanks for calling Northside Heating and Air. This is the virtual assistant. How can I help?'],
+        ['in', 'Our AC stopped blowing cold air tonight. Can someone come out tomorrow? What is the service fee?'],
+        ['out', 'Sorry about that. The diagnostic visit is $89, waived if you go ahead with the repair. I have tomorrow at 8am or 1pm. Which works?'],
+        ['in', '8am, please.'],
+        ['out', 'You are booked for 8am. A confirmation text is on its way, and you will get the technician\'s name in the morning.'],
+      ],
+      done: 'Repair visit booked, Wed 8:00 am',
+      cap: 'An example call with a made-up HVAC company. Yours answers with your own services, prices and calendar.',
+    },
   },
   {
     slug: 'database-reactivation',

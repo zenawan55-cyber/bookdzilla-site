@@ -14,11 +14,17 @@ import { webpage, breadcrumbs, faqPage, serviceNode } from '../../data/schema';
 export function getStaticPaths() { return INDUSTRIES.map((i) => ({ params: { slug: i.slug }, props: { i } })); }
 const { i } = Astro.props;
 const path = `/industries/${i.slug}/`;
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const kwA = /^[aeiouAEIOU]|^HVAC/.test(i.kw) ? 'an' : 'a';
+const faqs: [string, string][] = [
+  [`What does ${kwA} ${i.kw} do?`, `${cap(kwA)} ${i.kw} gets more ${i.buyer} to book. Bookdzilla runs the ads, builds the page each ad opens, answers every call and inquiry within a minute and follows up until ${i.buyer} book, then reports ${i.unit} and cost per ${i.unitOne} every Monday.`],
+  ...i.faqs,
+];
 const crumbs: [string, string][] = [['Home', '/'], ['Industries', '/industries/'], [i.name, path]];
 const schema = [
   webpage(path, i.title, i.desc), breadcrumbs(crumbs),
-  serviceNode(path, `Marketing for ${i.name.toLowerCase()}`, i.desc, ['Meta ads', 'Landing pages', 'Lead follow-up', 'Appointment booking'], i.name),
-  faqPage(i.faqs),
+  serviceNode(path, cap(i.kw), i.desc, ['Meta ads', 'Landing pages', 'Lead follow-up', 'AI receptionist', 'Appointment booking'], i.name),
+  faqPage(faqs),
 ];
 const tone = TONES[INDUSTRIES.findIndex((x) => x.slug === i.slug) % 4];
 const cut = i.h1.indexOf(' for your ');
@@ -83,7 +89,7 @@ const related = [
   <section class="sec sec--flush" aria-labelledby="faq-h">
     <div class="container">
       <div class="head"><h2 id="faq-h">Questions from {i.name.toLowerCase()}.</h2></div>
-      <Faq items={i.faqs} />
+      <Faq items={faqs} />
     </div>
   </section>
 

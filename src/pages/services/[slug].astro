@@ -17,7 +17,7 @@ const { s } = Astro.props;
 const path = `/services/${s.slug}/`;
 const crumbs: [string, string][] = [['Home', '/'], ['Services', '/services/'], [s.name, path]];
 const schema = [webpage(path, s.title, s.desc), breadcrumbs(crumbs), serviceNode(path, s.name, s.desc, s.name, 'High-ticket local businesses'), faqPage(s.faqs)];
-const visual = { 'lead-follow-up': 'thread', 'landing-pages': 'funnel', 'tracking-and-reporting': 'report' }[s.slug];
+const visual = { 'lead-follow-up': 'thread', 'ai-receptionist': 'thread', 'landing-pages': 'funnel', 'tracking-and-reporting': 'report' }[s.slug];
 const others = SERVICES.filter((o) => o.slug !== s.slug);
 const next = SERVICES[(SERVICES.findIndex((o) => o.slug === s.slug) + 1) % SERVICES.length];
 const related = [
@@ -27,7 +27,7 @@ const related = [
 ---
 <Base title={s.title} description={s.desc} schema={schema}>
   <PageHero crumbs={crumbs} h1={s.hA} hl={s.hB} tone={s.tone} lead={s.lead} secondary={['How it works', '/how-it-works/']}>
-    {visual === 'thread' && <Thread tone={s.tone} t={industry('wedding-venues').thread} />}
+    {visual === 'thread' && <Thread tone={s.tone} t={s.thread ?? industry('wedding-venues').thread} />}
     {visual === 'funnel' && <Funnel />}
     {visual === 'report' && <Report />}
     {!visual && (<div class="phero__kv"><dl class="kv">{s.kv.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}</dl><ul class="chips" aria-label="Built with">{s.tools.map((t) => (<li>{t}</li>))}</ul></div>)}
@@ -73,7 +73,7 @@ const related = [
 
   <section class="sec sec--flush" aria-labelledby="faq-h">
     <div class="container">
-      <div class="head"><h2 id="faq-h">Questions about {s.name.toLowerCase().replace('meta', 'Meta').replace('google', 'Google').replace('seo', 'SEO').replace('monday', 'Monday').replace('business profile', 'Business Profile')}.</h2></div>
+      <div class="head"><h2 id="faq-h">Questions about {s.name.toLowerCase().replace('meta', 'Meta').replace('google', 'Google').replace('seo', 'SEO').replace('monday', 'Monday').replace('business profile', 'Business Profile').replace(/^ai /, 'the AI ')}.</h2></div>
       <Faq items={s.faqs} />
     </div>
   </section>
