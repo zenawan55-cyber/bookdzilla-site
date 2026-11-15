@@ -133,7 +133,7 @@ async function handleVideo(request, url, ctx) {
 // ---- Site routing -------------------------------------------------------
 // When the custom domain is connected, put it here (for example "bookdzilla.com") and change
 // SITE in astro.config.mjs to match. Visits to the pages.dev address then move to it for good.
-const CUSTOM_DOMAIN = "";
+const CUSTOM_DOMAIN = "bookdzilla.com";
 // Pages that moved in the November 2026 rebuild.
 const MOVED = {
   "/wedding-venues": "/industries/wedding-venues/",
@@ -155,7 +155,9 @@ async function asset(request, env, url) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (CUSTOM_DOMAIN && url.hostname.endsWith(".pages.dev") && !url.pathname.startsWith("/v/")) {
+    // The main pages.dev address and www both move to the bare domain. Branch previews and tracked video links stay put.
+    const oldHost = url.hostname === "bookdzilla.pages.dev" && !url.pathname.startsWith("/v/");
+    if (CUSTOM_DOMAIN && (oldHost || url.hostname === "www." + CUSTOM_DOMAIN)) {
       return Response.redirect("https://" + CUSTOM_DOMAIN + url.pathname + url.search, 301);
     }
     const bare = url.pathname.replace(/\/+$/, "");

@@ -9,38 +9,38 @@ Key facts:
 - Terms: one fixed monthly price set after the leak check, month to month with no contract. Ad budget is paid by the client directly to Meta or Google. The client owns the ad accounts, pages and contacts.
 - Timeline: fixes are usually live in about 14 days. Results are reported every Monday as five numbers: leads, booked appointments, cost per booked appointment, response time and revenue.
 - Built with: GoHighLevel, Clay, Claude, Meta Ads, Google Ads, Calendly and Cloudflare.
-- Contact: bookdzilla@gmail.com. Free leak check: https://bookdzilla.pages.dev/free-leak-check/
+- Contact: bookdzilla@gmail.com. Free leak check: https://bookdzilla.com/free-leak-check/
 
 ## Services
-- [Meta and Google ads](https://bookdzilla.pages.dev/services/paid-ads/): Meta ads written, designed and run for you, and Google Ads cleaned up. Judged by cost per booking.
-- [Landing pages](https://bookdzilla.pages.dev/services/landing-pages/): One page per ad: the same promise, your reviews up top and booking one tap away.
-- [Speed to lead and follow-up](https://bookdzilla.pages.dev/services/lead-follow-up/): A real first reply within a minute, missed calls texted back and follow-up until they book.
-- [Database reactivation](https://bookdzilla.pages.dev/services/database-reactivation/): Past inquiries and customers contacted with a relevant offer and booked onto your calendar.
-- [Local SEO and Google Business Profile](https://bookdzilla.pages.dev/services/local-seo/): Your Google Business Profile tuned, reviews kept flowing and pages built for local searches.
-- [Lead tracking and the Monday report](https://bookdzilla.pages.dev/services/tracking-and-reporting/): Every lead traced from ad to booking, and five numbers in your inbox every Monday.
+- [Meta and Google ads](https://bookdzilla.com/services/paid-ads/): Meta ads written, designed and run for you, and Google Ads cleaned up. Judged by cost per booking.
+- [Landing pages](https://bookdzilla.com/services/landing-pages/): One page per ad: the same promise, your reviews up top and booking one tap away.
+- [Speed to lead and follow-up](https://bookdzilla.com/services/lead-follow-up/): A real first reply within a minute, missed calls texted back and follow-up until they book.
+- [Database reactivation](https://bookdzilla.com/services/database-reactivation/): Past inquiries and customers contacted with a relevant offer and booked onto your calendar.
+- [Local SEO and Google Business Profile](https://bookdzilla.com/services/local-seo/): Your Google Business Profile tuned, reviews kept flowing and pages built for local searches.
+- [Lead tracking and the Monday report](https://bookdzilla.com/services/tracking-and-reporting/): Every lead traced from ad to booking, and five numbers in your inbox every Monday.
 
 ## Industries
-- [Wedding venues](https://bookdzilla.pages.dev/industries/wedding-venues/): Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.
-- [Senior living communities](https://bookdzilla.pages.dev/industries/senior-living/): Families contact several senior living communities at once. Bookdzilla makes sure yours answers first with a real answer, a tour time and patient follow-up.
-- [Private schools](https://bookdzilla.pages.dev/industries/private-schools/): Parents compare several private schools. Bookdzilla turns more inquiries into booked campus tours with clear pages, fast replies and season-long follow-up.
-- [Dental implant and cosmetic practices](https://bookdzilla.pages.dev/industries/dental-practices/): Implant and cosmetic patients book with the practice that answers first. Bookdzilla replies within a minute, cuts no-shows and revives open treatment plans.
-- [Med spas](https://bookdzilla.pages.dev/industries/med-spas/): Med spa clients book with whoever answers. Bookdzilla matches each ad to its own page, replies within a minute and brings past clients back on schedule.
-- [Pool builders](https://bookdzilla.pages.dev/industries/pool-builders/): Where pool builders lose homeowners between the ad and the design visit, and how Bookdzilla fixes it: one promise, a matching page and a fast reply.
-- [Roofing contractors](https://bookdzilla.pages.dev/industries/roofing/): After a storm, homeowners book the first roofer who answers. Bookdzilla texts back missed calls in seconds, books inspections and follows up estimates.
-- [HVAC and home services](https://bookdzilla.pages.dev/industries/hvac/): A homeowner with no cooling calls until someone answers. Bookdzilla texts back missed calls, books visits day and night and revives past customers.
+- [Wedding venues](https://bookdzilla.com/industries/wedding-venues/): Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.
+- [Senior living communities](https://bookdzilla.com/industries/senior-living/): Families contact several senior living communities at once. Bookdzilla makes sure yours answers first with a real answer, a tour time and patient follow-up.
+- [Private schools](https://bookdzilla.com/industries/private-schools/): Parents compare several private schools. Bookdzilla turns more inquiries into booked campus tours with clear pages, fast replies and season-long follow-up.
+- [Dental implant and cosmetic practices](https://bookdzilla.com/industries/dental-practices/): Implant and cosmetic patients book with the practice that answers first. Bookdzilla replies within a minute, cuts no-shows and revives open treatment plans.
+- [Med spas](https://bookdzilla.com/industries/med-spas/): Med spa clients book with whoever answers. Bookdzilla matches each ad to its own page, replies within a minute and brings past clients back on schedule.
+- [Pool builders](https://bookdzilla.com/industries/pool-builders/): Where pool builders lose homeowners between the ad and the design visit, and how Bookdzilla fixes it: one promise, a matching page and a fast reply.
+- [Roofing contractors](https://bookdzilla.com/industries/roofing/): After a storm, homeowners book the first roofer who answers. Bookdzilla texts back missed calls in seconds, books inspections and follows up estimates.
+- [HVAC and home services](https://bookdzilla.com/industries/hvac/): A homeowner with no cooling calls until someone answers. Bookdzilla texts back missed calls, books visits day and night and revives past customers.
 
 ## Guides
-- [How fast should you respond to a new lead?](https://bookdzilla.pages.dev/guides/speed-to-lead/): Respond to a new lead within five minutes, and within one minute if you can. In a Harvard Business Review study of 1.25 million sales leads, firms that tried to reach a lead within an hour were nearly seven times as likely to qualify it as firms that waited even one hour longer.
-- [Why your ads get clicks but no bookings.](https://bookdzilla.pages.dev/guides/ads-get-clicks-but-no-bookings/): When ads get clicks but few bookings, the problem is usually after the click. Paid traffic leaks in five places: an ad with no clear promise, a page that does not match the ad, a slow first reply, no follow-up and no tracking from ad to booking. Fix the earliest leak first.
-- [Cost per booked appointment, explained.](https://bookdzilla.pages.dev/guides/cost-per-booked-appointment/): Cost per booked appointment is your ad spend divided by the number of appointments booked from that spend. If $640 of ads produced 9 booked tours, each booked tour cost about $71. It is a better measure than cost per lead because it only improves when real appointments do.
-- [How to reply to a wedding venue inquiry.](https://bookdzilla.pages.dev/guides/wedding-venue-inquiry-response/): Reply to a wedding venue inquiry within minutes, not days. Confirm whether the date is open, give a starting price, and offer two tour times. Couples contact several venues at once, and 76% say price is the most important factor in choosing one, so a reply without a number loses to one with it.
-- [What is missed-call text back?](https://bookdzilla.pages.dev/guides/missed-call-text-back/): Missed-call text back is an automatic text message sent within seconds to anyone whose call your business did not answer. It keeps the caller talking to you by text, so they book with you and do not call the next business on the list.
-- [Audit your own lead funnel in five minutes.](https://bookdzilla.pages.dev/guides/five-minute-leak-check/): To audit your own lead funnel, find your live ads in the Meta Ad Library and the Google Ads Transparency Center, tap through each one on a phone, then send an inquiry through your own form in the evening and time the first real reply. Any broken promise, hidden proof or reply slower than an hour is a leak.
-- [Glossary](https://bookdzilla.pages.dev/glossary/): plain definitions of speed to lead, message match, cost per booked appointment and related terms.
+- [How fast should you respond to a new lead?](https://bookdzilla.com/guides/speed-to-lead/): Respond to a new lead within five minutes, and within one minute if you can. In a Harvard Business Review study of 1.25 million sales leads, firms that tried to reach a lead within an hour were nearly seven times as likely to qualify it as firms that waited even one hour longer.
+- [Why your ads get clicks but no bookings.](https://bookdzilla.com/guides/ads-get-clicks-but-no-bookings/): When ads get clicks but few bookings, the problem is usually after the click. Paid traffic leaks in five places: an ad with no clear promise, a page that does not match the ad, a slow first reply, no follow-up and no tracking from ad to booking. Fix the earliest leak first.
+- [Cost per booked appointment, explained.](https://bookdzilla.com/guides/cost-per-booked-appointment/): Cost per booked appointment is your ad spend divided by the number of appointments booked from that spend. If $640 of ads produced 9 booked tours, each booked tour cost about $71. It is a better measure than cost per lead because it only improves when real appointments do.
+- [How to reply to a wedding venue inquiry.](https://bookdzilla.com/guides/wedding-venue-inquiry-response/): Reply to a wedding venue inquiry within minutes, not days. Confirm whether the date is open, give a starting price, and offer two tour times. Couples contact several venues at once, and 76% say price is the most important factor in choosing one, so a reply without a number loses to one with it.
+- [What is missed-call text back?](https://bookdzilla.com/guides/missed-call-text-back/): Missed-call text back is an automatic text message sent within seconds to anyone whose call your business did not answer. It keeps the caller talking to you by text, so they book with you and do not call the next business on the list.
+- [Audit your own lead funnel in five minutes.](https://bookdzilla.com/guides/five-minute-leak-check/): To audit your own lead funnel, find your live ads in the Meta Ad Library and the Google Ads Transparency Center, tap through each one on a phone, then send an inquiry through your own form in the evening and time the first real reply. Any broken promise, hidden proof or reply slower than an hour is a leak.
+- [Glossary](https://bookdzilla.com/glossary/): plain definitions of speed to lead, message match, cost per booked appointment and related terms.
 
 ## Company
-- [How it works](https://bookdzilla.pages.dev/how-it-works/): the seven steps from free leak check to weekly report, and the terms.
-- [Free leak check](https://bookdzilla.pages.dev/free-leak-check/): what is checked and what the business receives.
-- [Questions and answers](https://bookdzilla.pages.dev/faq/): price, contract, ownership, setup time and reporting.
-- [About](https://bookdzilla.pages.dev/about/): what Bookdzilla is and the rules it works by.
-- [Contact](https://bookdzilla.pages.dev/contact/): email, a 30-minute call or a leak check request.
+- [How it works](https://bookdzilla.com/how-it-works/): the seven steps from free leak check to weekly report, and the terms.
+- [Free leak check](https://bookdzilla.com/free-leak-check/): what is checked and what the business receives.
+- [Questions and answers](https://bookdzilla.com/faq/): price, contract, ownership, setup time and reporting.
+- [About](https://bookdzilla.com/about/): what Bookdzilla is and the rules it works by.
+- [Contact](https://bookdzilla.com/contact/): email, a 30-minute call or a leak check request.

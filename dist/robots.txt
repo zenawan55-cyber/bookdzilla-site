@@ -78,4 +78,4 @@ Allow: /
 Disallow: /v/
 Disallow: /api/
 
-Sitemap: https://bookdzilla.pages.dev/sitemap-index.xml
+Sitemap: https://bookdzilla.com/sitemap-index.xml
