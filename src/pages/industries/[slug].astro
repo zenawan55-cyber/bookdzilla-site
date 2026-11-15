@@ -8,6 +8,7 @@ import Close from '../../components/Close.astro';
 import { INDUSTRIES, industry } from '../../data/industries';
 import { service } from '../../data/services';
 import { guide } from '../../data/guides';
+import { TONES } from '../../data/site';
 import { webpage, breadcrumbs, faqPage, serviceNode } from '../../data/schema';
 
 export function getStaticPaths() { return INDUSTRIES.map((i) => ({ params: { slug: i.slug }, props: { i } })); }
@@ -19,15 +20,18 @@ const schema = [
   serviceNode(path, `Marketing for ${i.name.toLowerCase()}`, i.desc, ['Meta ads', 'Landing pages', 'Lead follow-up', 'Appointment booking'], i.name),
   faqPage(i.faqs),
 ];
-const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const tone = TONES[INDUSTRIES.findIndex((x) => x.slug === i.slug) % 4];
+const cut = i.h1.indexOf(' for your ');
+const hA = cut > 0 ? i.h1.slice(0, cut) : i.h1;
+const hB = cut > 0 ? i.h1.slice(cut + 1) : undefined;
 const related = [
   ...i.guides.slice(0, 2).map((g) => ({ href: `/guides/${g}/`, title: guide(g).title, line: guide(g).card, kind: 'Guide' })),
   ...i.related.slice(0, 1).map((r) => ({ href: `/industries/${r}/`, title: industry(r).name, line: industry(r).leakIntro, kind: 'Industry' })),
 ];
 ---
 <Base title={i.title} description={i.desc} schema={schema}>
-  <PageHero crumbs={crumbs} h1={i.h1} lead={i.lead} secondary={['How it works', '/how-it-works/']}>
-    <Thread t={i.thread} />
+  <PageHero crumbs={crumbs} h1={hA} hl={hB} tone={tone} lead={i.lead} secondary={['How it works', '/how-it-works/']}>
+    <Thread tone={tone} t={i.thread} />
   </PageHero>
 
   {i.facts && (
@@ -69,7 +73,7 @@ const related = [
     <div class="container split split--even">
       <div>
         <h2 id="test-h">Test your own path in five minutes.</h2>
-        <p class="lead">Any "no", or a reply that took more than an hour, is where {i.unit} are going.</p>
+        <p class="lead">Any "no", or a reply that took more than an hour, is costing you {i.unit}.</p>
         <div class="acts"><a class="tlink" href="/guides/five-minute-leak-check/">The full five-minute audit</a></div>
       </div>
       <ol class="olist">{i.test.map((t) => (<li>{t}</li>))}</ol>

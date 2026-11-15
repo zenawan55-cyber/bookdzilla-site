@@ -1,9 +1,7 @@
 ---
-import '@fontsource-variable/funnel-display';
-import '@fontsource-variable/funnel-sans';
+import '@fontsource-variable/geist';
 import '../styles/site.css';
-import displayFont from '@fontsource-variable/funnel-display/files/funnel-display-latin-wght-normal.woff2?url';
-import bodyFont from '@fontsource-variable/funnel-sans/files/funnel-sans-latin-wght-normal.woff2?url';
+import bodyFont from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, abs } from '../data/site';
@@ -25,9 +23,8 @@ const graph = { '@context': 'https://schema.org', '@graph': [org(), website(), .
 <link rel="canonical" href={canonical} />
 {noindex && <meta name="robots" content="noindex" />}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
-<meta name="theme-color" content="#0B1530" />
+<meta name="theme-color" content="#ffffff" />
 <meta property="og:site_name" content={SITE.name} />
 <meta property="og:type" content={ogType} />
 <meta property="og:title" content={pageTitle} />
@@ -98,6 +95,10 @@ const graph = { '@context': 'https://schema.org', '@graph': [org(), website(), .
     };
     btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.mode); }); });
   });
+
+  // Drop panels: Escape closes them.
+  var navEl = document.querySelector('.nav');
+  if (navEl) document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { navEl.classList.add('nav--shut'); if (document.activeElement && navEl.contains(document.activeElement)) document.activeElement.blur(); setTimeout(function () { navEl.classList.remove('nav--shut'); }, 400); } });
 
   // Menu: close on Escape and on outside click.
   var menu = document.querySelector('.menu');

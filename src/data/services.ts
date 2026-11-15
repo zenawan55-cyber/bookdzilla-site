@@ -1,5 +1,8 @@
 export interface Service {
   slug: string;
+  tone: string;
+  hA: string;
+  hB: string;
   name: string;
   where: string; // the place in the path, used on the home rows
   rowLeak: string;
@@ -23,6 +26,9 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     slug: 'paid-ads',
+    tone: 'pink',
+    hA: 'Ads that make',
+    hB: 'one clear promise.',
     name: 'Meta and Google ads',
     where: 'The ad',
     rowLeak: 'A vague promise, or creative that has gone stale and costs more every week.',
@@ -65,6 +71,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'landing-pages',
+    tone: 'blue',
+    hA: 'A page for every ad,',
+    hB: 'built to book.',
     name: 'Landing pages',
     where: 'The page',
     rowLeak: 'It does not say what the ad said, hides your reviews or makes booking hard.',
@@ -108,6 +117,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'lead-follow-up',
+    tone: 'orange',
+    hA: 'Every inquiry answered',
+    hB: 'within a minute.',
     name: 'Speed to lead and follow-up',
     where: 'The inquiry',
     rowLeak: 'The reply is slow or never comes. Buyers ask two or three businesses and book whoever answers first.',
@@ -151,6 +163,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'database-reactivation',
+    tone: 'sun',
+    hA: 'Revenue from leads',
+    hB: 'you already paid for.',
     name: 'Database reactivation',
     where: 'The quiet list',
     rowLeak: 'Years of past inquiries and customers sit in a spreadsheet nobody contacts.',
@@ -193,6 +208,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'local-seo',
+    tone: 'blue',
+    hA: 'Be the first name',
+    hB: 'they find nearby.',
     name: 'Local SEO and Google Business Profile',
     where: 'The search',
     rowLeak: 'Buyers searching nearby find three competitors on the map before they find you.',
@@ -236,6 +254,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'tracking-and-reporting',
+    tone: 'green',
+    hA: 'Know which ads',
+    hB: 'became booked jobs.',
     name: 'Lead tracking and the Monday report',
     where: 'The numbers',
     rowLeak: 'Nobody can say which ads became booked jobs, so budget keeps going to the ones that do not.',

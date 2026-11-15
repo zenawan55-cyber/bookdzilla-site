@@ -1,6 +1,6 @@
 ---
-interface Props { crumbs: [string, string][]; h1: string; lead: string; solo?: boolean; primary?: string; secondary?: [string, string]; byline?: string }
-const { crumbs, h1, lead, solo = false, primary = 'Get my free leak check', secondary, byline } = Astro.props;
+interface Props { crumbs: [string, string][]; h1: string; lead: string; solo?: boolean; hl?: string; tone?: string; primary?: string; secondary?: [string, string]; byline?: string }
+const { crumbs, h1, lead, solo = false, hl, tone, primary = 'Get my free leak check', secondary, byline } = Astro.props;
 ---
 <div class={`phero ${solo ? 'phero--solo' : ''}`}>
   <div class="container">
@@ -12,7 +12,7 @@ const { crumbs, h1, lead, solo = false, primary = 'Get my free leak check', seco
   </div>
   {solo ? (
     <div class="container phero__grid">
-      <h1>{h1}</h1>
+      <h1 data-tone={tone}>{h1}{hl && <> <span class="hl">{hl}</span></>}</h1>
       <div>
         <p class="lead">{lead}</p>
         <div class="acts">
@@ -25,7 +25,7 @@ const { crumbs, h1, lead, solo = false, primary = 'Get my free leak check', seco
   ) : (
     <div class="container phero__grid">
       <div>
-        <h1>{h1}</h1>
+        <h1 data-tone={tone}>{h1}{hl && <> <span class="hl">{hl}</span></>}</h1>
         <p class="lead">{lead}</p>
         <div class="acts">
           <a class="btn" href="#check">{primary}</a>

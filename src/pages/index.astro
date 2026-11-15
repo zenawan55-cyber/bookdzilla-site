@@ -6,8 +6,8 @@ import Funnel from '../components/Funnel.astro';
 import Report from '../components/Report.astro';
 import Faq from '../components/Faq.astro';
 import Close from '../components/Close.astro';
-import { SITE, TOOLS } from '../data/site';
-import { SERVICES } from '../data/services';
+import { TOOLS, SHORT } from '../data/site';
+import { service } from '../data/services';
 import { INDUSTRIES, industry } from '../data/industries';
 import { HOME_FAQS } from '../data/faqs';
 import { webpage, faqPage } from '../data/schema';
@@ -15,84 +15,96 @@ import { webpage, faqPage } from '../data/schema';
 const title = 'Bookdzilla | More bookings from the same ad spend';
 const description = 'Bookdzilla helps high-ticket local businesses turn more ad clicks and inquiries into booked appointments. Free 2-minute leak check of your ads and pages.';
 const schema = [webpage('/', title, description), faqPage(HOME_FAQS)];
-const hero = industry('wedding-venues').thread;
+const trip: { tone?: string; when: string; what: string; say: string }[] = [
+  { tone: 'blue', when: '9:14 pm', what: 'Taps your ad', say: 'One clear promise: tour the venue this weekend.' },
+  { tone: 'orange', when: '9:14 pm', what: 'Lands on its page', say: 'The same promise, your reviews and a starting price.' },
+  { tone: 'green', when: '9:15 pm', what: 'Asks a question', say: 'Is June 12 open, and what does a Saturday cost?' },
+  { tone: 'pink', when: '38 seconds later', what: 'Gets a real answer', say: 'The date, the price and two times to visit.' },
+  { when: 'Saturday, 11:00 am', what: 'Tour booked', say: 'On your calendar, with a reminder on the way.' },
+];
+const big = [
+  { s: service('landing-pages'), tag: 'The page', art: 'funnel', a: 'Turn more clicks', b: 'into inquiries.' },
+  { s: service('lead-follow-up'), tag: 'The reply', art: 'thread', a: 'Answer every inquiry', b: 'within a minute.' },
+  { s: service('tracking-and-reporting'), tag: 'The numbers', art: 'report', a: 'Know which ads', b: 'became booked jobs.' },
+];
+const small = [
+  { s: service('paid-ads'), tag: 'The ad', a: 'Ads that make', b: 'one clear promise.' },
+  { s: service('database-reactivation'), tag: 'The quiet list', a: 'Revenue from leads', b: 'you already paid for.' },
+  { s: service('local-seo'), tag: 'The search', a: 'Be the first name', b: 'they find nearby.' },
+];
 ---
 <Base title={title} description={description} schema={schema} fullTitle>
   <div class="hero">
-    <div class="container hero__grid">
-      <div>
+    <div class="container">
+      <div class="hero__top">
         <h1>More bookings from the same ad spend.</h1>
         <p class="lead">We find where your ads, pages and follow-up lose buyers between the click and the booking, then fix it.</p>
         <LeakForm id="hero" note="Free. A 2-minute video of your own ads and pages, within a day." />
       </div>
-      <Thread t={{ ...hero, top: 'Facebook ad inquiry, 9:14 pm', cap: 'An example of a first reply. Yours uses your own dates, prices and tone.' }} />
+      <figure class="trip" aria-label="One lead, followed from the ad to the booking">
+        <ol>
+          {trip.map((t) => (
+            <li data-tone={t.tone} class={t.tone ? undefined : 'trip__end'}>
+              <p class="trip__when">{t.when}</p>
+              <div><p class="trip__what">{t.what}</p><p class="trip__say">{t.say}</p></div>
+            </li>
+          ))}
+        </ol>
+        <figcaption>One lead, followed from the ad to the booking. An example with a made-up venue.</figcaption>
+      </figure>
     </div>
   </div>
 
   <section class="sec band statement" aria-label="What Bookdzilla does">
     <div class="container">
-      <p>Bookdzilla is a marketing agency for high-ticket local businesses in the United States.</p>
+      <p class="statement__big">Bookdzilla is a marketing agency for high-ticket local businesses in the United States.</p>
       <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies pay for clicks and lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
+      <ul class="pills" aria-label="Industries">
+        {INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}>{i.name}</a></li>))}
+      </ul>
     </div>
   </section>
 
   <section class="sec" id="leaks" aria-labelledby="leaks-h">
     <div class="container">
-      <div class="head head--split">
+      <div class="head head--center">
         <h2 id="leaks-h">Six places bookings leak.</h2>
         <p class="lead">Every business leaks somewhere different. The leak check finds yours, and the fix is built for that.</p>
       </div>
-      <ul class="rows">
-        {SERVICES.map((s) => (
-          <li>
-            <h3><a href={`/services/${s.slug}/`}>{s.where}</a></h3>
-            <p class="lk"><b>Where it leaks</b>{s.rowLeak}</p>
-            <p class="fx"><b>What the fix can look like</b>{s.rowFix}</p>
-          </li>
+      <div class="feats">
+        {big.map(({ s, tag, art, a, b }) => (
+          <article class="feat" data-tone={s.tone}>
+            <div class="feat__copy">
+              <span class="tag">{tag}</span>
+              <h3>{a} <span class="hl">{b}</span></h3>
+              <p>{s.rowLeak}</p>
+              <p class="feat__fix">{s.rowFix}</p>
+              <div class="acts"><a class="btn btn--tone" href={`/services/${s.slug}/`}>{SHORT[s.slug]}</a><a class="tlink" href="#check">Get a free leak check</a></div>
+            </div>
+            <div class="feat__art">
+              {art === 'funnel' && <Funnel />}
+              {art === 'thread' && <Thread t={industry('wedding-venues').thread} />}
+              {art === 'report' && <Report />}
+            </div>
+          </article>
+        ))}
+      </div>
+      <ul class="minis">
+        {small.map(({ s, tag, a, b }) => (
+          <li><a class="mini" href={`/services/${s.slug}/`} data-tone={s.tone}>
+            <span class="tag">{tag}</span>
+            <h3>{a} <span class="hl">{b}</span></h3>
+            <p>{s.rowFix}</p>
+            <span class="tlink">{s.name}</span>
+          </a></li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="sec well" aria-labelledby="fnl-sec-h">
-    <div class="container split">
-      <div>
-        <h2 id="fnl-sec-h">Same clicks, more bookings.</h2>
-        <p class="lead">Most of the loss happens after the click. Fix the page and the reply, and the ads you already run book more.</p>
-        <div class="acts"><a class="tlink" href="/guides/ads-get-clicks-but-no-bookings/">Why ads get clicks but no bookings</a></div>
-      </div>
-      <Funnel />
-    </div>
-  </section>
-
-  <section class="sec" id="industries" aria-labelledby="ind-h">
+  <section class="sec sec--flush" id="start" aria-labelledby="start-h">
     <div class="container">
-      <div class="head head--split">
-        <h2 id="ind-h">Built for businesses that book.</h2>
-        <p class="lead">Where one tour, consult or site visit is worth thousands, every missed inquiry is expensive.</p>
-      </div>
-      <ul class="idx">
-        {INDUSTRIES.map((i) => (
-          <li><a href={`/industries/${i.slug}/`}><b>{i.name}</b><span>More {i.unit}</span></a></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="sec sec--flush" id="monday" aria-labelledby="monday-h">
-    <div class="container split split--flip">
-      <Report />
-      <div>
-        <h2 id="monday-h">Every Monday, five numbers.</h2>
-        <p class="lead">You see whether it is working without logging in anywhere: leads, bookings, cost per booking, response time and revenue.</p>
-        <div class="acts"><a class="tlink" href="/services/tracking-and-reporting/">How lead tracking works</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec band" id="start" aria-labelledby="start-h">
-    <div class="container">
-      <div class="head head--split">
+      <div class="head head--center">
         <h2 id="start-h">How it starts.</h2>
         <p class="lead">A free video first. A fixed monthly price only if you want the fixes built.</p>
       </div>
@@ -101,15 +113,15 @@ const hero = industry('wedding-venues').thread;
         <li><h3>We fix the path</h3><p class="muted">We record your last 30 days of leads, bookings and response time. Then the fixes go live, usually within 14 days. You approve everything first.</p></li>
         <li><h3>Month to month</h3><p class="muted">One fixed monthly price, based on what we fix and what a booking is worth to you. No contract. Your ad budget goes straight to Meta or Google.</p></li>
       </ol>
-      <p class="acts mt-2xl"><a class="tlink" href="/how-it-works/">See the whole process</a></p>
+      <p class="acts mt-xl"><a class="tlink" href="/how-it-works/">See the whole process</a></p>
     </div>
   </section>
 
-  <section class="sec" id="stack" aria-labelledby="stack-h">
+  <section class="sec band" id="stack" aria-labelledby="stack-h">
     <div class="container">
-      <div class="head head--split">
+      <div class="head head--center">
         <h2 id="stack-h">What we build with.</h2>
-        <p class="lead">We connect proven tools into one system that answers, follows up and books for you. You do not have to learn any of them.</p>
+        <p class="lead">Proven tools, connected into one system that answers, follows up and books for you. You do not have to learn any of them.</p>
       </div>
       <ul class="tools">
         {TOOLS.map((t) => (<li><h3>{t.name}</h3><p>{t.does}</p></li>))}
@@ -117,7 +129,7 @@ const hero = industry('wedding-venues').thread;
     </div>
   </section>
 
-  <section class="sec sec--flush" id="faq" aria-labelledby="faq-h">
+  <section class="sec" id="faq" aria-labelledby="faq-h">
     <div class="container">
       <div class="head"><h2 id="faq-h">Questions owners ask.</h2></div>
       <Faq items={HOME_FAQS} />

@@ -28,3 +28,11 @@ export const TOOLS = [
 ];
 
 export const abs = (path: string) => new URL(path, import.meta.env.SITE).href;
+
+// Short labels for menus and the footer.
+export const SHORT: Record<string, string> = {
+  'paid-ads': 'Meta and Google ads', 'landing-pages': 'Landing pages', 'lead-follow-up': 'Speed to lead', 'database-reactivation': 'Reactivation', 'local-seo': 'Local SEO', 'tracking-and-reporting': 'Lead tracking',
+  'wedding-venues': 'Wedding venues', 'senior-living': 'Senior living', 'private-schools': 'Private schools', 'dental-practices': 'Dental practices', 'med-spas': 'Med spas', 'pool-builders': 'Pool builders', roofing: 'Roofing', hvac: 'HVAC',
+  'speed-to-lead': 'Lead response time', 'ads-get-clicks-but-no-bookings': 'Clicks, no bookings', 'cost-per-booked-appointment': 'Cost per booking', 'wedding-venue-inquiry-response': 'Venue inquiry replies', 'missed-call-text-back': 'Missed-call text back', 'five-minute-leak-check': 'Five-minute audit',
+};
+export const TONES = ['blue', 'orange', 'green', 'pink', 'sun'] as const;

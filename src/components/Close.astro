@@ -4,7 +4,8 @@ import { SITE } from '../data/site';
 interface Props { head?: string; sub?: string; id?: string }
 const { head = 'Get your free leak check.', sub = 'Send your website. Within a day you get a 2-minute video of where your ads and pages lose people, and what to fix first.', id = 'close' } = Astro.props;
 ---
-<section class="sec band close" id="check" aria-labelledby="check-h">
+<section class="close" id="check" aria-labelledby="check-h">
+  <div class="close__panel">
   <div class="container close__grid">
     <div>
       <h2 id="check-h">{head}</h2>
@@ -18,5 +19,6 @@ const { head = 'Get your free leak check.', sub = 'Send your website. Within a d
         <li><b>Prefer email?</b><a href={`mailto:${SITE.email}?subject=Free%20leak%20check`}>{SITE.email}</a></li>
       </ul>
     </div>
+  </div>
   </div>
 </section>

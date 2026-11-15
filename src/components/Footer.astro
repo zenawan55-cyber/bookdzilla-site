@@ -1,11 +1,8 @@
 ---
-import { SITE } from '../data/site';
+import { SITE, SHORT } from '../data/site';
 import { SERVICES } from '../data/services';
 import { INDUSTRIES } from '../data/industries';
 import { GUIDES } from '../data/guides';
-const S: Record<string, string> = { 'paid-ads': 'Meta and Google ads', 'landing-pages': 'Landing pages', 'lead-follow-up': 'Speed to lead', 'database-reactivation': 'Reactivation', 'local-seo': 'Local SEO', 'tracking-and-reporting': 'Lead tracking' };
-const I: Record<string, string> = { 'wedding-venues': 'Wedding venues', 'senior-living': 'Senior living', 'private-schools': 'Private schools', 'dental-practices': 'Dental practices', 'med-spas': 'Med spas', 'pool-builders': 'Pool builders', roofing: 'Roofing', hvac: 'HVAC' };
-const G: Record<string, string> = { 'speed-to-lead': 'Lead response time', 'ads-get-clicks-but-no-bookings': 'Clicks, no bookings', 'cost-per-booked-appointment': 'Cost per booking', 'wedding-venue-inquiry-response': 'Venue inquiry replies', 'missed-call-text-back': 'Missed-call text back', 'five-minute-leak-check': 'Five-minute audit' };
 ---
 <footer class="foot">
   <div class="container">
@@ -17,16 +14,16 @@ const G: Record<string, string> = { 'speed-to-lead': 'Lead response time', 'ads-
       </div>
       <nav aria-label="Services">
         <h2>Services</h2>
-        <ul>{SERVICES.map((s) => (<li><a href={`/services/${s.slug}/`}>{S[s.slug]}</a></li>))}</ul>
+        <ul>{SERVICES.map((s) => (<li><a href={`/services/${s.slug}/`}>{SHORT[s.slug]}</a></li>))}</ul>
       </nav>
       <nav aria-label="Industries">
         <h2>Industries</h2>
-        <ul>{INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}>{I[i.slug]}</a></li>))}</ul>
+        <ul>{INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}>{SHORT[i.slug]}</a></li>))}</ul>
       </nav>
       <nav aria-label="Guides">
         <h2>Guides</h2>
         <ul>
-          {GUIDES.map((g) => (<li><a href={`/guides/${g.slug}/`}>{G[g.slug]}</a></li>))}
+          {GUIDES.map((g) => (<li><a href={`/guides/${g.slug}/`}>{SHORT[g.slug]}</a></li>))}
           <li><a href="/glossary/">Glossary</a></li>
         </ul>
       </nav>

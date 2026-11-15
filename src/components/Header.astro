@@ -1,23 +1,89 @@
 ---
-import { NAV } from '../data/site';
+import { SITE, SHORT } from '../data/site';
 const { cta = '#check' } = Astro.props;
 const path = Astro.url.pathname;
 const cur = (href: string) => (path.startsWith(href) ? 'page' : undefined);
+const shapes = ['a', 'b', 'c', 'd', 'e', 'f'];
+type Col = { head: string; items: [string, string][] };
+const item = (base: string, slug: string): [string, string] => [`/${base}/${slug}/`, SHORT[slug]];
+const menus: { label: string; href: string; tone: string; cols: Col[]; side: { href: string; title: string; line: string } }[] = [
+  {
+    label: 'Services', href: '/services/', tone: 'blue',
+    cols: [
+      { head: 'Get found', items: [item('services', 'paid-ads'), item('services', 'local-seo')] },
+      { head: 'Turn clicks into bookings', items: [item('services', 'landing-pages'), item('services', 'lead-follow-up')] },
+      { head: 'Keep and prove it', items: [item('services', 'database-reactivation'), item('services', 'tracking-and-reporting')] },
+    ],
+    side: { href: '/free-leak-check/', title: 'Start with a free leak check', line: 'A 2-minute video of where your ads and pages lose people.' },
+  },
+  {
+    label: 'Industries', href: '/industries/', tone: 'orange',
+    cols: [
+      { head: 'Tours', items: [item('industries', 'wedding-venues'), item('industries', 'senior-living'), item('industries', 'private-schools')] },
+      { head: 'Consults', items: [item('industries', 'dental-practices'), item('industries', 'med-spas')] },
+      { head: 'Home services', items: [item('industries', 'pool-builders'), item('industries', 'roofing'), item('industries', 'hvac')] },
+    ],
+    side: { href: '/industries/', title: 'Not on the list?', line: 'If one booking is worth thousands, the same fixes apply.' },
+  },
+  {
+    label: 'Guides', href: '/guides/', tone: 'green',
+    cols: [
+      { head: 'Replying', items: [item('guides', 'speed-to-lead'), item('guides', 'missed-call-text-back'), item('guides', 'wedding-venue-inquiry-response')] },
+      { head: 'Ads and pages', items: [item('guides', 'ads-get-clicks-but-no-bookings'), item('guides', 'five-minute-leak-check')] },
+      { head: 'Numbers', items: [item('guides', 'cost-per-booked-appointment'), ['/glossary/', 'Glossary']] },
+    ],
+    side: { href: '/guides/five-minute-leak-check/', title: 'Audit your own funnel', line: 'Five minutes, a phone and your own inquiry form.' },
+  },
+];
+const tones = ['blue', 'orange', 'green', 'pink', 'sun'];
 ---
 <header class="nav">
   <div class="container nav__in">
     <a class="word" href="/" aria-label="Bookdzilla, home">Bookdzilla</a>
     <nav class="nav__links" aria-label="Main">
-      {NAV.map((n) => (<a href={n.href} aria-current={cur(n.href)}>{n.label}</a>))}
+      {menus.map((m, mi) => (
+        <div class="nav__item">
+          <a class="nav__link" href={m.href} aria-current={cur(m.href)}><span class="roll"><span>{m.label}</span><span aria-hidden="true">{m.label}</span></span></a>
+          <div class="mega">
+            <div class="mega__in">
+              <div class="mega__cols">
+                {m.cols.map((c, ci) => (
+                  <div>
+                    <p class="mega__h">{c.head}</p>
+                    <ul>
+                      {c.items.map(([href, label], ii) => (
+                        <li><a href={href}><span class={`shp shp--${shapes[(mi + ci * 2 + ii) % 6]}`} data-tone={tones[(ci * 2 + ii + mi) % 5]}><i></i></span>{label}</a></li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <a class="mega__side" href={m.side.href} data-tone={m.tone}>
+                <span class="mega__art" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <b>{m.side.title}</b>
+                <span>{m.side.line}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+      <div class="nav__item"><a class="nav__link" href="/how-it-works/" aria-current={cur('/how-it-works/')}><span class="roll"><span>How it works</span><span aria-hidden="true">How it works</span></span></a></div>
     </nav>
-    <details class="menu">
-      <summary>Menu</summary>
-      <nav class="menu__panel" aria-label="Menu">
-        {NAV.map((n) => (<a href={n.href} aria-current={cur(n.href)}>{n.label}</a>))}
-        <a href="/faq/">Questions</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-    </details>
-    <a class="btn btn--s" href={cta}>Free leak check</a>
+    <div class="nav__end">
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav class="menu__panel" aria-label="Menu">
+          <a href="/services/" aria-current={cur('/services/')}>Services</a>
+          <a href="/industries/" aria-current={cur('/industries/')}>Industries</a>
+          <a href="/guides/" aria-current={cur('/guides/')}>Guides</a>
+          <a href="/how-it-works/" aria-current={cur('/how-it-works/')}>How it works</a>
+          <a href="/faq/">Questions</a>
+          <a href="/contact/">Contact</a>
+          <a href={SITE.calendly} target="_blank" rel="noopener">Book a call</a>
+        </nav>
+      </details>
+      <a class="btn btn--s btn--soft" href={SITE.calendly} target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn--s" href={cta}>Free leak check</a>
+    </div>
   </div>
 </header>

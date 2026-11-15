@@ -26,8 +26,8 @@ const related = [
 ];
 ---
 <Base title={s.title} description={s.desc} schema={schema}>
-  <PageHero crumbs={crumbs} h1={s.h1} lead={s.lead} secondary={['How it works', '/how-it-works/']}>
-    {visual === 'thread' && <Thread t={industry('wedding-venues').thread} />}
+  <PageHero crumbs={crumbs} h1={s.hA} hl={s.hB} tone={s.tone} lead={s.lead} secondary={['How it works', '/how-it-works/']}>
+    {visual === 'thread' && <Thread tone={s.tone} t={industry('wedding-venues').thread} />}
     {visual === 'funnel' && <Funnel />}
     {visual === 'report' && <Report />}
     {!visual && (<div class="phero__kv"><dl class="kv">{s.kv.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}</dl><ul class="chips" aria-label="Built with">{s.tools.map((t) => (<li>{t}</li>))}</ul></div>)}
