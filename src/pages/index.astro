@@ -6,7 +6,7 @@ import Funnel from '../components/Funnel.astro';
 import Report from '../components/Report.astro';
 import Faq from '../components/Faq.astro';
 import Close from '../components/Close.astro';
-import { TOOLS, SHORT } from '../data/site';
+import { TOOLS, SHORT, TONES } from '../data/site';
 import { service } from '../data/services';
 import { INDUSTRIES, industry } from '../data/industries';
 import { HOME_FAQS } from '../data/faqs';
@@ -34,46 +34,67 @@ const small = [
 ];
 ---
 <Base title={title} description={description} schema={schema} fullTitle>
-  <div class="hero">
+  <div class="hero hero--home on-dark">
     <div class="container">
       <div class="hero__top">
         <h1>More bookings from the same ad spend.</h1>
         <p class="lead">We find where your ads, pages and follow-up lose buyers between the click and the booking, then fix it.</p>
         <LeakForm id="hero" note="Free. A 2-minute video of your own ads and pages, within a day." />
       </div>
-      <figure class="trip" aria-label="One lead, followed from the ad to the booking">
-        <ol>
-          {trip.map((t) => (
-            <li data-tone={t.tone} class={t.tone ? undefined : 'trip__end'}>
-              <p class="trip__when">{t.when}</p>
-              <div><p class="trip__what">{t.what}</p><p class="trip__say">{t.say}</p></div>
-            </li>
-          ))}
-        </ol>
-        <figcaption>One lead, followed from the ad to the booking. An example with a made-up venue.</figcaption>
-      </figure>
     </div>
   </div>
+  <div class="container">
+    <figure class="trip trip--lift" aria-label="One lead, followed from the ad to the booking">
+      <ol>
+        {trip.map((t, n) => (
+          <li data-tone={t.tone} class={t.tone ? undefined : 'trip__end'} style={`--i:${n}`}>
+            <p class="trip__when">{t.when}</p>
+            <div><p class="trip__what">{t.what}</p><p class="trip__say">{t.say}</p></div>
+          </li>
+        ))}
+      </ol>
+      <figcaption>One lead, followed from the ad to the booking. An example with a made-up venue.</figcaption>
+    </figure>
+  </div>
 
-  <section class="sec band statement" aria-label="What Bookdzilla does">
+  <section class="sec statement" id="industries" aria-labelledby="who-h">
     <div class="container">
-      <p class="statement__big">Bookdzilla is a marketing agency for high-ticket local businesses in the United States.</p>
-      <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies pay for clicks and lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
-      <ul class="pills" aria-label="Industries">
-        {INDUSTRIES.map((i) => (<li><a href={`/industries/${i.slug}/`}>{i.name}</a></li>))}
-      </ul>
+      <div class="head">
+        <h2 class="statement__big" id="who-h">Bookdzilla is a marketing agency for high-ticket local businesses.</h2>
+        <p class="statement__sub">Venues, schools, clinics, senior living communities and home service companies in the United States pay for clicks and lose most of them before a booking. We fix that path, so the leads you already pay for turn into tours, consults and jobs on your calendar.</p>
+      </div>
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Industries">
+          {INDUSTRIES.map((i, n) => (
+            <button type="button" role="tab" id={`tab-${i.slug}`} aria-controls={`panel-${i.slug}`} aria-selected={n === 0 ? 'true' : 'false'} tabindex={n === 0 ? 0 : -1} data-tone={TONES[n % 4]}>{SHORT[i.slug]}</button>
+          ))}
+        </div>
+        <div class="tabs__stage" data-tone={TONES[0]}>
+          {INDUSTRIES.map((i, n) => (
+            <div class={`tabs__panel ${n === 0 ? 'is-on' : ''}`} role="tabpanel" id={`panel-${i.slug}`} aria-labelledby={`tab-${i.slug}`} data-tone={TONES[n % 4]}>
+              <div class="tabs__copy">
+                <span class="tag">{i.name}</span>
+                <h3>More <span class="hl">{i.unit}.</span></h3>
+                <p>{i.leakIntro}</p>
+                <div class="acts"><a class="btn btn--tone" href={`/industries/${i.slug}/`}>{SHORT[i.slug]}</a></div>
+              </div>
+              <Thread t={i.thread} tone={TONES[n % 4]} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="sec" id="leaks" aria-labelledby="leaks-h">
+  <section class="sec sec--flush" id="leaks" aria-labelledby="leaks-h">
     <div class="container">
       <div class="head head--center">
         <h2 id="leaks-h">Six places bookings leak.</h2>
         <p class="lead">Every business leaks somewhere different. The leak check finds yours, and the fix is built for that.</p>
       </div>
-      <div class="feats">
-        {big.map(({ s, tag, art, a, b }) => (
-          <article class="feat" data-tone={s.tone}>
+      <div class="feats feats--stack">
+        {big.map(({ s, tag, art, a, b }, n) => (
+          <article class="feat" data-tone={s.tone} style={`--n:${n}`}>
             <div class="feat__copy">
               <span class="tag">{tag}</span>
               <h3>{a} <span class="hl">{b}</span></h3>

@@ -12,5 +12,9 @@
     "@astrojs/sitemap": "^3.7.5",
     "@fontsource-variable/geist": "^5.3.0",
     "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "culori": "^4.0.2",
+    "postcss-preset-env": "^11.6.2"
   }
 }

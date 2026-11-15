@@ -1,4 +1,5 @@
 ---
+import Mark from './Mark.astro';
 import { SITE, SHORT } from '../data/site';
 const { cta = '#check' } = Astro.props;
 const path = Astro.url.pathname;
@@ -39,7 +40,7 @@ const tones = ['blue', 'orange', 'green', 'pink', 'sun'];
 ---
 <header class="nav">
   <div class="container nav__in">
-    <a class="word" href="/" aria-label="Bookdzilla, home">Bookdzilla</a>
+    <a class="word" href="/" aria-label="Bookdzilla, home"><Mark />Bookdzilla</a>
     <nav class="nav__links" aria-label="Main">
       {menus.map((m, mi) => (
         <div class="nav__item">

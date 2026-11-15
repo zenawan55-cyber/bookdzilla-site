@@ -1,4 +1,5 @@
 ---
+import Mark from './Mark.astro';
 import { SITE, SHORT } from '../data/site';
 import { SERVICES } from '../data/services';
 import { INDUSTRIES } from '../data/industries';
@@ -8,7 +9,7 @@ import { GUIDES } from '../data/guides';
   <div class="container">
     <div class="foot__top">
       <div class="foot__brand">
-        <a class="word" href="/" aria-label="Bookdzilla, home">Bookdzilla</a>
+        <a class="word" href="/" aria-label="Bookdzilla, home"><Mark />Bookdzilla</a>
         <p class="foot__line">{SITE.line}</p>
         <p class="foot__line"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
       </div>

@@ -76,6 +76,32 @@ const graph = { '@context': 'https://schema.org', '@graph': [org(), website(), .
     });
   });
 
+  // Older iPhones have no flex gap: mark them so rows are spaced with margins.
+  (function () { var f = document.createElement('div'); f.style.cssText = 'display:flex;flex-direction:column;row-gap:1px;position:absolute;visibility:hidden'; f.appendChild(document.createElement('div')); f.appendChild(document.createElement('div')); document.body.appendChild(f); if (f.scrollHeight !== 1) document.documentElement.classList.add('no-flexgap'); document.body.removeChild(f); })();
+
+  // Industry tabs: click, arrow keys, and a slow auto-advance that stops once someone takes over.
+  document.querySelectorAll('[data-tabs]').forEach(function (root) {
+    var tabs = [].slice.call(root.querySelectorAll('[role=tab]')), panels = [].slice.call(root.querySelectorAll('[role=tabpanel]')), stage = root.querySelector('.tabs__stage'), list = tabs[0].parentNode;
+    var cur = 0, timer = null, vis = false, hold = false, auto = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var restart = function () { clearTimeout(timer); root.classList.remove('is-auto'); if (!auto || !vis || hold) return; void root.offsetWidth; root.classList.add('is-auto'); timer = setTimeout(function () { show((cur + 1) % tabs.length); }, 6000); };
+    var show = function (n, user) {
+      cur = n;
+      tabs.forEach(function (t, i) { var on = i === n; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; panels[i].classList.toggle('is-on', on); panels[i].setAttribute('aria-hidden', String(!on)); });
+      stage.setAttribute('data-tone', tabs[n].getAttribute('data-tone'));
+      if (list.scrollWidth > list.clientWidth) list.scrollLeft = tabs[n].offsetLeft - (list.clientWidth - tabs[n].offsetWidth) / 2;
+      if (user) auto = false;
+      restart();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i, true); });
+      t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); var n = (i + d + tabs.length) % tabs.length; show(n, true); tabs[n].focus(); });
+    });
+    root.addEventListener('mouseenter', function () { hold = true; restart(); });
+    root.addEventListener('mouseleave', function () { hold = false; restart(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; restart(); }, { threshold: 0.35 }).observe(root);
+    show(0);
+  });
+
   // Funnel: before and after.
   document.querySelectorAll('[data-fnl]').forEach(function (f) {
     var items = [].slice.call(f.querySelectorAll('li')), btns = [].slice.call(f.querySelectorAll('.seg button')), head = f.querySelector('[data-fnl-h]');
