@@ -509,5 +509,6 @@ a.tile:hover { transform: translateY(-4px); }
 /* short laptop screens: keep the form on the first screen */
 @media (max-height: 720px) and (min-width: 60rem) { .hero { padding-top: var(--space-xl); } .hero__top h1 { font-size: var(--text-display-s); } .hero__top .lead { margin-top: var(--space-md); } .hero__top .lc { margin-top: var(--space-lg); } }
 /* the green hero runs up behind the hanging bar */
-.hero--home { margin-top: calc(var(--nav-h) * -1 - 1px); padding-top: calc(var(--nav-h) + var(--space-2xl)); }
-@media (max-width: 60rem), (max-height: 720px) { .hero--home { padding-top: calc(var(--nav-h) + var(--space-xl)); } }
+.hero--home { margin-top: calc(var(--nav-h) * -1 - 1px); padding-top: calc(var(--nav-h) + var(--space-2xl) + var(--space-lg)); }
+@media (max-width: 60rem), (max-height: 720px) { .hero--home { padding-top: calc(var(--nav-h) + var(--space-2xl)); } }
+@media (max-height: 600px) and (min-width: 60rem) { .hero--home { padding-top: calc(var(--nav-h) + var(--space-xl)); } }
