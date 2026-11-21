@@ -35,9 +35,9 @@ export const INDUSTRIES: Industry[] = [
     buyer: 'couples',
     kw: 'wedding venue marketing agency',
     title: 'Wedding Venue Marketing Agency: More Booked Tours',
-    desc: 'Where wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply within a minute and follow-up.',
+    desc: 'How wedding venues lose couples between the ad and the tour, and how Bookdzilla fixes it: matching pages, a reply in a minute, an AI receptionist, follow-up.',
     h1: 'More booked tours for your wedding venue.',
-    lead: 'Couples message several venues in one evening and tour the ones that answer first with a date and a price. Bookdzilla, a wedding venue marketing agency, fixes the path between the click and the tour: the ad, the page, the first reply and the follow-up.',
+    lead: 'Couples message several venues in one evening and tour the ones that answer first with a date and a price. Bookdzilla, a wedding venue marketing agency, fixes the path between the click and the tour: the ad, the page, the first reply, the phone and the follow-up.',
     thread: {
       top: 'Website inquiry, Thu 9:14 pm',
       time: 'Replied in 38 sec',
@@ -65,8 +65,8 @@ export const INDUSTRIES: Industry[] = [
     ],
     fixes: [
       ['A page that keeps the promise', 'The same offer as the ad, a starting price, open dates this season and your rating on the first screen.', 'landing-pages'],
-      ['A first reply with a date and a price', 'Within a minute, from your own calendar and rates, with two tour times.', 'lead-follow-up'],
-      ['An open-dates and pricing check', 'A reason for couples who are not ready to leave a name and an email today.', 'landing-pages'],
+      ['A reply in under a minute', 'Website forms, The Knot and WeddingWire emails, Instagram and Facebook messages get the date, a starting price and two tour times from your real calendar.', 'lead-follow-up'],
+      ['Every call answered', 'An AI receptionist picks up day and night, answers date, guest count and pricing questions, and books the tour.', 'ai-receptionist'],
       ['Follow-up until the tour', 'Short messages on day 1, 3, 7 and 14, and a rebooking text after a missed tour.', 'lead-follow-up'],
       ['Ads built for engagement season', 'Meta ads with one clear offer, live before the November to February rush.', 'paid-ads'],
     ],
@@ -78,6 +78,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     faqs: [
       ['Does it work with The Knot and WeddingWire inquiries?', 'Yes. Those inquiries arrive by email, and they are answered from the same place as your website form and direct messages, so every couple gets the same fast reply.'],
+      ['Could it promise a date that is already booked?', 'It is set up to check your live calendar before it offers a date or a tour time. When a date cannot be confirmed, the couple is told your team will confirm it, and the conversation comes straight to you.'],
       ['We do not publish our prices. Is that a problem?', 'No. We agree a starting price or a range you are comfortable sharing, such as your starting Saturday rate. Full pricing can still wait for the tour.'],
       ['We already use HoneyBook, Tripleseat or a spreadsheet.', 'Keep it. If inquiries come in by email or the tool can pass them on, we connect to it and leave it in place.'],
       ['When should a venue fix this?', 'Before engagement season. A large share of proposals happen between November and February, and inquiries follow within weeks.'],
