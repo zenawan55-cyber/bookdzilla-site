@@ -512,3 +512,12 @@ a.tile:hover { transform: translateY(-4px); }
 .hero--home { margin-top: calc(var(--nav-h) * -1 - 1px); padding-top: calc(var(--nav-h) + var(--space-2xl) + var(--space-lg)); }
 @media (max-width: 60rem), (max-height: 720px) { .hero--home { padding-top: calc(var(--nav-h) + var(--space-2xl)); } }
 @media (max-height: 600px) and (min-width: 60rem) { .hero--home { padding-top: calc(var(--nav-h) + var(--space-xl)); } }
+
+/* Comparison tables inside guides */
+.prose .cmp-wrap { min-width: 0; overflow-x: auto; border: 1px solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-card); }
+.prose .cmp { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: var(--text-md); line-height: 1.5; }
+.prose .cmp th, .prose .cmp td { padding: var(--space-sm) var(--space-md); text-align: start; vertical-align: top; }
+.prose .cmp tr + tr > * { border-top: 1px solid var(--color-rule); }
+.prose .cmp thead th { background: var(--color-paper-2); font-weight: 600; border-bottom: 1px solid var(--color-rule); }
+.prose .cmp tbody th { font-weight: 600; width: 26%; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

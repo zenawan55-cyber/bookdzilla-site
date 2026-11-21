@@ -18,6 +18,7 @@ export interface Guide {
 const HBR: [string, string] = ['Oldroyd, McElheran and Elkington, "The Short Life of Online Sales Leads", Harvard Business Review, March 2011', 'https://hbr.org/2011/03/the-short-life-of-online-sales-leads'];
 const AD_LIB: [string, string] = ['Meta Ad Library', 'https://www.facebook.com/ads/library/'];
 const ADS_TC: [string, string] = ['Google Ads Transparency Center', 'https://adstransparency.google.com/'];
+const GOOGLE_AI: [string, string] = ['Google Search Central, "AI features and your website"', 'https://developers.google.com/search/docs/appearance/ai-features'];
 const KNOT: [string, string] = ['The Knot, average cost of a wedding venue (2026 Real Weddings Study, weddings held in 2025)', 'https://www.theknot.com/content/average-cost-reception-venue'];
 
 export const GUIDES: Guide[] = [
@@ -394,6 +395,127 @@ export const GUIDES: Guide[] = [
     services: ['ai-receptionist', 'lead-follow-up'],
     industries: ['hvac', 'roofing', 'dental-practices', 'senior-living'],
     related: ['missed-call-text-back', 'speed-to-lead', 'five-minute-leak-check'],
+  },
+  {
+    slug: 'how-to-choose-an-ai-marketing-agency',
+    title: 'How to choose an AI marketing agency.',
+    seoTitle: 'How to Choose an AI Marketing Agency: 8 Questions to Ask',
+    desc: 'Eight questions to ask before you hire an AI marketing agency, what a good answer sounds like, and the red flags that mean you should walk away.',
+    card: 'Eight questions to ask before you hire, what good answers sound like, and the red flags.',
+    answer: 'Choose an AI marketing agency the way you would choose any contractor: by what it will change in your bookings and how it will prove it. Ask which leak it will fix first, how it measures cost per booked appointment, who owns the accounts and data, and what happens when a customer wants a person. Walk away from anyone who guarantees a top spot in Google or ChatGPT, or a fixed number of leads.',
+    read: 5,
+    toc: [['leak', 'Start with the leak, not the tools'], ['ask', 'Eight questions to ask'], ['flags', 'Red flags'], ['cost', 'What you pay for'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="leak">
+<h2>Start with the leak, not the tools.</h2>
+<p>Most local businesses that pay for ads do not have a traffic problem. They lose buyers between the click and the booking: an ad with no clear promise, a page that does not match it, a reply that takes hours, a missed call that goes to voicemail, no follow-up. A good agency looks at your own ads, pages and replies first and tells you which of these costs you the most. A weak one opens with a chatbot demo.</p>
+<p>You can check most of this yourself before any sales call. The <a href="/guides/five-minute-leak-check/">five-minute leak check</a> shows how.</p>
+</section>
+<section id="ask">
+<h2>Eight questions to ask.</h2>
+<ol>
+<li><b>What will you fix first, and why?</b> A good answer names one specific leak in your current path, found by looking at your ads, pages or replies. "We will add AI everywhere" is not an answer.</li>
+<li><b>How will we know it worked?</b> Ask for booked appointments and <a href="/guides/cost-per-booked-appointment/">cost per booked appointment</a>, measured against your last 30 days. Clicks, impressions and engagement do not pay the bills.</li>
+<li><b>Who owns the accounts and the data?</b> You should own the ad accounts, the phone number, the CRM, the calendar and every contact. The agency works inside them, so you can leave without starting over.</li>
+<li><b>What does the AI do, and what does a person do?</b> Expect specifics: it answers first inquiries, books times and follows up, and it hands the conversation to your team the moment someone asks for a person.</li>
+<li><b>What happens when it gets something wrong?</b> You should approve every script and message before launch, see every conversation, and set rules for what goes straight to a person.</li>
+<li><b>Which tools will you use, and what will I pay for them?</b> A credible agency names its stack, for example GoHighLevel, Calendly, Meta Ads and Google Ads, and tells you which software fees are included and which you pay directly.</li>
+<li><b>How soon is the first change live?</b> Fixes to replies and follow-up work on leads you already get, so they should go live in weeks, not quarters. Ask what will be live in the first 14 days.</li>
+<li><b>What are the terms?</b> Look for a clear monthly price, no long lock-in before results, and an ad budget you pay straight to Meta or Google, never marked up through the agency.</li>
+</ol>
+</section>
+<section id="flags">
+<h2>Red flags.</h2>
+<ul>
+<li>A guarantee that you will rank first in Google or be recommended by ChatGPT. Nobody controls those answers. Google says its AI features have no special requirements beyond normal search: indexed pages, useful content and a good page experience.</li>
+<li>A guaranteed number of leads, with no word about whether they book.</li>
+<li>The agency keeps your ad account, phone number or contact list in its own name.</li>
+<li>Reports full of clicks and impressions, and nothing about bookings or revenue.</li>
+<li>A twelve-month contract before anything has been proven.</li>
+<li>"AI-powered" everywhere, but nobody can tell you what it actually does on a call or a form.</li>
+<li>No plan for the customer who wants to talk to a person.</li>
+</ul>
+</section>
+<section id="cost">
+<h2>What you pay for.</h2>
+<p>Most agencies charge a monthly fee, and some add a setup fee. On top of that you may pay for software, such as a CRM, texting and a calendar, and you always pay the ad budget itself. Ask for the full monthly number, software included, before you compare prices. A cheaper fee with a large software bill and no booking numbers is not cheaper.</p>
+<p>Then ask how you can stop. Month-to-month terms tell you the agency expects to earn its fee every month.</p>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses. It starts with a <a href="/free-leak-check/">free leak check</a>: a 2-minute video of where your ads, pages and replies lose people. If you want the fixes built, it is one fixed monthly price, month to month, with your ad budget paid straight to Meta or Google and every account in your name. Results arrive every Monday as five numbers: leads, booked appointments, cost per booked appointment, response time and revenue.</p>
+</section>`,
+    faqs: [
+      ['Do I need an agency, or can I just buy the software?', 'If someone on your team has time to set it up, write the scripts, connect your phone and calendar and watch the numbers, software alone can work. Many owners buy the tool and never finish the setup. An agency is worth paying when it sets up, runs and measures the system for you, and ties the result to bookings.'],
+      ['Can an agency guarantee I will show up in ChatGPT or Google?', 'No. Nobody controls what search engines or AI assistants show. A good agency improves what they can read about you, such as clear pages, consistent business details and real reviews, and measures the change over time.'],
+      ['How long before I see results?', 'Fixes to replies and follow-up act on the inquiries you already get, so booked appointments can change within weeks. Ads take a few weeks to tune. Search and AI visibility build over months.'],
+    ],
+    sources: [GOOGLE_AI],
+    services: ['lead-follow-up', 'ai-receptionist', 'tracking-and-reporting'],
+    industries: ['wedding-venues', 'dental-practices', 'hvac', 'med-spas'],
+    related: ['ai-marketing-agency-vs-traditional-agency', 'five-minute-leak-check', 'cost-per-booked-appointment'],
+  },
+  {
+    slug: 'ai-marketing-agency-vs-traditional-agency',
+    title: 'AI marketing agency or traditional agency: which do you need?',
+    seoTitle: 'AI Marketing Agency vs Traditional Agency: Key Differences',
+    desc: 'A traditional agency brings you leads. An AI marketing agency also builds the systems that answer, book and follow up. How they differ and which you need.',
+    card: 'One brings you leads. The other also answers, books and follows up with them.',
+    answer: 'A traditional marketing agency mostly brings you attention: ads, content and social posts, reported in clicks and impressions. An AI marketing agency also builds what happens next: replies within a minute, booking, follow-up and reminders that run day and night, reported in booked appointments. If you already get inquiries but lose them to slow replies, the second kind changes revenue faster. If nobody knows your business yet, ads come first.',
+    read: 4,
+    toc: [['table', 'Side by side'], ['traditional', 'When a traditional agency is right'], ['ai', 'When an AI marketing agency is right'], ['both', 'Using both'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="table">
+<h2>Side by side.</h2>
+<div class="cmp-wrap"><table class="cmp">
+<thead><tr><th scope="col"><span class="sr-only">Question</span></th><th scope="col">Traditional agency</th><th scope="col">AI marketing agency</th></tr></thead>
+<tbody>
+<tr><th scope="row">Main job</th><td>Bring attention: ads, content, social posts and design</td><td>Turn attention into bookings: ads and pages, plus the reply, booking and follow-up</td></tr>
+<tr><th scope="row">After someone inquires</th><td>Usually your team's job</td><td>A reply within a minute, two times to book, follow-up until they book or say no</td></tr>
+<tr><th scope="row">Missed calls and after hours</th><td>Voicemail, unless you add a service</td><td>Texted back in seconds or answered by an AI receptionist</td></tr>
+<tr><th scope="row">How results are reported</th><td>Clicks, impressions, reach and cost per lead</td><td>Booked appointments, cost per booked appointment, response time and revenue</td></tr>
+<tr><th scope="row">What your team does</th><td>Answers every lead fast enough to win it</td><td>Approves the scripts and takes the booked appointments and hand-offs</td></tr>
+<tr><th scope="row">Typical tools</th><td>Ad platforms, design and social scheduling tools</td><td>Ad platforms plus a CRM with texting and booking, such as GoHighLevel, and a calendar</td></tr>
+<tr><th scope="row">Best when</th><td>Nobody knows you yet, or your brand needs building</td><td>You already get inquiries and lose too many before the booking</td></tr>
+</tbody>
+</table></div>
+<p>The labels blur in practice. Plenty of traditional agencies use AI to write ads, and some "AI agencies" only sell a chatbot. What matters is whether the agency is responsible for the step after the click.</p>
+</section>
+<section id="traditional">
+<h2>When a traditional agency is the right call.</h2>
+<ul>
+<li>You are new to an area and people need to learn your name.</li>
+<li>Your brand, photos or website need rebuilding before any ad can work.</li>
+<li>Your team already answers every inquiry within minutes and follows up well.</li>
+</ul>
+</section>
+<section id="ai">
+<h2>When an AI marketing agency is the right call.</h2>
+<ul>
+<li>Inquiries arrive in the evening and at weekends and wait until the next working day.</li>
+<li>Calls go to voicemail while your team is with customers.</li>
+<li>You pay for ads but cannot say which ones produced booked jobs.</li>
+<li>You have years of past inquiries and customers that nobody contacts.</li>
+</ul>
+<p>Speed is the main reason. In a Harvard Business Review study of 1.25 million sales leads, firms that tried to reach a lead within an hour were nearly seven times as likely to qualify it as firms that waited even one hour longer. See <a href="/guides/speed-to-lead/">how fast you should respond to a new lead</a>.</p>
+</section>
+<section id="both">
+<h2>Using both.</h2>
+<p>Many businesses keep the ad agency they have and add the system that answers, books and follows up. That is often the cheapest way to get more from the same ad spend, because it works on leads you already pay for. If someone else runs your ads well, a good AI marketing agency leaves them alone and fixes what happens after the click.</p>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States, such as wedding venues, senior living communities, dental practices, med spas and home service companies. It runs ads and landing pages where they are the leak, and builds the reply, booking and follow-up with GoHighLevel, Claude and Calendly. Every engagement starts with a <a href="/free-leak-check/">free leak check</a>. Read <a href="/guides/how-to-choose-an-ai-marketing-agency/">how to choose an AI marketing agency</a> before you hire anyone, including us.</p>
+</section>`,
+    faqs: [
+      ['Is an AI marketing agency more expensive than a traditional one?', 'Not necessarily. Compare the full monthly cost, software included, against what each one is measured on. An agency judged on booked appointments is easier to evaluate than one judged on clicks.'],
+      ['Will AI replace my front desk?', 'No. It takes the inquiries your team cannot get to in time, after hours and in busy periods, and passes anyone who wants a person to your team with the conversation attached.'],
+      ['Can my current agency add this?', 'Sometimes. Ask who will answer new leads within a minute, who writes and approves the follow-up, and how booked appointments will be reported. If the answers are vague, the work is probably not being done.'],
+    ],
+    sources: [HBR],
+    services: ['lead-follow-up', 'paid-ads', 'ai-receptionist'],
+    industries: ['senior-living', 'pool-builders', 'roofing', 'private-schools'],
+    related: ['how-to-choose-an-ai-marketing-agency', 'speed-to-lead', 'ai-receptionist-vs-answering-service'],
   },
   {
     slug: 'five-minute-leak-check',
