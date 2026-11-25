@@ -35,11 +35,24 @@ export const faqPage = (faqs: [string, string][]) => ({
   mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 });
 
+export const priceOffers = () => [
+  {
+    '@type': 'Offer', name: 'Monthly retainer', price: '1000', priceCurrency: 'USD', url: abs('/pricing/'),
+    priceSpecification: { '@type': 'UnitPriceSpecification', price: '1000', priceCurrency: 'USD', unitText: 'MONTH', billingDuration: 'P1M' },
+    description: 'Month to month, no contract. Ad budget is paid by the client directly to Meta or Google.',
+  },
+  {
+    '@type': 'Offer', name: 'One-time setup fee', priceCurrency: 'USD', url: abs('/pricing/'),
+    priceSpecification: { '@type': 'PriceSpecification', minPrice: '300', maxPrice: '400', priceCurrency: 'USD' },
+    description: 'Connecting phone, calendar, forms and ad accounts, writing scripts and recording a 30-day baseline.',
+  },
+];
+
 export const serviceNode = (path: string, name: string, description: string, serviceType: string | string[], audience?: string) => ({
   '@type': 'Service', '@id': abs(path) + '#service', name, description, serviceType, url: abs(path),
   provider: { '@id': ORG() }, areaServed: { '@type': 'Country', name: 'United States' },
   ...(audience ? { audience: { '@type': 'BusinessAudience', audienceType: audience } } : {}),
-  offers: { '@type': 'Offer', description: 'Fixed monthly price set after a free leak check. Month to month. Ad budget paid directly to Meta or Google.' },
+  offers: priceOffers(),
 });
 
 export const article = (path: string, headline: string, description: string) => ({

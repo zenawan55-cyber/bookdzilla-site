@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import Close from '../components/Close.astro';
+import { PRICE } from '../data/site';
+import { abs } from '../data/site';
+import { webpage, breadcrumbs, faqPage, priceOffers } from '../data/schema';
+
+const title = 'Pricing: $1,000 a Month, No Contract';
+const description = 'Bookdzilla costs $1,000 a month plus a one-time setup fee of $300 to $400. Month to month, no contract. Your ad budget goes straight to Meta or Google.';
+const crumbs: [string, string][] = [['Home', '/'], ['Pricing', '/pricing/']];
+
+const prices: [string, string, string][] = [
+  [PRICE.monthly, 'a month', 'The retainer. It covers our work on the whole path from ad to booking, month to month, with no contract.'],
+  [PRICE.setupShort, 'one time', 'The setup fee. It covers connecting your phone, calendar, forms and ad accounts, writing the scripts with you and recording your 30-day baseline.'],
+];
+
+const covers: [string, string, string][] = [
+  ['Ads on Meta and Google', 'Campaigns, creative and weekly changes, judged on booked appointments rather than clicks.', '/services/paid-ads/'],
+  ['Landing pages', 'A page for each ad that repeats its promise, shows your reviews and books in one tap.', '/services/landing-pages/'],
+  ['The reply and follow-up', 'Every inquiry answered within a minute, then followed up until the person books or says no.', '/services/lead-follow-up/'],
+  ['An AI receptionist', 'Calls answered day and night, questions answered and appointments booked during the call.', '/services/ai-receptionist/'],
+  ['Past-customer campaigns', 'Old inquiries and past customers brought back with a reason to book again.', '/services/database-reactivation/'],
+  ['Tracking and a Monday report', 'Leads, booked appointments, cost per booked appointment, response time and revenue, every week.', '/services/tracking-and-reporting/'],
+];
+
+const excluded: [string, string][] = [
+  ['Your ad budget', 'You pay Meta or Google directly, so you always see exactly what was spent. We never mark it up or take a percentage of it.'],
+  ['Usage fees', 'Text messages and call minutes are billed by the phone provider at cost. You see the expected monthly amount before launch.'],
+  ['Software with its own fee', 'If your setup needs a tool with its own subscription, it is listed in your proposal before you agree to anything.'],
+];
+
+const faqs: [string, string][] = [
+  ['How much does Bookdzilla cost?', '$1,000 a month, plus a one-time setup fee of $300 to $400 depending on how much we connect. Your ad budget is separate and goes straight to Meta or Google.'],
+  ['Is there a contract?', 'No. It is month to month. You keep every ad account, page and contact if you stop.'],
+  ['Why is the setup fee a range?', 'It depends on what we connect. A reply and follow-up setup sits at the lower end. Adding the AI receptionist and new ad campaigns takes it to the upper end. You know the exact figure before you start.'],
+  ['Do you take a percentage of ad spend?', 'No. The fee is flat. Your ad budget is paid by you directly to Meta or Google and is never marked up.'],
+  ['Is the leak check free?', 'Yes. You get a 2-minute video of where your ads, pages and replies lose people, with no call and no obligation. You decide about the retainer after you have seen it.'],
+];
+
+const schema = [
+  webpage('/pricing/', title, description),
+  breadcrumbs(crumbs),
+  faqPage(faqs),
+  {
+    '@type': 'Service', '@id': abs('/pricing/') + '#service', name: 'Bookdzilla booking system retainer',
+    description: 'Ads, landing pages, lead follow-up, an AI receptionist, past-customer campaigns and weekly reporting for high-ticket local businesses in the United States.',
+    url: abs('/pricing/'), provider: { '@id': abs('/#organization') }, areaServed: { '@type': 'Country', name: 'United States' },
+    offers: priceOffers(),
+  },
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero solo crumbs={crumbs} h1="$1,000 a month. No contract." lead="Bookdzilla charges a $1,000 monthly retainer and a one-time setup fee of $300 to $400, depending on how much we connect. Your ad budget is separate and goes straight to Meta or Google. It starts with a free leak check, so you see the problems before you pay anything." secondary={['How it works', '/how-it-works/']} />
+
+  <section class="sec sec--flush" aria-labelledby="price-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="price-h">Two numbers.</h2>
+        <p class="lead">No tiers to compare and no percentage of your ad spend.</p>
+      </div>
+      <ul class="prices">
+        {prices.map(([amount, per, text]) => (
+          <li><p class="prices__amount"><b>{amount}</b> <span>{per}</span></p><p>{text}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="covers-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="covers-h">What the retainer covers.</h2>
+        <p class="lead">We start with the leak that costs you the most, then fix the next one. Every part below is part of the same monthly fee.</p>
+      </div>
+      <ul class="rows rows--2">
+        {covers.map(([t, d, href]) => (<li><h3><a href={href}>{t}</a></h3><p>{d}</p></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="not-h">
+    <div class="container">
+      <div class="head head--split">
+        <h2 id="not-h">What is not included.</h2>
+        <p class="lead">Three costs sit outside the fee. You see each one before you start.</p>
+      </div>
+      <ul class="rows rows--2">
+        {excluded.map(([t, d]) => (<li><h3>{t}</h3><p>{d}</p></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--flush" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="head"><h2 id="faq-h">Questions about price.</h2></div>
+      <Faq items={faqs} />
+      <p class="acts mt-xl"><a class="tlink" href="/faq/">All questions</a> <a class="tlink" href="/guides/how-to-choose-an-ai-marketing-agency/">How to choose an AI marketing agency</a></p>
+    </div>
+  </section>
+
+  <Close />
+</Base>

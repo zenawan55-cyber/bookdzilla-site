@@ -11,10 +11,19 @@ export const SITE = {
   updatedText: 'November 21, 2026',
 };
 
+// Public prices. Change them here and every page, FAQ, schema and llms.txt follows.
+export const PRICE = {
+  monthly: '$1,000',
+  setup: '$300 to $400',
+  setupShort: '$300–$400',
+  line: '$1,000 a month plus a one-time setup fee of $300 to $400',
+};
+
 export const NAV = [
   { href: '/services/', label: 'Services' },
   { href: '/industries/', label: 'Industries' },
   { href: '/how-it-works/', label: 'How it works' },
+  { href: '/pricing/', label: 'Pricing' },
   { href: '/guides/', label: 'Guides' },
 ];
 

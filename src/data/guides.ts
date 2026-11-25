@@ -443,7 +443,7 @@ export const GUIDES: Guide[] = [
 </section>
 <section id="fit">
 <h2>Where Bookdzilla fits.</h2>
-<p>Bookdzilla is an AI marketing agency for high-ticket local businesses. It starts with a <a href="/free-leak-check/">free leak check</a>: a 2-minute video of where your ads, pages and replies lose people. If you want the fixes built, it is one fixed monthly price, month to month, with your ad budget paid straight to Meta or Google and every account in your name. Results arrive every Monday as five numbers: leads, booked appointments, cost per booked appointment, response time and revenue.</p>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses. It starts with a <a href="/free-leak-check/">free leak check</a>: a 2-minute video of where your ads, pages and replies lose people. If you want the fixes built, it is $1,000 a month plus a one-time setup fee of $300 to $400, month to month, with your ad budget paid straight to Meta or Google and every account in your name. See <a href="/pricing/">pricing</a>. Results arrive every Monday as five numbers: leads, booked appointments, cost per booked appointment, response time and revenue.</p>
 </section>`,
     faqs: [
       ['Do I need an agency, or can I just buy the software?', 'If someone on your team has time to set it up, write the scripts, connect your phone and calendar and watch the numbers, software alone can work. Many owners buy the tool and never finish the setup. An agency is worth paying when it sets up, runs and measures the system for you, and ties the result to bookings.'],

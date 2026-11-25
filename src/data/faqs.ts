@@ -2,7 +2,7 @@ export type QA = [string, string];
 
 // The six questions shown on the home page.
 export const HOME_FAQS: QA[] = [
-  ['How much does it cost?', 'One fixed monthly price, set after the free leak check and based on what we build. Your ad budget stays separate and goes straight to Meta or Google.'],
+  ['How much does it cost?', '$1,000 a month, plus a one-time setup fee of $300 to $400 depending on how much we connect. Your ad budget stays separate and goes straight to Meta or Google.'],
   ['Is there a contract?', 'No. It is month to month.'],
   ['Do I need new software or to change how my team works?', 'No. We set everything up and connect it to the phone, calendar and tools you already use.'],
   ['What about my old leads?', 'We bring them back. Past inquiries and customers get a reactivation campaign, so revenue comes from people you have already paid for.'],
@@ -15,7 +15,7 @@ export const FAQ_GROUPS: { id: string; head: string; items: QA[] }[] = [
     id: 'what',
     head: 'What Bookdzilla does',
     items: [
-      ['What is Bookdzilla?', 'Bookdzilla is a marketing agency for high-ticket local businesses in the United States. It finds where ads, pages and follow-up lose buyers between the click and the booking, then fixes it.'],
+      ['What is Bookdzilla?', 'Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States. It finds where ads, pages and follow-up lose buyers between the click and the booking, then fixes it.'],
       ['What kinds of businesses do you work with?', 'Businesses where one booking is worth thousands of dollars: wedding and event venues, senior living communities, private schools, dental implant and cosmetic practices, med spas, pool builders, roofers and HVAC companies.'],
       ['What is a leak check?', 'A short audit of your path from ad to booking. We look at your live ads, the pages they open on a phone and how fast a new inquiry gets a real reply, then send the findings as a 2-minute video.'],
       ['Do I need to be running ads already?', 'No. Many clients do, and we make that spend book more. If you have strong reviews and a real website, we can also start campaigns from zero. You fund the ad budget.'],
@@ -27,7 +27,7 @@ export const FAQ_GROUPS: { id: string; head: string; items: QA[] }[] = [
     items: [
       HOME_FAQS[0],
       HOME_FAQS[1],
-      ['Is the ad budget included in your fee?', 'No. Ad budget is paid by you directly to Meta or Google, so you always see exactly what was spent.'],
+      ['Is the ad budget included in your fee?', 'No. Ad budget is paid by you directly to Meta or Google, so you always see exactly what was spent. We never mark it up or take a percentage of it.'],
       ['Is the leak check really free?', 'Yes. There is no call required and no obligation. If the video is useful and you want the fixes built, we talk about price then.'],
     ],
   },
