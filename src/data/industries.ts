@@ -87,7 +87,7 @@ export const INDUSTRIES: Industry[] = [
       ['The Knot, average cost of a wedding venue (2026 Real Weddings Study, weddings held in 2025)', 'https://www.theknot.com/content/average-cost-reception-venue'],
       HBR, AD_LIB, ADS_TC,
     ],
-    guides: ['wedding-venue-inquiry-response', 'speed-to-lead', 'five-minute-leak-check'],
+    guides: ['wedding-venue-inquiry-response', 'ai-receptionist-for-wedding-venues', 'speed-to-lead'],
     related: ['private-schools', 'senior-living', 'pool-builders'],
   },
   {

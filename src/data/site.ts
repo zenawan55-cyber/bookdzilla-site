@@ -7,8 +7,8 @@ export const SITE = {
   line: 'More bookings from the same ad spend.',
   about:
     'Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States. It finds where ads, pages, phone calls and follow-up lose buyers between the click and the booking, then fixes it, so the same ad spend books more appointments.',
-  updated: '2026-11-21',
-  updatedText: 'November 21, 2026',
+  updated: '2026-11-25',
+  updatedText: 'November 25, 2026',
 };
 
 // Public prices. Change them here and every page, FAQ, schema and llms.txt follows.
@@ -42,6 +42,6 @@ export const abs = (path: string) => new URL(path, import.meta.env.SITE).href;
 export const SHORT: Record<string, string> = {
   'paid-ads': 'Meta and Google ads', 'landing-pages': 'Landing pages', 'lead-follow-up': 'Speed to lead', 'ai-receptionist': 'AI receptionist', 'database-reactivation': 'Reactivation', 'local-seo': 'Local SEO', 'tracking-and-reporting': 'Lead tracking',
   'wedding-venues': 'Wedding venues', 'senior-living': 'Senior living', 'private-schools': 'Private schools', 'dental-practices': 'Dental practices', 'med-spas': 'Med spas', 'pool-builders': 'Pool builders', roofing: 'Roofing', hvac: 'HVAC',
-  'speed-to-lead': 'Lead response time', 'ads-get-clicks-but-no-bookings': 'Clicks, no bookings', 'cost-per-booked-appointment': 'Cost per booking', 'wedding-venue-inquiry-response': 'Venue inquiry replies', 'missed-call-text-back': 'Missed-call text back', 'five-minute-leak-check': 'Five-minute audit', 'ai-receptionist-vs-answering-service': 'AI vs answering service', 'how-to-choose-an-ai-marketing-agency': 'Choosing an agency', 'ai-marketing-agency-vs-traditional-agency': 'AI vs traditional agency',
+  'speed-to-lead': 'Lead response time', 'ads-get-clicks-but-no-bookings': 'Clicks, no bookings', 'cost-per-booked-appointment': 'Cost per booking', 'wedding-venue-inquiry-response': 'Venue inquiry replies', 'missed-call-text-back': 'Missed-call text back', 'five-minute-leak-check': 'Five-minute audit', 'ai-receptionist-vs-answering-service': 'AI vs answering service', 'how-to-choose-an-ai-marketing-agency': 'Choosing an agency', 'ai-marketing-agency-vs-traditional-agency': 'AI vs traditional agency', 'ai-receptionist-for-wedding-venues': 'Venue AI options',
 };
 export const TONES = ['blue', 'orange', 'green', 'pink', 'sun'] as const;

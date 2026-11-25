@@ -206,7 +206,7 @@ export const SERVICES: Service[] = [
       ['Can it handle emergency calls?', 'Yes. You set the rules. A burst pipe, no heat in winter or a leaking roof can ring your on-call phone straight away, while routine calls are booked onto the calendar.'],
     ],
     industries: ['hvac', 'roofing', 'dental-practices', 'med-spas', 'senior-living'],
-    guides: ['ai-receptionist-vs-answering-service', 'missed-call-text-back'],
+    guides: ['ai-receptionist-vs-answering-service', 'ai-receptionist-for-wedding-venues', 'missed-call-text-back'],
     thread: {
       top: 'Incoming call, Tue 8:47 pm',
       time: 'Answered on the first ring',

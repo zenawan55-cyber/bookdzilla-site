@@ -20,6 +20,10 @@ const AD_LIB: [string, string] = ['Meta Ad Library', 'https://www.facebook.com/a
 const ADS_TC: [string, string] = ['Google Ads Transparency Center', 'https://adstransparency.google.com/'];
 const GOOGLE_AI: [string, string] = ['Google Search Central, "AI features and your website"', 'https://developers.google.com/search/docs/appearance/ai-features'];
 const KNOT: [string, string] = ['The Knot, average cost of a wedding venue (2026 Real Weddings Study, weddings held in 2025)', 'https://www.theknot.com/content/average-cost-reception-venue'];
+const HYPERLEAP: [string, string] = ['Hyperleap AI, "AI Front Desk for Wedding Venues" (plans and channels)', 'https://hyperleap.ai/wedding-venues-agents'];
+const TRILLET: [string, string] = ['Trillet, "AI Answering Service for Wedding Venues" (pricing and booking)', 'https://trillet.ai/blogs/ai-answering-service-for-wedding-venues'];
+const WEDDINGHERO: [string, string] = ['WeddingHero, "The Best AI Sales Assistant & Receptionist for Wedding Venues in 2026" (updated June 2026)', 'https://weddinghero.ca/wedding-venue/ideas/the-best-ai-sales-assistant-receptionist-for-wedding-venues-in-2026-57'];
+const G2_VENUEX: [string, string] = ['G2, VenueX AI pricing overview', 'https://www.g2.com/products/venuex-ai/pricing'];
 
 export const GUIDES: Guide[] = [
   {
@@ -280,6 +284,76 @@ export const GUIDES: Guide[] = [
     services: ['lead-follow-up', 'landing-pages'],
     industries: ['wedding-venues'],
     related: ['speed-to-lead', 'missed-call-text-back', 'five-minute-leak-check'],
+  },
+  {
+    slug: 'ai-receptionist-for-wedding-venues',
+    title: 'AI receptionist and inquiry follow-up for wedding venues: options and prices.',
+    seoTitle: 'AI Receptionist for Wedding Venues: Options and 2026 Prices',
+    desc: 'What wedding venues pay for AI inquiry replies and call answering in 2026: AI software from $40 a month, venue AI assistants and done-for-you agencies compared.',
+    card: 'AI software from $40 a month, venue AI assistants and done-for-you agencies, compared by price and coverage.',
+    answer: 'A wedding venue can buy AI inquiry replies and call answering three ways. General AI software you set up yourself starts at $40 a month for chat and messaging, and an AI phone receptionist such as Trillet starts at $249 a month. Venue AI sales assistants that also catch The Knot, WeddingWire and Zola leads list prices from $149 to $499 a month, and some quote up to about $1,600. A done-for-you agency builds the system and also fixes the ads and pages that bring couples in. Bookdzilla charges $1,000 a month plus a one-time setup fee of $300 to $400.',
+    read: 6,
+    toc: [['ways', 'Three ways to buy it'], ['prices', 'Options and prices'], ['check', 'What to check before you pay'], ['which', 'Which one fits your venue'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="ways">
+<h2>Three ways to buy it.</h2>
+<p>The job is the same in every case: answer each inquiry within a minute with the date, a starting price and tour times, pick up the phone when your team cannot, and follow up until the couple books a tour or says no. Couples message several venues in one evening and tour the ones that answer first. <a href="/guides/wedding-venue-inquiry-response/">How to reply to a venue inquiry</a> covers what that first reply should say.</p>
+<ul>
+<li><b>General AI software.</b> A chat agent or phone receptionist you configure yourself. It is the cheapest option, and you write the answers, connect the calendar and check the conversations.</li>
+<li><b>Venue AI sales assistants.</b> Software built for venues. It reads leads from listing sites such as The Knot, WeddingWire and Zola, replies by email and text and books tours. Some also answer calls.</li>
+<li><b>Done-for-you agencies.</b> A team that builds the reply, booking, follow-up and call answering for you, usually on a CRM such as GoHighLevel, and also runs the ads and landing pages that produce the inquiries.</li>
+</ul>
+</section>
+<section id="prices">
+<h2>Options and prices.</h2>
+<div class="cmp-wrap"><table class="cmp">
+<thead><tr><th scope="col">Option</th><th scope="col">What it is</th><th scope="col">Published price</th><th scope="col">Answers calls</th><th scope="col">What it covers</th></tr></thead>
+<tbody>
+<tr><th scope="row">Hyperleap AI</th><td>General AI chat agent</td><td>$40, $100 or $200 a month</td><td>Not listed</td><td>Website chat, WhatsApp, Instagram and Facebook messages. Books tours through Calendly or Cal.com on the $100 and $200 plans.</td></tr>
+<tr><th scope="row">Trillet</th><td>General AI phone receptionist</td><td>From $249 a month with 2,500 minutes, then $0.12 a minute</td><td>Yes</td><td>Phone calls. Books tours through Google Calendar, Cal.com or a GoHighLevel calendar.</td></tr>
+<tr><th scope="row">Mikla</th><td>Venue AI sales assistant</td><td>$149 (up to 50 leads), $249 or $499 a month. Enterprise quoted.</td><td>Yes</td><td>Email, text, phone, website chat, Instagram, Facebook and WhatsApp. The Knot, WeddingWire and Zola leads.</td></tr>
+<tr><th scope="row">Breezit</th><td>Venue AI sales assistant</td><td>From $199 a month</td><td>Yes</td><td>Email, text, phone and lead portals, including The Knot, WeddingWire and Zola.</td></tr>
+<tr><th scope="row">VenueAI</th><td>Venue AI sales assistant</td><td>Demo-led. About $399 to $1,599 a month by lead volume.</td><td>Not listed</td><td>Email and text. The Knot, WeddingWire and Zola leads.</td></tr>
+<tr><th scope="row">VenueX AI</th><td>AI agent for venue sales teams</td><td>Not published</td><td>Not listed</td><td>Email, text and web chat. Tours to Google Calendar or Outlook.</td></tr>
+<tr><th scope="row">Bookdzilla</th><td>Done-for-you agency</td><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Website forms, The Knot and WeddingWire emails, Instagram and Facebook messages and calls, plus Meta and Google ads and landing pages.</td></tr>
+</tbody>
+</table></div>
+<p>Prices are monthly in US dollars and leave out your ad budget, and phone minutes and texts unless stated. Hyperleap and Trillet prices come from their own pages. Mikla, Breezit and VenueAI are as listed in WeddingHero's June 2026 comparison, and VenueX AI from G2. Checked November 25, 2026, so confirm the current price before you buy. Bookdzilla wrote this guide and is one of the options in it.</p>
+</section>
+<section id="check">
+<h2>What to check before you pay.</h2>
+<ol>
+<li><b>Which inquiries it reads.</b> List where your couples come from: website form, The Knot, WeddingWire, Zola, Instagram, Facebook and phone. Anything the tool does not read still waits for your team.</li>
+<li><b>Whether it gives a price.</b> Most couples rank price first. A reply that says "let's set up a call" loses to one that gives a starting Saturday rate.</li>
+<li><b>Tours versus dates.</b> Booking a tour from your calendar is easy. Confirming a wedding date is not, because holds and contracts live in your booking system. A safe setup offers tour times and lets a coordinator confirm the date.</li>
+<li><b>Who writes and approves the replies.</b> You should see every script before it goes live and be able to change the tone.</li>
+<li><b>Follow-up that stops.</b> Messages on day 1, 3, 7 and 14 are a sensible default, and they should stop the moment the couple replies or books.</li>
+<li><b>Who owns the number and the data.</b> Your leads, conversations and phone number should stay yours if you cancel.</li>
+</ol>
+</section>
+<section id="which">
+<h2>Which one fits your venue.</h2>
+<ul>
+<li><b>Plenty of inquiries, slow replies.</b> A venue AI sales assistant is usually enough. Pick one that reads every source your couples use.</li>
+<li><b>Calls going to voicemail.</b> Add phone answering, either from a venue tool that covers calls or a separate AI receptionist.</li>
+<li><b>Too few inquiries, or ads that do not produce tours.</b> Software will not fix that. You need someone to fix the ads and the page as well as the reply.</li>
+<li><b>No time to set anything up.</b> Choose a done-for-you option and judge it on booked tours, not messages sent.</li>
+</ul>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States, including wedding venues. It builds the reply within a minute, the <a href="/services/ai-receptionist/">AI receptionist</a> and the follow-up in GoHighLevel, and runs the Meta and Google ads and landing pages when those are where couples are lost. It costs $1,000 a month plus a one-time setup fee of $300 to $400, month to month. See <a href="/pricing/">pricing</a> and <a href="/industries/wedding-venues/">marketing for wedding venues</a>.</p>
+<p>If your ads already bring enough couples and only the reply is slow, a venue AI tool from the table may cost less. Start with a <a href="/free-leak-check/">free leak check</a> to see where tours are being lost before you buy anything.</p>
+</section>`,
+    faqs: [
+      ['How much does an AI receptionist cost for a wedding venue?', 'Published prices in 2026 run from $40 a month for chat-only software to $499 a month for venue AI sales assistants, and some demo-led tools quote up to about $1,600 a month. Phone minutes and texts can cost extra. Agencies that also run your ads charge more: Bookdzilla is $1,000 a month plus a one-time setup fee of $300 to $400.'],
+      ['Can an AI receptionist confirm a wedding date?', 'Only if it reads your booking system. Most connect to a calendar for tours, which does not show holds or contracts, so a safe setup offers tour times and has a coordinator confirm the date.'],
+      ['Does it work with The Knot and WeddingWire?', 'Venue AI sales assistants usually read leads from The Knot, WeddingWire and Zola. General AI tools may need those emails forwarded or connected, so ask which sources are covered before you pay.'],
+    ],
+    sources: [HYPERLEAP, TRILLET, WEDDINGHERO, G2_VENUEX, KNOT],
+    services: ['ai-receptionist', 'lead-follow-up', 'paid-ads'],
+    industries: ['wedding-venues'],
+    related: ['wedding-venue-inquiry-response', 'ai-receptionist-vs-answering-service', 'how-to-choose-an-ai-marketing-agency'],
   },
   {
     slug: 'missed-call-text-back',
