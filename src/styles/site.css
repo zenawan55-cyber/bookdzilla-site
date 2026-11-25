@@ -531,3 +531,6 @@ a.tile:hover { transform: translateY(-4px); }
 @media (max-width: 40rem) { .prices { grid-template-columns: minmax(0, 1fr); } }
 .nav__link { white-space: nowrap; }
 @media (min-width: 64.01rem) and (max-width: 76rem) { .nav__end .btn--soft { display: none; } .nav__link { padding-inline: var(--space-xs); } }
+
+.prose .cmp tbody th { font-weight: 600; }
+.prose .cmp th small { display: block; margin-top: var(--space-3xs); font-size: var(--text-sm); font-weight: 400; line-height: 1.4; color: var(--color-ink-2); }

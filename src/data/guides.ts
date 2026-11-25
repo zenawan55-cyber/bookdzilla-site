@@ -307,15 +307,15 @@ export const GUIDES: Guide[] = [
 <section id="prices">
 <h2>Options and prices.</h2>
 <div class="cmp-wrap"><table class="cmp">
-<thead><tr><th scope="col">Option</th><th scope="col">What it is</th><th scope="col">Published price</th><th scope="col">Answers calls</th><th scope="col">What it covers</th></tr></thead>
+<thead><tr><th scope="col">Option</th><th scope="col">Published price</th><th scope="col">Calls</th><th scope="col">What it covers</th></tr></thead>
 <tbody>
-<tr><th scope="row">Hyperleap AI</th><td>General AI chat agent</td><td>$40, $100 or $200 a month</td><td>Not listed</td><td>Website chat, WhatsApp, Instagram and Facebook messages. Books tours through Calendly or Cal.com on the $100 and $200 plans.</td></tr>
-<tr><th scope="row">Trillet</th><td>General AI phone receptionist</td><td>From $249 a month with 2,500 minutes, then $0.12 a minute</td><td>Yes</td><td>Phone calls. Books tours through Google Calendar, Cal.com or a GoHighLevel calendar.</td></tr>
-<tr><th scope="row">Mikla</th><td>Venue AI sales assistant</td><td>$149 (up to 50 leads), $249 or $499 a month. Enterprise quoted.</td><td>Yes</td><td>Email, text, phone, website chat, Instagram, Facebook and WhatsApp. The Knot, WeddingWire and Zola leads.</td></tr>
-<tr><th scope="row">Breezit</th><td>Venue AI sales assistant</td><td>From $199 a month</td><td>Yes</td><td>Email, text, phone and lead portals, including The Knot, WeddingWire and Zola.</td></tr>
-<tr><th scope="row">VenueAI</th><td>Venue AI sales assistant</td><td>Demo-led. About $399 to $1,599 a month by lead volume.</td><td>Not listed</td><td>Email and text. The Knot, WeddingWire and Zola leads.</td></tr>
-<tr><th scope="row">VenueX AI</th><td>AI agent for venue sales teams</td><td>Not published</td><td>Not listed</td><td>Email, text and web chat. Tours to Google Calendar or Outlook.</td></tr>
-<tr><th scope="row">Bookdzilla</th><td>Done-for-you agency</td><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Website forms, The Knot and WeddingWire emails, Instagram and Facebook messages and calls, plus Meta and Google ads and landing pages.</td></tr>
+<tr><th scope="row">Hyperleap AI<small>General AI chat agent</small></th><td>$40, $100 or $200 a month</td><td>Not listed</td><td>Website chat, WhatsApp, Instagram and Facebook messages. Books tours through Calendly or Cal.com on the $100 and $200 plans.</td></tr>
+<tr><th scope="row">Trillet<small>General AI phone receptionist</small></th><td>From $249 a month with 2,500 minutes, then $0.12 a minute</td><td>Yes</td><td>Phone calls. Books tours through Google Calendar, Cal.com or a GoHighLevel calendar.</td></tr>
+<tr><th scope="row">Mikla<small>Venue AI sales assistant</small></th><td>$149 (up to 50 leads), $249 or $499 a month. Enterprise quoted.</td><td>Yes</td><td>Email, text, phone, website chat, Instagram, Facebook and WhatsApp. The Knot, WeddingWire and Zola leads.</td></tr>
+<tr><th scope="row">Breezit<small>Venue AI sales assistant</small></th><td>From $199 a month</td><td>Yes</td><td>Email, text, phone and lead portals, including The Knot, WeddingWire and Zola.</td></tr>
+<tr><th scope="row">VenueAI<small>Venue AI sales assistant</small></th><td>Demo-led. About $399 to $1,599 a month by lead volume.</td><td>Not listed</td><td>Email and text. The Knot, WeddingWire and Zola leads.</td></tr>
+<tr><th scope="row">VenueX AI<small>AI agent for venue sales teams</small></th><td>Not published</td><td>Not listed</td><td>Email, text and web chat. Tours to Google Calendar or Outlook.</td></tr>
+<tr><th scope="row">Bookdzilla<small>Done-for-you agency</small></th><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Website forms, The Knot and WeddingWire emails, Instagram and Facebook messages and calls, plus Meta and Google ads and landing pages.</td></tr>
 </tbody>
 </table></div>
 <p>Prices are monthly in US dollars and leave out your ad budget, and phone minutes and texts unless stated. Hyperleap and Trillet prices come from their own pages. Mikla, Breezit and VenueAI are as listed in WeddingHero's June 2026 comparison, and VenueX AI from G2. Checked November 25, 2026, so confirm the current price before you buy. Bookdzilla wrote this guide and is one of the options in it.</p>
