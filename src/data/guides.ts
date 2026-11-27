@@ -24,6 +24,20 @@ const HYPERLEAP: [string, string] = ['Hyperleap AI, "AI Front Desk for Wedding V
 const TRILLET: [string, string] = ['Trillet, "AI Answering Service for Wedding Venues" (pricing and booking)', 'https://trillet.ai/blogs/ai-answering-service-for-wedding-venues'];
 const WEDDINGHERO: [string, string] = ['WeddingHero, "The Best AI Sales Assistant & Receptionist for Wedding Venues in 2026" (updated June 2026)', 'https://weddinghero.ca/wedding-venue/ideas/the-best-ai-sales-assistant-receptionist-for-wedding-venues-in-2026-57'];
 const G2_VENUEX: [string, string] = ['G2, VenueX AI pricing overview', 'https://www.g2.com/products/venuex-ai/pricing'];
+const EESEL_DENTAL: [string, string] = ['eesel AI, "AI receptionist for dentists: what works in 2026" (vendor pages checked November 4, 2026)', 'https://www.eesel.ai/blog/ai-receptionist-for-dentists'];
+const CLOUDTALK_DENTAL: [string, string] = ['CloudTalk, "Best Dental AI Receptionist: 10 Tools Compared for 2026" (updated October 29, 2026)', 'https://www.cloudtalk.io/blog/best-dental-ai-virtual-receptionist-tools/'];
+const JUSTCALL_DENTAL: [string, string] = ['JustCall, "The best AI receptionists for dental practices"', 'https://justcall.io/blog/best-ai-receptionists-dental.html'];
+const DIALZARA_FRONTDESK: [string, string] = ['Dialzara, "My AI Front Desk vs RingCentral" (plans and minutes)', 'https://dialzara.com/compare/my-ai-front-desk-vs-ringcentral'];
+const KERAGON_MEDSPA: [string, string] = ['Keragon, "10 Best AI Agent Software for Med Spas in 2026" (November 12, 2026)', 'https://www.keragon.com/blog/best-ai-agent-software-for-med-spas-in-2026'];
+const ZENOTI_PRICING: [string, string] = ['Zenoti, pricing (AI Voice Receptionist on custom-priced plans)', 'https://www.zenoti.com/pricing'];
+const PODIUM_PLANS: [string, string] = ['Podium Aesthetics, plans (custom pricing)', 'https://aesthetics.podium.com/plans'];
+const JUSTCALL_MEDSPA: [string, string] = ['JustCall, "Best AI receptionists for med spas"', 'https://justcall.io/blog/best-ai-receptionists-for-medspas.html'];
+const AMSPA_SOCIAL: [string, string] = ['American Med Spa Association, "Stop leaking paid social leads"', 'https://www.americanmedspa.org/news/stop-leaking-paid-social-leads-how-med-spas-can-use-ai-to-plug-the-intake-gap/'];
+const ROSIE_PRICING: [string, string] = ['Rosie, plans and pricing', 'https://heyrosie.com/pricing'];
+const GOODCALL_PRICING: [string, string] = ['Goodcall, pricing', 'https://www.goodcall.com/pricing'];
+const JOBBER_RECEPTIONIST: [string, string] = ['Jobber Help Center, "Receptionist, powered by Jobber AI" (updated November 18, 2026)', 'https://help.getjobber.com/en/articles/receptionistpowered-by-jobber-ai/'];
+const OTHERWORLDS_PRICING: [string, string] = ['Otherworlds AI, pricing', 'https://www.otherworldsai.com/pricing'];
+const CARLY_HVAC: [string, string] = ['Carly, "HVAC Answering Service: Options and Costs (2026)" (list prices taken October 7, 2026)', 'https://www.usecarly.com/blog/hvac-answering-service/'];
 
 export const GUIDES: Guide[] = [
   {
@@ -354,6 +368,217 @@ export const GUIDES: Guide[] = [
     services: ['ai-receptionist', 'lead-follow-up', 'paid-ads'],
     industries: ['wedding-venues'],
     related: ['wedding-venue-inquiry-response', 'ai-receptionist-vs-answering-service', 'how-to-choose-an-ai-marketing-agency'],
+  },
+  {
+    slug: 'ai-receptionist-for-dental-practices',
+    title: 'AI receptionist and new-patient follow-up for dental practices: options and prices.',
+    seoTitle: 'AI Receptionist for Dentists: Options and 2026 Prices',
+    desc: 'What dental practices pay for an AI receptionist and new-patient follow-up in 2026: dental AI platforms, general AI receptionists and done-for-you agencies compared.',
+    card: 'Dental AI platforms from $299 a month, general AI receptionists and done-for-you agencies, compared.',
+    answer: 'A dental practice can buy AI call answering and new-patient follow-up three ways. Dental AI platforms that book straight into Dentrix, Open Dental or Eaglesoft publish prices from $299 to $1,199 a month, and some quote only. General AI receptionists such as Smith.ai start free for 25 calls and reach $500 a month for 300 calls, but name no dental software. A done-for-you agency builds the reply, reminders and follow-up and also runs the ads. Bookdzilla charges $1,000 a month plus a one-time setup fee of $300 to $400.',
+    read: 6,
+    toc: [['ways', 'Three ways to buy it'], ['prices', 'Options and prices'], ['check', 'What to check before you pay'], ['which', 'Which one fits your practice'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="ways">
+<h2>Three ways to buy it.</h2>
+<p>The job has two halves. The phone: answer new-patient calls when the front desk is busy, at lunch and after hours, and book them into the schedule. The inbox: reply to website forms and ad leads within a minute with a fee range, financing and consult times, then remind and follow up. Most products cover the first half well. Fewer cover the second.</p>
+<ul>
+<li><b>Dental AI platforms.</b> Software built for dental offices. It answers calls, books into your practice management software and, on some plans, texts and chats.</li>
+<li><b>General AI receptionists.</b> Phone answering for any business. Cheaper to start, but it books through calendar apps, so your team re-enters the appointment.</li>
+<li><b>Done-for-you agencies.</b> A team that builds the reply, booking, reminders and follow-up for you, usually on a CRM such as GoHighLevel, and also runs the Meta and Google ads and the landing pages.</li>
+</ul>
+</section>
+<section id="prices">
+<h2>Options and prices.</h2>
+<div class="cmp-wrap"><table class="cmp">
+<thead><tr><th scope="col">Option</th><th scope="col">Published price</th><th scope="col">Calls</th><th scope="col">What it covers</th></tr></thead>
+<tbody>
+<tr><th scope="row">Dentina<small>Dental AI receptionist</small></th><td>$299 or $399 a month per location, billed annually</td><td>Yes</td><td>Books into Dentrix, Open Dental, Eaglesoft and other systems. The $399 plan adds two-way texting and web chat.</td></tr>
+<tr><th scope="row">Viva AI<small>Dental AI receptionist</small></th><td>$349, $899 or $1,199 a month in credits, about 10 per AI call minute</td><td>Yes</td><td>Calls, texts, web chat and email. Books into Open Dental, Dentrix, Eaglesoft and Curve.</td></tr>
+<tr><th scope="row">Weave<small>Phone and texting platform with AI</small></th><td>Platform from $199 a month. AI receptionist quoted.</td><td>Yes</td><td>Calls and texts. Books directly into Open Dental, Eaglesoft, Dentrix and Denticon, and takes requests in other systems.</td></tr>
+<tr><th scope="row">Arini<small>Dental AI receptionist</small></th><td>Quote only</td><td>Yes</td><td>Calls, cancellations and insurance questions, plus outbound campaigns. Books into Open Dental, Eaglesoft, Curve, Dentrix Ascend and others.</td></tr>
+<tr><th scope="row">Smith.ai<small>General AI receptionist</small></th><td>Free for 25 calls, $150 a month for 75 calls, $500 for 300</td><td>Yes</td><td>Answers, qualifies and routes calls, with live receptionists available. Books through calendar tools, not dental software.</td></tr>
+<tr><th scope="row">Bookdzilla<small>Done-for-you agency</small></th><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Forms, calls and ad leads answered within a minute with a fee range, financing and consult times. Reminders, unscheduled-treatment follow-up, Meta and Google ads and landing pages.</td></tr>
+</tbody>
+</table></div>
+<p>Prices are monthly in US dollars. Dentina, Viva AI, Weave, Arini and Smith.ai are as reported in eesel's November 4, 2026 check of each vendor's pricing, integration and help pages, and Dentina and Weave match CloudTalk's October 2026 comparison. Checked November 26, 2026, so confirm the current price before you buy. Bookdzilla wrote this guide and is one of the options in it.</p>
+</section>
+<section id="check">
+<h2>What to check before you pay.</h2>
+<ol>
+<li><b>Booking into your software.</b> Name your system and version. Direct booking puts the appointment in the schedule. A "request" means your team still types it in, which is where after-hours bookings get lost.</li>
+<li><b>New patients, not only reschedules.</b> New-patient calls ask about insurance, first-visit cost and openings. Make a test call as a new patient before you sign.</li>
+<li><b>Web and ad leads.</b> Implant and cosmetic patients often fill in a form at night. A tool that only answers the phone leaves those waiting until morning.</li>
+<li><b>Fees and financing.</b> For implants, veneers and aligners, a reply with a fee range and a payment plan books more consults than "come in to find out".</li>
+<li><b>Patient privacy.</b> Get a signed business associate agreement before the first live call, ask where recordings are stored, and keep clinical questions out of automated texts.</li>
+<li><b>Treatment plans that stall.</b> Patients who said "let me think about it" need a follow-up. Ask who sends it, and when it stops.</li>
+<li><b>Billing terms.</b> Some plans are per location and billed annually. Price the full year before you compare.</li>
+</ol>
+</section>
+<section id="which">
+<h2>Which one fits your practice.</h2>
+<ul>
+<li><b>Calls overflow at lunch and after hours.</b> A dental AI platform that books into your software is usually the right first buy.</li>
+<li><b>Most new patients come from forms and ads.</b> Make sure those get a reply within a minute, not only the phone.</li>
+<li><b>Consults happen but treatment does not.</b> Follow-up on open treatment plans matters more than answering speed.</li>
+<li><b>Ads bring leads but few consults.</b> Software will not fix the page or the offer. You need someone who fixes the ads, the page and the reply together.</li>
+</ul>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States, including implant and cosmetic dental practices. It builds the reply within a minute, the <a href="/services/ai-receptionist/">AI receptionist</a>, the reminders and the treatment-plan follow-up in GoHighLevel, booking into your calendar where the software allows or into consult slots your team confirms. It also runs the Meta and Google ads and the landing pages. It costs $1,000 a month plus a one-time setup fee of $300 to $400, month to month. See <a href="/pricing/">pricing</a> and <a href="/industries/dental-practices/">marketing for dental practices</a>.</p>
+<p>If your ads already bring enough patients and only the phone is the problem, a dental AI platform from the table may cost less. Start with a <a href="/free-leak-check/">free leak check</a> to see where consults are being lost before you buy anything.</p>
+</section>`,
+    faqs: [
+      ['How much does an AI receptionist cost for a dental practice?', 'Published prices in 2026 run from $299 to $1,199 a month for dental AI platforms that book into practice software, and some vendors quote only. General AI receptionists start free and reach $500 a month for 300 calls. Bookdzilla, which also handles web leads, follow-up and ads, is $1,000 a month plus a one-time setup fee of $300 to $400.'],
+      ['Does an AI receptionist book into Dentrix, Open Dental or Eaglesoft?', 'Dental platforms such as Dentina, Viva AI and Arini book directly into those systems, though supported versions differ. Weave books directly into four systems and takes requests in others. General tools book through calendar apps, so your team re-enters the appointment.'],
+      ['Is an AI receptionist HIPAA compliant?', 'Ask for a signed business associate agreement before the first live call, and check where recordings are stored and for how long. Keep clinical questions out of automated texts.'],
+    ],
+    sources: [EESEL_DENTAL, CLOUDTALK_DENTAL, JUSTCALL_DENTAL],
+    services: ['ai-receptionist', 'lead-follow-up', 'database-reactivation'],
+    industries: ['dental-practices'],
+    related: ['ai-receptionist-vs-answering-service', 'speed-to-lead', 'how-to-choose-an-ai-marketing-agency'],
+  },
+  {
+    slug: 'ai-receptionist-for-med-spas',
+    title: 'AI receptionist and lead follow-up for med spas: options and prices.',
+    seoTitle: 'AI Receptionist for Med Spas: Options and 2026 Prices',
+    desc: 'What med spas pay for an AI receptionist and instant lead follow-up in 2026: general AI receptionists, med spa platforms and done-for-you agencies compared.',
+    card: 'AI receptionists from $99 a month, med spa platforms and done-for-you agencies, compared.',
+    answer: 'A med spa can buy AI call answering and lead follow-up three ways. Standalone AI receptionists publish prices from $99 to $500 a month. Med spa platforms such as Zenoti and Podium include AI on custom-quoted plans, and Aesthetix CRM sells an AI Employee add-on for $299 a month. A done-for-you agency builds the reply, booking and rebooking and also runs the ads. Bookdzilla charges $1,000 a month plus a one-time setup fee of $300 to $400.',
+    read: 6,
+    toc: [['ways', 'Three ways to buy it'], ['prices', 'Options and prices'], ['check', 'What to check before you pay'], ['which', 'Which one fits your med spa'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="ways">
+<h2>Three ways to buy it.</h2>
+<p>Most med spa inquiries do not start with a phone call. They arrive as an Instagram message, a text or a Meta lead form at 9pm, and paid social is the first source of new clients for most practices. The job is to answer those within a minute with a starting price and two open times, pick up the phone when the front desk is with a client, and bring clients back when their treatment is due.</p>
+<ul>
+<li><b>Standalone AI receptionists.</b> Phone answering you set up yourself. Cheapest to start. Booking usually goes to a shared calendar or a texted link.</li>
+<li><b>Med spa platforms.</b> Booking and practice software with AI built in or sold as an add-on. Best if you already run on it.</li>
+<li><b>Done-for-you agencies.</b> A team that builds the reply, booking, reminders and rebooking for you, usually on a CRM such as GoHighLevel, and also runs the ads and the landing pages.</li>
+</ul>
+</section>
+<section id="prices">
+<h2>Options and prices.</h2>
+<div class="cmp-wrap"><table class="cmp">
+<thead><tr><th scope="col">Option</th><th scope="col">Published price</th><th scope="col">Calls</th><th scope="col">What it covers</th></tr></thead>
+<tbody>
+<tr><th scope="row">Frontdesk<small>General AI receptionist</small></th><td>$99 a month for 200 minutes or $149 for 300, about 20% less billed annually</td><td>Yes</td><td>Answers calls around the clock. Booking workflows come with the $149 plan.</td></tr>
+<tr><th scope="row">Smith.ai<small>AI receptionist with live backup</small></th><td>Free for 25 calls, $150 a month for 75 calls, $500 for 300</td><td>Yes</td><td>Answers, qualifies and routes calls, and can transfer to live receptionists.</td></tr>
+<tr><th scope="row">Aesthetix CRM<small>Med spa CRM with an AI add-on</small></th><td>CRM from $299 a month, plus $299 for the AI Employee</td><td>Not listed</td><td>Lead conversion, follow-up and marketing automation inside the CRM.</td></tr>
+<tr><th scope="row">Zenoti<small>Med spa software with AI agents</small></th><td>Custom pricing. AI Voice Receptionist on the top plan.</td><td>Yes</td><td>Answers calls around the clock and books inside Zenoti.</td></tr>
+<tr><th scope="row">Podium<small>Med spa platform with an AI Employee</small></th><td>Custom pricing</td><td>Not listed</td><td>Forms, texts, calls and email in one inbox. The AI Employee answers questions and books appointments.</td></tr>
+<tr><th scope="row">Bookdzilla<small>Done-for-you agency</small></th><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Instagram messages, forms, ad leads and missed calls answered within a minute with a starting price and two times. Rebooking by treatment, Meta ads and landing pages.</td></tr>
+</tbody>
+</table></div>
+<p>Prices are monthly in US dollars. Frontdesk is as listed in Dialzara's comparison, Smith.ai from eesel's November 4, 2026 check of its pricing page, Aesthetix CRM from Keragon's November 2026 comparison, and Zenoti and Podium from their own pricing pages. Checked November 26, 2026, so confirm the current price before you buy. Bookdzilla wrote this guide and is one of the options in it.</p>
+</section>
+<section id="check">
+<h2>What to check before you pay.</h2>
+<ol>
+<li><b>Where bookings land.</b> A shared calendar cannot see which injector, room and treatment length a slot needs, so many setups end with the AI capturing the lead and a coordinator placing the booking. Ask whether it books into Boulevard, Zenoti, Vagaro or your system, or sends a link.</li>
+<li><b>Messages, not only calls.</b> If most inquiries come from Instagram, texts and Meta lead forms, a phone-only receptionist misses the busiest channel.</li>
+<li><b>Starting prices.</b> "Lip filler starts at $650 a syringe" books consults. "Come in for a consult to find out" sends clients to the spa that gave a number.</li>
+<li><b>A hard line on medical questions.</b> Replies should cover prices, availability and booking. Anything clinical goes to your provider.</li>
+<li><b>Deposits and no-shows.</b> Ask how it confirms, reminds and handles deposits for first-time clients.</li>
+<li><b>Privacy.</b> Med spas handle health information. Ask whether the vendor signs a business associate agreement.</li>
+<li><b>Rebooking.</b> Treatments that last three or four months need a reminder when they are due. Check who sends it.</li>
+</ol>
+</section>
+<section id="which">
+<h2>Which one fits your med spa.</h2>
+<ul>
+<li><b>Calls missed while the team is with clients.</b> A standalone AI receptionist, or your platform's AI if it has one.</li>
+<li><b>Already on Zenoti, Podium or Aesthetix.</b> Price their AI first, because it books where your schedule lives.</li>
+<li><b>Paid social leads going cold.</b> A reply within a minute on messages and lead forms matters more than the phone.</li>
+<li><b>Ads that do not produce consults.</b> Software will not fix the offer or the page. You need someone who fixes the ads, the page and the reply together.</li>
+</ul>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States, including med spas. It builds the reply within a minute on messages, forms and missed calls, the <a href="/services/ai-receptionist/">AI receptionist</a> and the rebooking reminders in GoHighLevel, and runs the Meta ads and landing pages for each offer. It costs $1,000 a month plus a one-time setup fee of $300 to $400, month to month. See <a href="/pricing/">pricing</a> and <a href="/industries/med-spas/">marketing for med spas</a>.</p>
+<p>If your ads already bring enough clients and you only need the phone answered, a receptionist from the table may cost less. Start with a <a href="/free-leak-check/">free leak check</a> to see where bookings are being lost before you buy anything.</p>
+</section>`,
+    faqs: [
+      ['How much does an AI receptionist cost for a med spa?', 'Published prices in 2026 start at $99 a month for standalone AI receptionists and reach $500 a month for 300 calls. Med spa platforms such as Zenoti and Podium quote their AI on custom plans. Bookdzilla, which also runs the ads and follow-up, is $1,000 a month plus a one-time setup fee of $300 to $400.'],
+      ['Can an AI receptionist book into Boulevard or Zenoti?', 'Zenoti\'s own AI books inside Zenoti. Other tools differ: some write into your booking software, others book a shared calendar or text a booking link for a coordinator to place. Ask which before you buy.'],
+      ['Will it answer Instagram messages?', 'Not always. Many AI receptionists answer calls only. If most of your inquiries arrive by Instagram, text or Meta lead forms, choose a setup that replies there within a minute.'],
+    ],
+    sources: [DIALZARA_FRONTDESK, EESEL_DENTAL, KERAGON_MEDSPA, ZENOTI_PRICING, PODIUM_PLANS, JUSTCALL_MEDSPA, AMSPA_SOCIAL],
+    services: ['ai-receptionist', 'lead-follow-up', 'database-reactivation'],
+    industries: ['med-spas'],
+    related: ['ai-receptionist-vs-answering-service', 'speed-to-lead', 'ads-get-clicks-but-no-bookings'],
+  },
+  {
+    slug: 'ai-receptionist-for-hvac',
+    title: 'AI receptionist and lead follow-up for HVAC companies: options and prices.',
+    seoTitle: 'AI Receptionist for HVAC Companies: Options and 2026 Prices',
+    desc: 'What HVAC companies pay for an AI receptionist and missed-call follow-up in 2026: AI answering services, field service add-ons and done-for-you agencies compared.',
+    card: 'AI answering from $49 a month, Jobber\'s add-on, HVAC-specific services and done-for-you agencies, compared.',
+    answer: 'An HVAC company can buy AI call answering three ways. Self-serve AI answering services publish prices from $49 to $500 a month, and Jobber sells its own receptionist as a $99 add-on. HVAC-specific services that triage emergencies and book into ServiceTitan, Jobber or Housecall Pro run $297 to $997 a month. A done-for-you agency also follows up quotes and runs the ads: Bookdzilla charges $1,000 a month plus a one-time setup fee of $300 to $400. Live answering services cost roughly $777 to $1,965 a month at 200 calls.',
+    read: 6,
+    toc: [['ways', 'Three ways to buy it'], ['prices', 'Options and prices'], ['check', 'What to check before you pay'], ['which', 'Which one fits your company'], ['fit', 'Where Bookdzilla fits']],
+    body: `
+<section id="ways">
+<h2>Three ways to buy it.</h2>
+<p>A homeowner with no cooling calls companies until one answers. The job is to pick up every call, including the ones that come in while the team is on a roof or after 6pm, sort emergencies from tune-ups, put the visit on the dispatch calendar and text back anyone who hung up. The money that is easiest to miss comes later: replacement quotes that get one visit and no second contact.</p>
+<ul>
+<li><b>AI answering services.</b> Self-serve phone answering, priced by minutes or callers. Cheapest to start.</li>
+<li><b>Field service add-ons and HVAC services.</b> Receptionists inside or connected to Jobber, ServiceTitan or Housecall Pro, with emergency rules and booking on the dispatch board.</li>
+<li><b>Done-for-you agencies.</b> A team that builds the answering, missed-call text back, quote follow-up and tune-up campaigns for you, usually on a CRM such as GoHighLevel, and also runs the ads.</li>
+</ul>
+</section>
+<section id="prices">
+<h2>Options and prices.</h2>
+<div class="cmp-wrap"><table class="cmp">
+<thead><tr><th scope="col">Option</th><th scope="col">Published price</th><th scope="col">Calls</th><th scope="col">What it covers</th></tr></thead>
+<tbody>
+<tr><th scope="row">Rosie<small>AI answering service</small></th><td>$49, $149 or $299 a month for 250, 1,000 or 2,000 minutes</td><td>Yes</td><td>Answers calls around the clock. Live and warm transfers to your team from the $149 plan.</td></tr>
+<tr><th scope="row">Goodcall<small>AI answering service</small></th><td>$79, $129 or $299 a month, priced by unique callers rather than minutes</td><td>Yes</td><td>Answers calls, about 150, 750 or 3,000 a month by plan, with no charge for minutes.</td></tr>
+<tr><th scope="row">Jobber Receptionist<small>Add-on for Jobber users</small></th><td>$99 a month for 100 conversations, then $0.79 each. Included on Jobber Plus.</td><td>Yes</td><td>Calls, texts and website chat. Books jobs into your Jobber schedule and creates follow-up tasks.</td></tr>
+<tr><th scope="row">Otherworlds AI<small>HVAC AI answering service</small></th><td>$297, $497 or $997 a month. Setup waived on the first two, $899 on the third.</td><td>Yes</td><td>Emergency triage by your rules, booking into ServiceTitan, Jobber or Housecall Pro, and outbound reminders and follow-ups from $497.</td></tr>
+<tr><th scope="row">Smith.ai<small>AI receptionist with live backup</small></th><td>Free for 25 calls, $150 a month for 75 calls, $500 for 300</td><td>Yes</td><td>Answers, qualifies and routes calls, and can transfer to live receptionists.</td></tr>
+<tr><th scope="row">Avoca<small>AI front office for home services</small></th><td>Quote only</td><td>Yes</td><td>Call answering for larger home service teams.</td></tr>
+<tr><th scope="row">Bookdzilla<small>Done-for-you agency</small></th><td>$1,000 a month plus $300 to $400 setup, no contract</td><td>Yes</td><td>Missed calls texted back in seconds, an AI receptionist that books onto the dispatch calendar, quote follow-up, tune-up campaigns, and Meta and Google ads traced to jobs.</td></tr>
+</tbody>
+</table></div>
+<p>Prices are monthly in US dollars. Rosie, Goodcall, Jobber and Otherworlds AI come from their own pricing and help pages, checked November 26, 2026. Smith.ai is from eesel's November 4, 2026 check of its pricing page, and Avoca from Carly's October 2026 comparison. Confirm the current price before you buy. Bookdzilla wrote this guide and is one of the options in it.</p>
+</section>
+<section id="check">
+<h2>What to check before you pay.</h2>
+<ol>
+<li><b>Emergency rules.</b> Decide what counts as an emergency, such as no heat in freezing weather, and who gets the transfer at 2am. Everything else should book the next open slot.</li>
+<li><b>Booking onto the dispatch board.</b> Ask whether the visit lands in ServiceTitan, Housecall Pro or Jobber, or arrives as a message your dispatcher has to re-enter.</li>
+<li><b>Peak-season load.</b> On the first heat wave, calls double. Check how many calls it can take at once and what a minute cap costs in July.</li>
+<li><b>Service area and job types.</b> It should know your ZIP codes, the brands you service and the work you do not take, so it does not book a job you will cancel.</li>
+<li><b>Missed calls and web leads.</b> Callers who hang up and forms filled in at night need a text within a minute, not only an answered phone.</li>
+<li><b>Quote follow-up.</b> A replacement quote is the biggest ticket you write. Ask who follows it up, with what, and when it stops.</li>
+<li><b>Your number stays yours.</b> If you cancel, your business number and call history should leave with you.</li>
+</ol>
+</section>
+<section id="which">
+<h2>Which one fits your company.</h2>
+<ul>
+<li><b>Small shop missing calls on jobs.</b> A $49 to $149 AI answering service with missed-call text back covers the basics.</li>
+<li><b>Running on Jobber.</b> Try its receptionist first, because it books where your schedule already lives.</li>
+<li><b>On ServiceTitan or Housecall Pro with dispatch rules.</b> Pick a service that writes the booking back and follows your emergency rules.</li>
+<li><b>Calls are answered but quotes and ads do not turn into jobs.</b> You need someone who fixes the follow-up and the ads, not another phone line.</li>
+</ul>
+</section>
+<section id="fit">
+<h2>Where Bookdzilla fits.</h2>
+<p>Bookdzilla is an AI marketing agency for high-ticket local businesses in the United States, including HVAC and home service companies. It builds missed-call text back, the <a href="/services/ai-receptionist/">AI receptionist</a>, quote follow-up and tune-up campaigns in GoHighLevel, booking straight into your field service software where it allows and handing off cleanly where it does not. It also runs the Meta and Google ads and traces each job to its campaign. It costs $1,000 a month plus a one-time setup fee of $300 to $400, month to month. See <a href="/pricing/">pricing</a> and <a href="/industries/hvac/">marketing for HVAC companies</a>.</p>
+<p>If you only need the phone answered, an answering service from the table costs less. Start with a <a href="/free-leak-check/">free leak check</a> to see where jobs are being lost before you buy anything.</p>
+</section>`,
+    faqs: [
+      ['How much does an AI receptionist cost for an HVAC company?', 'Published prices in 2026 run from $49 a month for basic AI answering to $997 a month for HVAC-specific services that book into dispatch software. Jobber\'s add-on is $99 a month for 100 conversations. Live answering services cost roughly $777 to $1,965 a month at 200 calls. Bookdzilla, which also follows up quotes and runs ads, is $1,000 a month plus a one-time setup fee of $300 to $400.'],
+      ['Can an AI receptionist book into ServiceTitan or Housecall Pro?', 'Some can. Otherworlds AI lists ServiceTitan, Jobber and Housecall Pro, and Jobber\'s receptionist books inside Jobber. Many general tools only take a message or text a link, so your dispatcher re-enters the job.'],
+      ['What happens with emergency calls at night?', 'You set the rules: which problems count as emergencies, who gets the transfer and what the after-hours fee is. Everything else is booked for the next open slot and confirmed by text.'],
+    ],
+    sources: [ROSIE_PRICING, GOODCALL_PRICING, JOBBER_RECEPTIONIST, OTHERWORLDS_PRICING, EESEL_DENTAL, CARLY_HVAC],
+    services: ['ai-receptionist', 'lead-follow-up', 'database-reactivation'],
+    industries: ['hvac'],
+    related: ['missed-call-text-back', 'ai-receptionist-vs-answering-service', 'speed-to-lead'],
   },
   {
     slug: 'missed-call-text-back',

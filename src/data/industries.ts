@@ -263,7 +263,7 @@ export const INDUSTRIES: Industry[] = [
       ['We already have an agency running ads.', 'Keep them if the ads perform. We fix what happens after the click: the page, the reply, the reminders and the follow-up.'],
     ],
     sources: [HBR, AD_LIB, ADS_TC],
-    guides: ['speed-to-lead', 'cost-per-booked-appointment', 'ads-get-clicks-but-no-bookings'],
+    guides: ['ai-receptionist-for-dental-practices', 'speed-to-lead', 'cost-per-booked-appointment'],
     related: ['med-spas', 'senior-living', 'private-schools'],
   },
   {
@@ -317,7 +317,7 @@ export const INDUSTRIES: Industry[] = [
       ['How do you bring past clients back?', 'We segment your client list by treatment and last visit, then send a short reminder with times to book when they are due.'],
     ],
     sources: [HBR, AD_LIB],
-    guides: ['ads-get-clicks-but-no-bookings', 'speed-to-lead', 'cost-per-booked-appointment'],
+    guides: ['ai-receptionist-for-med-spas', 'ads-get-clicks-but-no-bookings', 'speed-to-lead'],
     related: ['dental-practices', 'wedding-venues', 'pool-builders'],
   },
   {
@@ -490,7 +490,7 @@ export const INDUSTRIES: Industry[] = [
       ['How do tune-up campaigns work?', 'We segment your customer list by equipment and last service, then send a short seasonal offer with times to book. Replies are answered and placed on the calendar.'],
     ],
     sources: [HBR, ADS_TC],
-    guides: ['missed-call-text-back', 'speed-to-lead', 'cost-per-booked-appointment'],
+    guides: ['missed-call-text-back', 'ai-receptionist-for-hvac', 'speed-to-lead'],
     related: ['roofing', 'pool-builders', 'med-spas'],
   },
 ];
